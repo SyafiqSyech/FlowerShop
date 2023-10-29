@@ -7,9 +7,8 @@
     <title>The Herb Shop &copy;</title>
 </head>
 <body>
-    @extends('layouts.navbarLayout')
+    @include('layouts.navbarLayout')
 
-    @section('content')
         <header>
             <img src="{{ asset('assets/marek-piwnicki-sU_kKMURZbA-unsplash 1.png') }}" alt="" class="background-img">
             <h1>ACCOUNT</h1>
@@ -41,6 +40,5 @@
             </div>
 
         </main>
-    @endsection
 </body>
 </html>
