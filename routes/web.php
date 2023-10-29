@@ -14,19 +14,57 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+// ROUTING PAGE
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/register', function () {
-    return view('register');
-});
+
+// MAIN PAGES
+route::get('/home', function () {
+    return view('home');
+}) -> name('home');
+
+Route::get('/contact', function () {
+    return view('contact');
+}) -> name('contact');
+
 Route::get('/account', function() {
     return view('account');
-});
+}) -> name('account');
 
+Route::get('/herbs', function () {
+    return view('herbs');
+}) -> name('herbs');
+
+Route::get('/cart', function () {
+    return view('cart');
+}) -> name('cart');
+
+// ACCOUNT RELATED PAGES
+Route::get('/login', function () {
+    return view('login');
+}) -> name('login');
+
+Route::get('/register', function () {
+    return view('register');
+}) -> name('register');
+
+
+// COLLECTION PAGES
+Route::get('/alchemical', function () {
+    return view('alchemical');
+}) -> name('alchemical');
+
+Route::get('/exotic', function () {
+    return view('exotic');
+}) -> name('exotic');
+
+Route::get('/swiftgrow', function () {
+    return view('swiftgrow');
+}) -> name('swiftgrow');
+
+
+// ROUTING LOGIC
 Route::get('/register', [RegisterController::class, 'register']) -> name('register');
 Route::post('/storeUser', [RegisterController::class, 'storeUser']) -> name('storeUser');
 Route::get('/login', [LoginController::class, 'login']) -> name('login');

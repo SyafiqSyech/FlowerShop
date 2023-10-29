@@ -1,5 +1,6 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="{{ asset('register.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>The Herb Shop &copy;</title>
 </head>
+
 <body>
 
-        <!--==================== MAIN ====================-->
-        <main class="main">
+    <!--==================== MAIN ====================-->
+    <main class="main">
 
         <!--==================== LEFT ====================-->
         <div class="left__container">
@@ -50,19 +53,32 @@
                         <!--==================== ISI FORM ====================-->
                         <div class="name__container">
                             <div class="input__form">
-                                <input name="firstName" type="text" class="register__input" id="fname" required placeholder=" " value="{{ old('firstName') }}"> 
+                                <input name="firstName" type="text" class="register__input @error('firstName') is-invalid @enderror" id="fname"
+                                    placeholder=" " value="{{ old('firstName') }}">
                                 <label for="fname" class="register__label">First Name</label>
+                                @error('firstName')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
-
 
                             <div class="input__form">
-                                <input name="lastName" type="text" class="register__input" id="lname" required placeholder=" " value="{{ old('lastName') }}"> 
+                                <input name="lastName" type="text" class="register__input @error('lastName') is-invalid @enderror" id="lname"
+                                    placeholder=" " value="{{ old('lastName') }}">
                                 <label for="lname" class="register__label">Last Name</label>
+                                @error('lastName')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
-                        
+
                         <div class="input__form">
-                            <input name="email"  type="email" class="register__input @error('email') is-invalid @enderror" id="email" required placeholder=" " value="{{ old('email') }}"> 
+                            <input name="email" type="text"
+                                class="register__input @error('email') is-invalid @enderror" id="email"
+                                placeholder=" " value="{{ old('email') }}">
                             <label for="email" class="register__label">Email</label>
                             @error('email')
                                 <div class="invalid-feedback">
@@ -71,85 +87,53 @@
                             @enderror
                         </div>
 
-                
                         <div class="password__container">
                             <div class="input__form">
-                                <input name="password" type="password" class="register__input @error('password') is-invalid @enderror" id="password" required placeholder=" ">
+                                <input name="password" type="password"
+                                    class="register__input @error('password') is-invalid @enderror" id="password"
+                                    placeholder=" ">
                                 <label for="password" class="register__label">Password</label>
                                 @error('password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
                             <div class="input__form">
-                                <input name="confirm-password" type="password" class="register__input @error('confirm-password') is-invalid @enderror" id="cpassword" required placeholder=" ">
+                                <input name="confirm-password" type="password"
+                                    class="register__input @error('confirm-password') is-invalid @enderror"
+                                    id="cpassword" placeholder=" ">
                                 <label for="password" class="register__label">Confirm Password</label>
                                 @error('confirm-password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                         </div>
-
-                        {{-- <div class="input__form">
-                            <input name="phoneNumber" type="tel" class="register__input @error('phoneNumber') is-invalid @enderror" id="phoneNumber" required placeholder=" " value="{{ old('phoneNumber') }}">
-                            <label for="phoneNumber" class="register__label">Phone Number</label>
-                            @error('phoneNumber')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="input__form">
-                            <input name="DOB" type="date"  class="register__input @error('DOB') is-invalid @enderror" id="DOB" required value="{{ old('DOB') }}">
-                            <label for="DOB" class="register__label">Date of Birth</label>
-                            @error('DOB')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div> --}}
-
-                        {{-- <div class="gender__container">
-                            <div class="input__form-radio">
-                                 <div class="div__input">
-                                     <input name="gender" type="radio"  class="register__input-rb" id="male" required>
-                                 </div>
- 
-                                 <div>
-                                     <label for="male" class="register__label-rb">Male</label>
-                                 </div>
- 
-                             </div>  --}}
-                             {{-- <div class="input__form-radio">
-                                 <div class="div__input">
-                                     <input name="gender" type="radio"  class="register__input-rb" id="female" required>
-                                 </div>
- 
-                                 <div>
-                                     <label for="female" class="register__label-rb">Female</label>
-                                 </div>
-                             </div>  --}}
-                        
 
                         <!--==================== BUTTON ====================-->
                         <div class="button__container">
                             <button type="submit" class="register__button button">Register</button>
                             <a class="login__button button" href="{{ route('login') }}">Login</a>
                         </div>
-                        
-                        
+
                     </div>
                 </form>
             </div>
         </div>
+    </main>
 
+    <!--=============== SCROLLREVEAL ===============-->
+    <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
 
-    </main>    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!--=============== MAIN JS ===============-->
+    <script src="{{ asset('js/login-register.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>

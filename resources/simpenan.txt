@@ -1,0 +1,40 @@
+{{-- <div class="input__form">
+                            <input name="phoneNumber" type="tel" class="register__input @error('phoneNumber') is-invalid @enderror" id="phoneNumber" required placeholder=" " value="{{ old('phoneNumber') }}">
+                            <label for="phoneNumber" class="register__label">Phone Number</label>
+                            @error('phoneNumber')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="input__form">
+                            <input name="DOB" type="date"  class="register__input @error('DOB') is-invalid @enderror" id="DOB" required value="{{ old('DOB') }}">
+                            <label for="DOB" class="register__label">Date of Birth</label>
+                            @error('DOB')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div> --}}
+
+                        {{-- <div class="gender__container">
+                            <div class="input__form-radio">
+                                 <div class="div__input">
+                                     <input name="gender" type="radio"  class="register__input-rb" id="male" required>
+                                 </div>
+ 
+                                 <div>
+                                     <label for="male" class="register__label-rb">Male</label>
+                                 </div>
+ 
+                             </div>  --}}
+                             {{-- <div class="input__form-radio">
+                                 <div class="div__input">
+                                     <input name="gender" type="radio"  class="register__input-rb" id="female" required>
+                                 </div>
+ 
+                                 <div>
+                                     <label for="female" class="register__label-rb">Female</label>
+                                 </div>
+                             </div>  --}}
