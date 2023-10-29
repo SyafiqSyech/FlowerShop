@@ -89,7 +89,7 @@
                 <!-- <img src="public/assets/login-pict.png" alt="" class="login__img-background"> -->
             </div>
 
-            <img src="{{ asset('assets/login-pict.png') }}" alt="" class="image toprounded">
+            <img src="{{ asset('assets/LoginPlant.png') }}" alt="" class="image toprounded">
             <div class="shop__name">THE HERB SHOP</div>
         </div>
     </main>

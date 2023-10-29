@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('register.css') }}">
     <link rel="stylesheet" href="{{ asset('loginregister.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
     <title>The Herb Shop &copy;</title>
 </head>
 <body>
@@ -25,7 +26,7 @@
         <!--==================== LEFT ====================-->
         <div class="left__container">
             <div class="image-background register__image-background"></div>
-            <img src="{{ asset('assets/register-pict.png') }}" alt="" class="image toprounded">
+            <img src="{{ asset('assets/RegisterPlant.png') }}" alt="" class="image toprounded">
             <div class="shop__name">THE HERB SHOP</div>
         </div>
 
