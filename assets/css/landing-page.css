@@ -1,87 +1,4 @@
-/*=============== GOOGLE FONTS ===============*/
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Serif+Text&family=Raleway:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Sans:opsz@9..40&family=DM+Serif+Text&family=Raleway:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Sans:opsz@9..40&family=DM+Serif+Display:ital@1&family=DM+Serif+Text&family=Raleway:wght@100&display=swap');
-
-/*=============== VARIABLES CSS ===============*/
-:root{
-    --header-height: 3.5rem;
-
-    /*========== Colors ==========*/
-    /*Color mode HSL(hue, saturation, lightness)*/
-    --main-color: hsl(295, 47%, 71%);
-    --black-color: hsl(0, 0%, 0%);
-    --black-color-light: hsl(0, 0%, 40%);
-    --white-color: hsl(0, 0%, 95%);
-    --white-broken-color: hsl(27.3, 100%, 91.4%);
-    --title-color: hsl(0, 0%, 0%);
-    --text-color: hsl(0, 0%, 35%);
-    --text-color-light: hsl(0, 0%, 64%);
-    /* --body-color: hsl(0, 0%, 87%) */
-
-    /*========== Font and typography ==========*/
-    /*.5rem = 8px | 1rem = 16px ...*/
-    --shop-name-font: "DM Serif Display";
-    --title-font: "DM Serif Text";
-    --body-font: "DM Sans";
-    --biggest-font-size: 2.5rem;
-    --title-font-size: 4rem;
-    --h1-font-size: 1.75rem;
-    --h2-font-size: 1.25rem;
-    --h3-font-size: 1.125rem;
-    --normal-font-size: .938rem;
-    --small-font-size: .813rem;
-    --smaller-font-size: .75rem;
-
-    /*========== Font weight ==========*/
-    --font-regular: 400;
-    --font-medium: 500;
-    --font-semi-bold: 600;
-    --font-bold: 700;
-}
-
-/*=============== BASE ===============*/
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--body-font);
-    font-size: var(--normal-font-size);
-  }
-
-ul {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-/*=============== REUSABLE CSS CLASSES ===============*/
-.container {
-    max-width: 1120px;
-    margin-inline: 1.5rem;
-}
-
-.grid {
-    display: grid;
-    gap: 1.5rem;
-}
-
+/*=============== HOME PAGE/LANDING PAGE START ===============*/
 /*=============== HEADER ===============*/
 .header{
     position: fixed;
@@ -93,7 +10,7 @@ img {
     display: flex;
     flex-direction: row;
     background-color: transparent;
-    width: 1472.8px;
+    width: 98vw;
 }
 
 .true__header-left{
@@ -134,7 +51,7 @@ img {
     position: fixed;
     background-color: var(--black-color);
     height: 708px;
-    width: 1472.8px;
+    width: 100vw;
     top: -800px;
     z-index: 1;
     transition: top 0.7s;
@@ -144,7 +61,7 @@ img {
     display: flex;
     flex-direction: row;
     background-color: transparent;
-    width: 1472.8px;
+    width: 98vw;
 }
 
 .dropdown__header-left{
@@ -304,10 +221,13 @@ img {
     font-weight: lighter;
 }
 
-
 /*=============== HOME ===============*/
 .home{
-    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: max(100vh,420px);
+    
 }
 
 .home__background-pict{
@@ -316,7 +236,7 @@ img {
     width: 100%;
     position: absolute;
     top: 50%;
-    height: 100%;
+    height: max(100%, 420px);
     transform: translate(0, -50%);
     background-size: cover;
     background-position: center;
@@ -449,11 +369,14 @@ img {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    height: max(100vh, 420px);
 
 }
 
-.left__container{
+.nc__left-container{
     width: 50%;
+    display: flex;
+    align-items: center;
 }
 
 .newcollect__image-background{
@@ -475,15 +398,14 @@ img {
 .newcollect__image{
     display: flex;
     justify-content: center;
-    text-align: center;
-    margin-top: 15rem;
+    /* margin-top: 15rem; */
 }
 
 /*=============== NEW COLLECTION ===============*/
 /*=============== RIGHT CONTENT ===============*/
-.right__container{
+.nc__right-container{
     width: 50%;
-    height: 708px;
+    height: max(100vh, 420px);
     background-color: #A235AC;
     color: var(--white-color);
     font-family: var(--body-font);
@@ -732,15 +654,16 @@ img {
     display: flex;
     flex-direction: row;
     height: 600px;
+    position: relative;
 }
 
 .ourStory__img{
-    width: 65%;
+    width: 30rem;
     height: 65%;
 }
 
 .ourStory__image{
-    position: relative;
+    /* position: relative; */
     display: flex;
     justify-content: flex-end;
     
@@ -750,7 +673,7 @@ img {
     font-family: var(--shop-name-font);
     position: absolute;
     top: 30%;
-    left: 40%;
+    margin-right: 11rem;
 }
 
 .oS__the, 
@@ -800,7 +723,7 @@ img {
 
 /*=============== FOOTER ===============*/
 .footer{
-    height: 450px;
+    height: max(50vh, 450px);
     background-color: var(--black-color);
 }
 
@@ -817,6 +740,7 @@ img {
 .footer__container{
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
 }
 
 .footer__link-container{
@@ -849,7 +773,7 @@ img {
 
 .footer__line{
     height: 1px;
-    width: 913px;
+    width: 70vw;
     background-color: var(--white-color);
     margin-left: 3.5rem;
     margin-top: 4.5rem;
@@ -899,7 +823,7 @@ img {
 
 .footer__shop-name-container{
     border: 1px solid var(--white-color);
-    height: 280px;
+    height: max(30vh,280px);
     width: 200px;
     margin-top: 6rem;
     margin-left: 4rem;
@@ -914,8 +838,9 @@ img {
 }
 
 .footer__shop-name{
-    margin-left: 2rem;
-    margin-top: 3rem;
+    margin-left: 1.5rem;
+    margin-top: auto;
+    margin-bottom: 0.5rem;
 }
 
 .footer__the, 
@@ -939,6 +864,7 @@ img {
     color: var(--white-color);
     z-index: var(--z-tooltip);
     transition: bottom .4s, transform .4s, background-color .4s;
+    border-radius: 20px;
 }
 
 .scrollup:hover{
@@ -949,3 +875,5 @@ img {
 .show-scroll{
     bottom: 3rem;
 }
+
+/*=============== HOME PAGE/LANDING PAGE END ===============*/
