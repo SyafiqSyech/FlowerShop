@@ -1,4 +1,7 @@
-/*=============== HOME PAGE/LANDING PAGE START ===============*/
+:root{
+    --main-color: hsl(27.3, 100%, 91.4%);
+}
+
 /*=============== HEADER ===============*/
 .header{
     position: fixed;
@@ -179,82 +182,64 @@
 }
 
 /*=============== HEADER HOME ===============*/
-.header__home{
+nav{
     position: absolute;
     width: 100%;
-    height: 70px;
-    top: 0;
-    margin-top: 2.3rem;
-}
-
-.nav{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    /* border: 2px solid white; */
-    width: 100%;
-    height: 50px;
-    padding-left: 2.8rem;
-    padding-right: 2.8rem;
+    z-index: 2;
 }
 
+.header__home{
+    padding: 3rem 3rem 0 3rem;
+}
+
+.nav__shop-name svg{
+    width: 140px;
+}
+
+.nav__shop-name,
 .nav__list-mid,
 .nav__list-right{
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 180px;
-    font-family: var(--body-font);
-    font-size: var(--smaller-font-size);
-    /* border: 2px solid white; */
+    flex: 1;
+    gap: 1.5rem;
 }
 
-.header__shop-name{
-    font-family: var(--shop-name-font);
-    color: var(--white-broken-color);
-    font-weight: lighter;
-    font-size: 1.3rem;
+.nav__list-mid{
+    justify-content: center;
+}
+
+.nav__list-right{
+    justify-content: end;
 }
 
 .nav__link{
-    color: var(--white-broken-color);
-    font-weight: lighter;
+    font-size: var(--small-font-size);
+    color: var(--main-color);
 }
 
-/*=============== HOME ===============*/
-.home{
+/*=============== HERO ===============*/
+.hero{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: max(100vh,420px);
-    
-}
-
-.home__background-pict{
+    height: max(100vh, 420px);
     background-image: url(/assets/img/landing-page-pict-background.png);
     background-repeat: no-repeat;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    height: max(100%, 420px);
-    transform: translate(0, -50%);
     background-size: cover;
     background-position: center;
-    z-index: -1;
 }
 
-.home__title{
+.hero__slogan{
     font-family: var(--title-font);
-    color: var(--white-broken-color);
-    font-size: 11.5rem;
-    font-weight: lighter;
+    color: var(--main-color);
+    font-size: 11rem;
     text-align: center;
-    margin-top: 18rem;
 }
 
-.home__subtitle{
-    color: var(--white-broken-color);
-    font-family: var(--body-font);
+.hero__subtitle{
+    color: var(--main-color);
     text-align: center;
 }
 
@@ -262,22 +247,22 @@
     text-align: center;
 }
 
-.home__discover{
-    color: var(--white-broken-color);
+.hero__discover{
+    color: var(--main-color);
     font-family: var(--body-font);
     font-size: 1rem;
     font-weight: lighter;
     background-color: transparent;
-    border: 2px solid var(--white-broken-color);
+    border: 2px solid var(--main-color);
     border-radius: 20px;
     width: 270px;
     height: 43px;
     margin-top: 3rem;
 }
 
-.home__discover:hover{
+.hero__discover:hover{
     color: var(--black-color-light);
-    background-color: var(--white-broken-color);
+    background-color: var(--main-color);
     transition: background-color .5s;
 }
 
@@ -875,5 +860,3 @@
 .show-scroll{
     bottom: 3rem;
 }
-
-/*=============== HOME PAGE/LANDING PAGE END ===============*/
