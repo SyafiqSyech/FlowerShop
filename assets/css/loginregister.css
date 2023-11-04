@@ -25,11 +25,11 @@
 }
 
 .image-background::before {
+    content: '';
     position: absolute;
-    width: calc(100% + 120px);
-    height: calc(100% + 120px);
-    content: "";
-    background-color: rgba(0, 0, 0, 0.12); /* Adjust the opacity here */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Adjust the opacity here */
 }
 
 .image{
@@ -95,10 +95,14 @@
     gap: 20px
 }
 
-.button__container .button{
-    padding: 12px 0;
+.button__container .button__content{
+    cursor: pointer;
     width: auto;
     border: 2px solid var(--main-color);
+}
+
+.button__container .button__content p{
+    width: 100%;
     text-align: center;
 }
 

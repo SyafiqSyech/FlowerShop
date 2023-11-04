@@ -1,109 +1,89 @@
 /*=============== NAVBAR DROPDOWN ===============*/
-function checkDropdownPosition() {
-    var dropdown = document.querySelector('.dropdown');
-    var body = document.querySelector('body');
+// function checkDropdownPosition() {
+//     var dropdown = document.querySelector('.dropdown');
+//     var body = document.querySelector('body');
 
-    var dropdownTop = dropdown.style.top;
+//     var dropdownTop = dropdown.style.top;
 
-    if (dropdownTop === '0px') {
-        body.style.overflow = 'hidden';
-    } else {
-        body.style.overflow = 'visible'; // or 'auto' if you want to revert to the default behavior
-    }
-}
+//     if (dropdownTop === '0px') {
+//         body.style.overflow = 'hidden';
+//     } else {
+//         body.style.overflow = 'visible'; // or 'auto' if you want to revert to the default behavior
+//     }
+// }
 
-document.getElementById("tHeader-menu").addEventListener("click", function() {
-    var dropdown = document.querySelector(".dropdown");
+// document.getElementById("tHeader-menu").addEventListener("click", function() {
+//     var dropdown = document.querySelector(".dropdown");
 
-    // Change the top position to 0
-    dropdown.style.top = "0"; 
-    checkDropdownPosition()
-});
+//     // Change the top position to 0
+//     dropdown.style.top = "0"; 
+//     checkDropdownPosition()
+// });
 
-document.getElementById("dHeader-menu").addEventListener("click", function() {
-    var dropdown = document.querySelector(".dropdown");
+// document.getElementById("dHeader-menu").addEventListener("click", function() {
+//     var dropdown = document.querySelector(".dropdown");
 
-    var currentTop = parseInt(dropdown.style.top);
+//     var currentTop = parseInt(dropdown.style.top);
 
-    if (currentTop === 0) {
-        dropdown.style.top = "-800px";
-    }
+//     if (currentTop === 0) {
+//         dropdown.style.top = "-800px";
+//     }
 
-    checkDropdownPosition()
-});
+//     checkDropdownPosition()
+// });
 
 
 /*=============== NAVBAR DISSAPPEAR IN HOME ===============*/
-window.onload = function() {
-    hideNavbarOnLoad();
-};
-
-function hideNavbarOnLoad() {
-    var header = document.getElementById("header");
-    header.classList.add("hidden");
-}
 
 window.onscroll = function() {scrollFunction()};
 
+function scrollFunction() {
+    var headerTrue = document.getElementById("headerTrue");
 
-        function scrollFunction() {
-            var header = document.getElementById("header");
-            var shopCart = document.getElementById("tHeader-shopCart");
-            var homeSection = document.getElementById("home");
-            
-            var shopCartPosition = shopCart.getBoundingClientRect();
-            var homeSectionPosition = homeSection.getBoundingClientRect();
-            
-            if (shopCartPosition.top <= homeSectionPosition.bottom && shopCartPosition.bottom >= homeSectionPosition.top ||
-                shopCartPosition.top < homeSectionPosition.top) {
-                header.classList.add("hidden");
-            } else {
-                header.classList.remove("hidden");
-            }
-        }
+    if (window.scrollY < window.innerHeight/2) {
+        headerTrue.classList.add("hidden");
+    } else {
+        headerTrue.classList.remove("hidden");
+    }
+}
 
 
         
 /*=============== NAVBAR COLOR CHANGE ===============*/ 
 document.addEventListener('DOMContentLoaded', function() {
-    const shopCartIcon = document.getElementById('tHeader-shopCart');
+    const ntShopName = document.getElementById('navTrueShopName');
+    const ntShopLogo = document.getElementById('navTrueShopLogo');
+    const ntListRight = document.getElementById('navTrueListRight');
+    const home = document.getElementById('home');
     const newCollectionSection = document.getElementById('new-collection');
     const testimonyCarouselSection = document.getElementById('testimony-carousel');
-    const otherIcons = document.querySelectorAll('#tHeader-shopCart, #tHeader-account, #tHeader-menu');
     
-    function changeColorToWhite() {
-        shopCartIcon.style.color = 'white';
-        otherIcons.forEach(item => {
-            item.style.color = 'white';
-        });
-        document.querySelectorAll('.tHeader__the, .tHeader__herb, .tHeader__shop').forEach(item => {
-            item.style.color = 'white';
-        });
+    function changeColor(color) {
+        ntShopLogo.style.fill = color;
+        ntListRight.style.color = color;
     }
+
+    function isCollide(b) {
+        var aRect = ntShopName.getBoundingClientRect();
+        var bRect = b.getBoundingClientRect();
     
-    function changeColorToBlack() {
-        shopCartIcon.style.color = 'black';
-        otherIcons.forEach(item => {
-            item.style.color = 'black';
-        });
-        document.querySelectorAll('.tHeader__the, .tHeader__herb, .tHeader__shop').forEach(item => {
-            item.style.color = 'black';
-        });
+        return !(
+            ((aRect.top + aRect.height/3) < (bRect.top)) ||
+            ((aRect.top + aRect.height/3) > (bRect.top + bRect.height))
+        );
     }
 
     // Add an event listener to check if the elements are in the viewport
     window.addEventListener('scroll', function() {
-        const shopCartIconBounds = shopCartIcon.getBoundingClientRect();
-        const newCollectionBounds = newCollectionSection.getBoundingClientRect();
-        const testimonyCarouselBounds = testimonyCarouselSection.getBoundingClientRect();
 
         if (
-            shopCartIconBounds.top >= newCollectionBounds.top && shopCartIconBounds.bottom <= newCollectionBounds.bottom ||
-            shopCartIconBounds.top >= testimonyCarouselBounds.top && shopCartIconBounds.bottom <= testimonyCarouselBounds.bottom
+            isCollide(home) ||
+            isCollide(newCollectionSection)
+            // isCollide(testimonyCarouselSection)
         ) {
-            changeColorToWhite();
+            changeColor("white");
         } else {
-            changeColorToBlack();
+            changeColor("black");
         }
     });
 });

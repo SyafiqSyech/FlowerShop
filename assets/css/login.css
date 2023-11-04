@@ -5,7 +5,7 @@
 
 /*=============== RIGHT CONTENT ===============*/
 .image-background{
-    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../img/login/LoginPlant.png');
+    background: url('../img/login/LoginPlant.png');
 }
 
 .shop__name{

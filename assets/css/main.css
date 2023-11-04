@@ -19,12 +19,8 @@ body {
     font-size: var(--normal-font-size);
 }
 
-input, ul, li {
+input, ul, li, a {
     all: unset;
-}
-
-a {
-    text-decoration: none;
 }
 
 button {
@@ -89,7 +85,6 @@ h1 {
     overflow: hidden;
     transition: var(--default-time);
     width: max-content;
-    font-size: var(--normal-font-size);
     background-color: transparent;
 }
 
@@ -124,9 +119,10 @@ h1 {
     padding: 12px 24px;
     border-radius: 100vw;
     border: 2px solid var(--black-color);
-    font-weight: var(--font-medium);
     display: flex;
     align-items: center;
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
 }
 
 .button__content .ri-arrow-right-up-line{
