@@ -24,11 +24,16 @@ input, ul, li {
 }
 
 a {
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 button {
     border: none;
+}
+
+h1 {
+    font-weight: 500;
+    line-height: 1.2;
 }
 
 /*=============== VARIABLES CSS ===============*/
@@ -38,7 +43,6 @@ button {
     /*========== Colors ==========*/
     /*Color mode HSL(hue, saturation, lightness)*/
     --black-color: black;
-    --black-color-light: hsl(0, 0%, 40%);
     --white-color: white;
     --title-color: hsl(0, 0%, 0%);
     --text-color: hsl(0, 0%, 35%);
@@ -54,9 +58,10 @@ button {
     --h1-font-size: 1.75rem;
     --h2-font-size: 1.25rem;
     --h3-font-size: 1.125rem; 
-    --normal-font-size: .938rem;
-    --small-font-size: .813rem;
-    --smaller-font-size: .75rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .8rem;
+    /* --small-font-size: .75rem; */
+    /* --smaller-font-size: .75rem; */
 
     /* --normal-font-size: .899rem;
     --small-font-size: .799rem;
@@ -67,6 +72,9 @@ button {
     --font-medium: 500;
     --font-semi-bold: 600;
     --font-bold: 700;
+    
+    /*========== Animation Time ==========*/
+    --default-time: .3s
 }
 
 .toprounded{
@@ -75,5 +83,95 @@ button {
 }
 
 .button{
+    position: relative;
+    border-radius: 100vw; 
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--default-time);
+    width: max-content;
+    font-size: var(--normal-font-size);
+    background-color: transparent;
+}
+
+.button:hover .button__content{
+    color: var(--white-color);
+}
+
+.button:hover::before{
+    transform: none;
+}
+
+.button:hover .button__content .ri-arrow-right-up-line{
+    transform: rotateZ(45deg);
+    margin-left: 24px;
+}
+
+.button::before{
+    content: '';
     border-radius: 100vw;
+    /* border: 2px solid blue; */
+    background-color: var(--black-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: var(--default-time);
+    transform: translateX(-101%);
+}
+
+.button__content{
+    padding: 12px 24px;
+    border-radius: 100vw;
+    border: 2px solid var(--black-color);
+    font-weight: var(--font-medium);
+    display: flex;
+    align-items: center;
+}
+
+.button__content .ri-arrow-right-up-line{
+    margin-left: 4px;
+}
+
+.button__content div{
+    transition: var(--default-time);
+    position: relative;
+}
+
+
+
+.container-card{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.card-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 2/3;
+    width: 18rem;
+    overflow: hidden;
+    margin-bottom: .5rem;
+}
+
+.card-img img{
+    width: 100%;
+    transition: .3s;
+}
+
+.card{
+    cursor: pointer;
+}
+
+.card:hover .card-img img{
+    width: 120%;
+}
+
+.card p{
+    font-size: var(--small-font-size);
 }

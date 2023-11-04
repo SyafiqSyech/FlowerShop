@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
 
     <!--=============== CSS BOOTSTRAP ===============-->  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/main.css">
@@ -150,7 +150,7 @@
 
             <ul class="nav__list-mid">
                 <li class="nav__item">
-                    <a href="" class="nav__link">Home</a>
+                    <a href="" class="nav__link hover-underline-animation">Home</a>
                 </li>
 
                 <li class="nav__item">
@@ -173,19 +173,18 @@
         </nav>
 
         <!--==================== HOME ====================-->
-        <section class="hero section" id="home">
+        <section class="hero" id="home">
             <h1 class="hero__slogan">GROW MAGIC</h1>
-            <p class="hero__subtitle">
+            <div class="hero__subtitle">
                 At The Herb Shop, we cultivate the mystical and the 
-                extraordinary. Explore our enchanted collection of <br> magical 
+                extraordinary. Explore our enchanted collection of magical 
                 herbs and uncover the essence of wonder.
-            </p>
-
-            <div class="button__container">
-                <button class="hero__discover button">
-                    Discover Nature’s Arcane
-                    <i class="ri-arrow-right-up-line"></i>
-                </button>
+            </div>
+            <div class="button">
+                <div class="button__content">
+                    <div>Discover Nature’s Arcane</div>
+                    <div class="ri-arrow-right-up-line"></div>
+                </div>
             </div>
         </section>
 
@@ -193,55 +192,49 @@
         <section class="featured section" id="featured">
             <h1 class="featured__title">FEATURED</h1>
 
-            <div class="featured__container">
-                <div class="featured__container-each">
-                    <div class="featured__image">
-                        <img src="/assets/img/featured-img.png" alt="" class="featured__img">
+            <div class="container-card">
+                <div class="card">
+                    <div class="card-img toprounded">
+                        <img src="/assets/img/featured-img.png" alt="">
                     </div>
-
-                    <p class="featured__herb-name">
+                    <p>
                         Faerie Dust
                     </p>
-
-                    <p class="featured__herb-price">
+                    <p>
                         € 59
                     </p>
                 </div>
 
-                <div class="featured__container-each">
-                    <div class="featured__image">
-                        <img src="/assets/img/featured-img.png" alt="" class="featured__img">
+                <div class="card">
+                    <div class="card-img toprounded">
+                        <img src="/assets/img/featured-img.png" alt="">
                     </div>
-
-                    <p class="featured__herb-name">
+                    <p>
                         Faerie Dust
                     </p>
-
-                    <p class="featured__herb-price">
+                    <p>
                         € 59
                     </p>
                 </div>
 
-                <div class="featured__container-each">
-                    <div class="featured__image">
-                        <img src="/assets/img/featured-img.png" alt="" class="featured__img">
+                <div class="card">
+                    <div class="card-img toprounded">
+                        <img src="/assets/img/featured-img.png" alt="">
                     </div>
-
-                    <p class="featured__herb-name">
+                    <p>
                         Faerie Dust
                     </p>
-
-                    <p class="featured__herb-price">
+                    <p>
                         € 59
                     </p>
                 </div>
             </div>
 
-            <div class="featured__button-container">
-                <button class="featured__button button">
-                    See More
-                    <i class="ri-arrow-right-up-line"></i>
-                </button>
+            <div class="button">
+                <div class="button__content">
+                    <div>See More</div>
+                    <div class="ri-arrow-right-up-line"></div>
+                </div>
             </div>
         </section>
 
@@ -257,7 +250,7 @@
             </div>
 
             <!--==================== RIGHT ====================-->
-            <div class="nc__right-container">
+            <div class="newcollect__right-container">
                 <div class="newcollect__title">
                     <p class="newcollect__small-title">
                         ALL NEW
@@ -279,11 +272,11 @@
                     </p>
                 </div>
     
-                <div class="newcollect__button-container">
-                    <button class="newcollect__button button">
-                        Discover
-                        <i class="ri-arrow-right-up-line"></i>
-                    </button>
+                <div class="button">
+                    <div class="button__content">
+                        <div>Discover</div>
+                        <div class="ri-arrow-right-up-line"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -376,7 +369,7 @@
         </section>
 
         <!--==================== TESTIMONY CAROUSEL ====================-->
-        <section class="testimony__carousel section" id="testimony-carousel">
+        <!-- <section class="testimony__carousel section" id="testimony-carousel">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators" id="bs__overides-carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" id="carousel__button"></button>
@@ -431,7 +424,7 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        </section>
+        </section> -->
         
         <!--==================== ADVANTAGES ====================-->
         <section class="advantages section" id="advatages">
@@ -641,7 +634,7 @@
     </footer>
 
     <!--========== SCROLL UP ==========-->
-    <a href="#home__bg-pict" class="scrollup" id="scroll-up">
+    <a href="#home" class="scrollup" id="scroll-up">
         <i class="ri-arrow-up-s-line"></i>
      </a>
 

@@ -191,7 +191,8 @@ nav{
 }
 
 .header__home{
-    padding: 3rem 3rem 0 3rem;
+    padding: 48px;
+    padding-bottom: 0;
 }
 
 .nav__shop-name svg{
@@ -217,134 +218,87 @@ nav{
 .nav__link{
     font-size: var(--small-font-size);
     color: var(--main-color);
+    display: inline-block;
+    position: relative;
+}
+
+.nav__link::after {
+    background-color: var(--main-color);
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1.5px;
+    bottom: -2px;
+    left: 0;
+    transform: scaleX(0);
+    transition: 0.3s;
+    /* transform-origin: bottom left; */
+}
+
+.nav__link:hover::after {
+    transform: scaleX(1);
+    /* transform-origin: bottom left; */
 }
 
 /*=============== HERO ===============*/
 .hero{
+    padding: 0 5rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     height: max(100vh, 420px);
     background-image: url(/assets/img/landing-page-pict-background.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    text-align: center;
 }
 
 .hero__slogan{
     font-family: var(--title-font);
     color: var(--main-color);
-    font-size: 11rem;
-    text-align: center;
+    font-size: calc(15vw - 1rem);
 }
 
 .hero__subtitle{
+    font-size: var(--normal-font-size);
     color: var(--main-color);
-    text-align: center;
+    width: 50vw;
+    margin-bottom: 2rem;
 }
 
-.button__container{
-    text-align: center;
-}
-
-.hero__discover{
-    color: var(--main-color);
-    font-family: var(--body-font);
-    font-size: 1rem;
-    font-weight: lighter;
-    background-color: transparent;
+.hero .button .button__content{
     border: 2px solid var(--main-color);
-    border-radius: 20px;
-    width: 270px;
-    height: 43px;
-    margin-top: 3rem;
+    color: var(--main-color);
 }
 
-.hero__discover:hover{
-    color: var(--black-color-light);
+.hero .button:hover .button__content{
+    color: hsl(0, 0%, 40%);
+}
+
+.hero .button::before{
+    /* border: 2px solid var(--main-color); */
     background-color: var(--main-color);
-    transition: background-color .5s;
 }
 
-/*=============== FEATURE ===============*/
+/*=============== FEATURED ===============*/
 .featured{
-    background-color: white;
-    height: 1000px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    padding: 100px 160px;
 }
 
 .featured__title{
     font-family: var(--title-font);
-    font-size: 2.3rem;
-    font-weight: lighter;
-    text-align: center;
-    margin-top: 3rem;
-    margin-bottom: 2.5rem;
-}
-
-.featured__container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    /* align-items: flex-start;
-    align-self: stretch; */
-    /* border: 1px solid black; */
-    width: 910px;
-    /* transform: translateX(31%); */
-    
-}
-
-.featured__image{
-    /* border: 1px solid black; */
-    height: 410px;
-    display: flex;
-    justify-content: center;
-}
-
-.featured__img{
-    width: 100%;
-    height: 100%;
-    border-top-left-radius: 280px;
-    border-top-right-radius: 280px;
-}
-
-.featured__herb-name,
-.featured__herb-price{
-    font-size: var(--smaller-font-size);
-    /* margin-left: 1.6rem; */
-}
-
-.featured__herb-name{
-    margin-top: .5rem;
-}
-
-.featured__button-container{
+    font-size: var(--biggest-font-size);
     text-align: center;
 }
 
-.featured__button{
-    color:var(--black-color);
-    font-family: var(--body-font);
-    font-size: var(--body-font);
-    font-weight: var(--font-medium);
-    background-color: transparent;
-    border: 2px solid var(--black-color);
-    border-radius: 20px;
-    width: 150px;
-    height: 40px;
-    margin-top: 3rem;
+.featured .card-img{
+    width: 18rem;
 }
 
-.featured__button:hover{
-    background-color: var(--black-color);
-    color: var(--white-color);
-    transition: background-color .5s;
+.featured .button{
+    margin: auto;
 }
 
 /*=============== NEW COLLECTION ===============*/
@@ -365,7 +319,6 @@ nav{
 }
 
 .newcollect__image-background{
-    
     background-image: url(/assets/img/newcollect-background.png);
     width: 50%;
     height: 100%;
@@ -388,7 +341,7 @@ nav{
 
 /*=============== NEW COLLECTION ===============*/
 /*=============== RIGHT CONTENT ===============*/
-.nc__right-container{
+.newcollect__right-container{
     width: 50%;
     height: max(100vh, 420px);
     background-color: #A235AC;
@@ -398,7 +351,6 @@ nav{
     flex-direction: column;
     justify-content: center;
     padding-left: 6rem;
-    
 }
 
 .newcollect__big-title{
@@ -424,23 +376,17 @@ nav{
     font-size: var(--h3-font-size);
 }
 
-.newcollect__button{
-    color: var(--white-color);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    background-color: #A235AC;
-    border-radius: 60px;
+.newcollect__right-container .button__content{
     border: 2px solid var(--white-color);
-    width: 150px;
-    height: 43px;
-    font-size: 1rem;
-    font-weight: var(--normal-font-size);
 }
 
-.newcollect__button:hover{
+.newcollect__right-container .button:hover .button__content{
     color: #A235AC;
+}
+
+.newcollect__right-container .button::before{
+    border: 2px solid var(--white-color);
     background-color: var(--white-color);
-    transition: background-color .5s;
 }
 
 /*=============== COLLECTION ===============*/

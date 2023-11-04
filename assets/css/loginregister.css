@@ -97,8 +97,8 @@
 
 .button__container .button{
     padding: 12px 0;
+    width: auto;
     border: 2px solid var(--main-color);
-    font-weight: var(--font-medium);
     text-align: center;
 }
 
