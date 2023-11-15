@@ -136,7 +136,7 @@
 
 /*=============== HEADER TRUE ===============*/
 .header__true{
-    width: 100vw;
+    width: 100%;
     position: fixed;
     font-size: 1.2rem;
     z-index: 9;
@@ -172,7 +172,7 @@
 /*=============== HEADER HOME ===============*/
 .header__home{
     position: absolute;
-    padding: 48px;
+    padding: 3rem;
     padding-bottom: 0;
     width: 100%;
     display: flex;
@@ -237,7 +237,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     height: max(100vh, 420px);
     background-image: url(/assets/img/landing-page-pict-background.png);
     background-repeat: no-repeat;
@@ -294,13 +294,12 @@
 }
 
 .featured__title{
-    /* background-color: #809CFD; */
     font-family: var(--title-font);
     font-size: var(--biggest-font-size);
     text-align: center;
 }
 
-.featured .card-img{
+.featured .product__card-img{
     width: 18rem;
 }
 
@@ -380,107 +379,85 @@
 
 /*=============== COLLECTION ===============*/
 .collection{
-    height: 1050px;
+    padding: 100px 10rem;
 }
 
 .collection__title{
     font-family: var(--title-font);
-    font-size: 2.3rem;
-    font-weight: lighter;
+    font-size: var(--biggest-font-size);
     text-align: center;
-    margin-top: 10rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
 }
 
-.collection__img{
-    width: 230px;
-    height: 344px;
-}
-
-.collection__container{
+.collection__big-container{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     justify-content: space-evenly;
 }
 
-.collection__container-each-1,
-.collection__container-each-2,
-.collection__container-each-3{
+.collection__container{
+    width: max(20%, 180px);
     display: flex;
-    width: 230px;
     flex-direction: column;
-    gap: 25px;
+    gap: 1.5rem;
 }
 
-.collection__container-each-2{
+.collection__container:nth-child(2){
     margin-top: 10rem;
 }
 
-.collection__container-each-3{
+.collection__container:nth-child(3){
     margin-top: 5rem;
 }
 
-.collection__herb-name{
-    font-family: var(--title-font);
-    font-size: 1.6rem;
+.collection__img{
+    width: 100%;
 }
 
-/* .collection__herb-name-new{
+.collection__text{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.collection__name{
+    font-family: var(--title-font);
+    font-size: 1.75rem;
+    width: auto;
+    margin-bottom: .5rem;
+}
+
+.collection__explanation{
     font-family: var(--body-font);
+    font-size: var(--small-font-size);
+    width: 100%;
+}
+
+.collection__new{
     font-weight: var(--font-bold);
     font-size: var(--small-font-size);
-    position: absolute;
-    top: 33.3rem;
-    left: 48.5rem;
-} */
-
-.collection__herb-explanation{
-    font-family: var(--body-font);
-    font-size: var(--smaller-font-size);
+    margin-left: .5rem;
 }
 
-.collection__button-container button{
-    float: right;
-    width: 150px;
-    height: 43px;
-    font-size: var(--normal-font-size);
-    font-weight: var(--font-regular);
-    background-color: transparent;
-    border-radius: 60px;
+.collection__container:nth-child(1){
+    --collection-color: #FF5D70;
 }
 
-.collection__button-1{
-    border: 2px solid #FF5D70;
-    color: #FF5D70;
+.collection__container:nth-child(2){
+    --collection-color: #809CFD;
 }
 
-.collection__button-2{
-    border: 2px solid #809CFD;
-    color: #809CFD;
+.collection__container:nth-child(3){
+    --collection-color: #FF9771;
 }
 
-.collection__button-3{
-    border: 2px solid #FF9771;
-    color: #FF9771;
+.collection__container .button__content{
+    border: 2px solid var(--collection-color);
+    color: var(--collection-color);
 }
 
-.collection__button-1:hover{
-    background-color:#FF5D70;
-    color: var(--white-color);
-    transition: background-color .5s;
-}
-
-.collection__button-2:hover{
-    background-color: #809CFD;
-    color: white;
-    transition: background-color .5s;
-}
-
-.collection__button-3:hover{
-    background-color:#FF9771;
-    color: white;
-    transition: background-color .5s;
+.collection__container .button::before{
+    border: 2px solid var(--collection-color);
+    background-color: var(--collection-color);
 }
 
 /*=============== CAROUSEL ===============*/
@@ -525,49 +502,36 @@
 
 /*=============== ADVANTAGES ===============*/
 .advantages{
-    height: 270px;
-    margin-top: 11rem;
+    padding: 100px 10rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    text-align: center;
 }
 
 .advantages__container{
+    width: max(22%, 180px);
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    text-align: center;
-    width: 80%;
-}
-
-.advantages__icon{
-    display: flex;
-    justify-content: center;
-    margin-bottom: .3rem;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
 }
 
 .advantages__icon-img{
-    width: 15%;
-    height: 15%;
-}
-
-.advantages__title,
-.advantages__subtitle{
-    font-family: var(--body-font);
+    width: 2rem;
 }
 
 .advantages__title{
     font-weight: var(--font-semi-bold);
     font-size: var(--normal-font-size);
-    margin-bottom: .3rem;
 }
 
 .advantages__subtitle{
-    font-size: var(--smaller-font-size);
+    font-size: var(--small-font-size);
 }
 
 /*=============== OUR STORY ===============*/
 .ourStory{
-    height: 800px;
+    padding: 100px 10rem;
 }
 
 .ourStory__container{

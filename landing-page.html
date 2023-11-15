@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
 
     <!--=============== CSS BOOTSTRAP ===============-->  
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/main.css">
@@ -184,9 +184,9 @@
         <section class="featured section" id="featured">
             <h1 class="featured__title">FEATURED</h1>
 
-            <div class="container-card">
-                <div class="card toprounded">
-                    <div class="card-img toprounded">
+            <div class="container__card">
+                <div class="product__card toprounded">
+                    <div class="product__card-img toprounded">
                         <img src="/assets/img/featured-img.png" alt="">
                     </div>
                     <p>
@@ -197,8 +197,8 @@
                     </p>
                 </div>
 
-                <div class="card toprounded">
-                    <div class="card-img toprounded">
+                <div class="product__card toprounded">
+                    <div class="product__card-img toprounded">
                         <img src="/assets/img/featured-img.png" alt="">
                     </div>
                     <p>
@@ -209,8 +209,8 @@
                     </p>
                 </div>
 
-                <div class="card toprounded">
-                    <div class="card-img toprounded">
+                <div class="product__card toprounded">
+                    <div class="product__card-img toprounded">
                         <img src="/assets/img/featured-img.png" alt="">
                     </div>
                     <p>
@@ -269,83 +269,90 @@
         <section class="collection section" id="collection">
             <h1 class="collection__title">COLLECTIONS</h1>
 
-            <div class="collection__container">
-                <div class="collection__container-each-1">
+            <div class="collection__big-container">
+                <div class="collection__container">
                     <div class="collection__image">
                         <img src="/assets/img/collection-exotic.png" alt="" class="collection__img">
                     </div>
 
-                    <p class="collection__herb-name">
-                        EXOTIC
-                    </p>
+                    <div class="collection__text">
+                        <p class="collection__name">
+                            EXOTIC
+                        </p>
+    
+                        <p class="collection__explanation">
+                            Immerse yourself in the enchanting
+                            world of rare and mystical herbs,
+                            handpicked from the far corners of the
+                            earth, offering extraordinary qualities
+                            and untold wonders.
+                        </p>
+                    </div>
 
-                    <p class="collection__herb-explanation">
-                        Immerse yourself in the enchanting <br>
-                        world of rare and mystical herbs, <br>
-                        handpicked from the far corners of the <br>
-                        earth, offering extraordinary qualities <br>
-                        and untold wonders. <br>
-                    </p>
-
-                    <div class="collection__button-container">
-                        <button class="collection__button-1 button">
-                            Explore
-                            <i class="ri-arrow-right-up-line"></i>
-                        </button>
+                    <div class="button">
+                        <div class="button__content">
+                            <div>Explore</div>
+                            <div class="ri-arrow-right-up-line"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="collection__container-each-2">
+                <div class="collection__container">
                     <div class="collection__image">
                         <img src="/assets/img/collection-swiftgrow.png" alt="" class="collection__img">
                     </div>
+                    
+                    
+                    <div class="collection__text">
+                        <p class="collection__name">
+                            SWIFTGROW
+                        </p>
+                        
+                        <p class="collection__new">
+                            NEW
+                        </p>
 
-                    <p class="collection__herb-name">
-                        SWIFTGROW
-                    </p>
+                        <p class="collection__explanation">
+                            Experience the magic of nature's
+                            efficiency with our SwiftGrow herbs –
+                            small, swift to cultivate, and quick to
+                            manifest their remarkable properties for
+                            your needs.
+                        </p>
+                    </div>
 
-                    <!-- <p class="collection__herb-name-new">
-                        NEW
-                    </p> -->
-
-                    <p class="collection__herb-explanation">
-                        Experience the magic of nature's <br>
-                        efficiency with our SwiftGrow herbs – <br>
-                        small, swift to cultivate, and quick to <br>
-                        manifest their remarkable properties for <br>
-                        your needs. <br>
-                    </p>
-
-                    <div class="collection__button-container">
-                        <button class="collection__button-2 button">
-                            Explore
-                            <i class="ri-arrow-right-up-line"></i>
-                        </button>
+                    <div class="button">
+                        <div class="button__content">
+                            <div>Explore</div>
+                            <div class="ri-arrow-right-up-line"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="collection__container-each-3">
+                <div class="collection__container">
                     <div class="collection__image">
                         <img src="/assets/img/collection-alchemical.png" alt="" class="collection__img">
                     </div>
 
-                    <p class="collection__herb-name">
-                        ALCHEMICAL
-                    </p>
+                    <div class="collection__text">
+                        <p class="collection__name">
+                            ALCHEMICAL
+                        </p>
+    
+                        <p class="collection__explanation">
+                            Craft potions and elixirs like a true
+                            sorcerer. Our alchemical herbs possess
+                            ystical properties, waiting to be
+                            harnessed for your mystical
+                            experiments.
+                        </p>
+                    </div>
 
-                    <p class="collection__herb-explanation">
-                        Craft potions and elixirs like a true <br>
-                        sorcerer. Our alchemical herbs possess <br>
-                        ystical properties, waiting to be <br>
-                        harnessed for your mystical <br>
-                        experiments. <br>
-                    </p>
-
-                    <div class="collection__button-container">
-                        <button class="collection__button-3 button">
-                            Explore
-                            <i class="ri-arrow-right-up-line"></i>
-                        </button>
+                    <div class="button">
+                        <div class="button__content">
+                            <div>Explore</div>
+                            <div class="ri-arrow-right-up-line"></div>
+                        </div>
                     </div>
                 </div>
                 
@@ -353,7 +360,7 @@
         </section>
 
         <!--==================== TESTIMONY CAROUSEL ====================-->
-        <!-- <section class="testimony__carousel section" id="testimony-carousel">
+        <section class="testimony__carousel section" id="testimony-carousel">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators" id="bs__overides-carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" id="carousel__button"></button>
@@ -408,68 +415,58 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        </section> -->
+        </section>
         
         <!--==================== ADVANTAGES ====================-->
-        <section class="advantages section" id="advatages">
+        <section class="advantages section" id="advantages">
             <div class="advantages__container">
-                <div class="advantages__each">
-                    <div class="advantages__icon">
-                        <img src="./assets/img/icon/lucide_phone-call.png" alt="" class="advantages__icon-img">
-                    </div>
+                <img src="./assets/img/icon/lucide_phone-call.png" alt="" class="advantages__icon-img">
 
-                    <div class="advantages__title">
-                        Ready Support
-                    </div>
-
-                    <div class="advantages__subtitle">
-                        Full 24 hours ready to help contact support <br>
-                        on +93 420 7484848
-                    </div>
+                <div class="advantages__title">
+                    Ready Support
                 </div>
 
-                <div class="advantages__each">
-                    <div class="advantages__icon">
-                        <img src="./assets/img/icon/lucide_truck.png" alt="" class="advantages__icon-img">
-                    </div>
+                <div class="advantages__subtitle">
+                    Full 24 hours ready to help contact support
+                    on +93 420 7484848
+                </div>
+            </div>
 
-                    <div class="advantages__title">
-                        Free Shipping
-                    </div>
+            <div class="advantages__container">
+                <img src="./assets/img/icon/lucide_truck.png" alt="" class="advantages__icon-img">
 
-                    <div class="advantages__subtitle">
-                        Get free shipping for orders that prices <br>
-                        over € 160
-                    </div>
+                <div class="advantages__title">
+                    Free Shipping
                 </div>
 
-                <div class="advantages__each">
-                    <div class="advantages__icon">
-                        <img src="./assets/img/icon/lucide_badge-check.png" alt="" class="advantages__icon-img">
-                    </div>
+                <div class="advantages__subtitle">
+                    Get free shipping for orders that prices
+                    over € 160
+                </div>
+            </div>
 
-                    <div class="advantages__title">
-                        Guarantee
-                    </div>
+            <div class="advantages__container">
+                <img src="./assets/img/icon/lucide_badge-check.png" alt="" class="advantages__icon-img">
 
-                    <div class="advantages__subtitle">
-                        Will replace the plant for free if it dies <br>
-                        within 30 days
-                    </div>
+                <div class="advantages__title">
+                    Guarantee
                 </div>
 
-                <div class="advantages__each">
-                    <div class="advantages__icon">
-                        <img src="./assets/img/icon/lucide_award.png" alt="" class="advantages__icon-img">
-                    </div>
+                <div class="advantages__subtitle">
+                    Will replace the plant for free if it dies
+                    within 30 days
+                </div>
+            </div>
 
-                    <div class="advantages__title">
-                        Awards Winning
-                    </div>
+            <div class="advantages__container">
+                <img src="./assets/img/icon/lucide_award.png" alt="" class="advantages__icon-img">
 
-                    <div class="advantages__subtitle">
-                        Multiple plants has won plant related awards
-                    </div>
+                <div class="advantages__title">
+                    Awards Winning
+                </div>
+
+                <div class="advantages__subtitle">
+                    Multiple plants has won plant related awards
                 </div>
             </div>
         </section>
