@@ -87,7 +87,6 @@ p{
     border-radius: 100vw; 
     cursor: pointer;
     overflow: hidden;
-    transition: var(--default-time);
     width: max-content;
     background-color: transparent;
 }
@@ -134,8 +133,8 @@ p{
 }
 
 .button__content div{
-    transition: var(--default-time);
     position: relative;
+    transition: var(--default-time);
 }
 
 

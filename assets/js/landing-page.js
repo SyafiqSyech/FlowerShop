@@ -39,6 +39,16 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
     var headerTrue = document.getElementById("headerTrue");
+    // var heroBottomContent = document.getElementById("heroBottomContent");
+
+    // console.log(window.scrollY)
+
+    // if(window.scrollY < 200){
+    //     heroBottomContent.remove("hidden");
+    // }
+    // else{
+    //     heroBottomContent.add("hidden");
+    // }
 
     if (window.scrollY < window.innerHeight/2) {
         headerTrue.classList.add("hidden");
