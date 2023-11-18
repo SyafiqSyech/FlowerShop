@@ -346,9 +346,9 @@
 /*=============== LEFT CONTENT ===============*/
 
 .newcollect__left-container{
-    animation: parallax linear;
+    /* animation: parallax linear;
     animation-timeline: scroll();
-    --parallax-speed: 1;
+    --parallax-speed: 1; */
     position: relative;
     background-image: url(/assets/img/newcollect-background.png);
     background-repeat: no-repeat;
@@ -612,136 +612,123 @@
 
 /*=============== FOOTER ===============*/
 .footer{
-    height: 50vh;
+    height: max(50vh, 360px);
     background-color: var(--black-color);
     padding: 5rem 10rem 2rem 10rem;
     display: flex;
 }
 
 .footer__left-container{
-    width: 70%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.footer__shop-name-container{
-    border: var(--white-color) 1px solid;
-    width: 300px;
+.footer__link-container{
+    display: inline grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: auto;
+    height: 100%;
+}
+
+.footer__link-text{
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    color: var(--white-color);
+    width: max-content;
+}
+
+.footer__link-title{
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    padding-bottom: .4rem;
+}
+
+.footer__link{
+    display: inline-block;
     position: relative;
 }
 
-.footer__shop-name{
+.footer__link::after {
+    background-color: var(--white-color);
+    content: '';
     position: absolute;
+    width: 100%;
+    height: 1.5px;
+    bottom: -1px;
+    left: 0;
+    transform: scaleX(0);
+    transition: 0.3s;
+    transform-origin: bottom left;
+}
+
+.footer__link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+
+.footer__icon-container{
+    display: flex;
+    justify-content: space-between;
+    border-top: var(--white-color) 2px solid;
+    padding-top: 2rem;
+    padding-right: 2rem;
+}
+
+.footer__icon-container .button__content{
+    border: 2px solid var(--white-color);
+    color: var(--white-color);
+    padding: 3px 18px;
+    font-size: var(--small-font-size);
+}
+
+.footer__icon-container .button:hover .button__content{
+    color: var(--black-color);
+}
+
+.footer__icon-container .button::before{
+    border: 2px solid var(--white-color);
+    background-color: var(--white-color);
+}
+
+.footer__icon-content{
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+}
+
+.footer__icon-link{
+    color: var(--white-color);
+    cursor: pointer;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.footer__icon{
+    width: 100%;
+}
+
+.footer__shop-name{
+    border: var(--white-color) 2px solid;
+    display: flex;
+    align-items: end;
     bottom: 0;
     left: 0;
-    padding: 5%;
-    width: 100%;
+    padding: 20px;
+    width: 150px;
     height: 100%;
 }
 
 .footer__shop-name svg{
-    height: 100%;
+    height: auto;
     max-width: 100%;
 }
 
 .footer__shop-name path{
     fill: var(--white-color);
-}
-
-.footer__container{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-}
-
-.footer__link-container{
-    display: flex;
-    flex-direction: row;
-    width: 65%;
-    justify-content: space-around;
-}
-
-.footer__text-content{
-    display: flex;
-    flex-direction: column;
-}
-
-.footer__links,
-.footer__navi{
-    color: var(--white-color);
-    font-family: var(--body-font);
-}
-
-.footer__navi{
-    font-size: var(--smaller-font-size);
-    font-weight: var(--font-semi-bold);
-    margin-bottom: 1rem;
-}
-
-.footer__links{
-    margin-bottom: 0.4rem;
-}
-
-.footer__line{
-    height: 1px;
-    width: 70vw;
-    background-color: var(--white-color);
-    margin-left: 3.5rem;
-    margin-top: 4.5rem;
-    z-index: -1;
-}
-
-.footer__icon-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 2.9rem;
-}
-
-.footer__icon-container-left{
-    display: flex;
-    flex-direction: row;
-    padding-left: 1.9rem;
-    justify-content: space-evenly;
-    width: 230px;
-}
-
-.footer__ig-link{
-    color: var(--white-color);
-}
-
-.footer__icon-img{
-    width: 22px;
-    height: 22px;
-}
-
-.footer__os-btn{
-    width: 140px;
-    height: 35px;
-    font-size: var(--smaller-font-size);
-    font-weight: var(--font-regular);
-    background-color: transparent;
-    border-radius: 60px;
-    border: 2px solid var(--white-color);
-    color: var(--white-color);
-}
-
-.footer__os-btn:hover{
-    background-color: var(--white-color);
-    color: var(--black-color);
-    transition: background-color .4s;
-}
-
-.footer__shop-name{
-    margin-left: 1.5rem;
-    margin-top: auto;
-    margin-bottom: 0.5rem;
-}
-
-.footer__the, 
-.footer__herb,
-.footer__shop{
-    margin-bottom: 0;
-    color: var(--white-color);
-    font-size: 3.2rem;
 }
 
 /*=============== SCROLL UP ===============*/
