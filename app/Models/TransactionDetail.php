@@ -23,5 +23,4 @@ class TransactionDetail extends Model
     {
         return  $this->belongsTo(Herbs::class, 'herbsId');
     }
-    
 }

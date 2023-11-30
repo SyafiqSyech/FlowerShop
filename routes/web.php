@@ -1,8 +1,14 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,56 +22,105 @@ use App\Http\Controllers\LoginController;
 
 // ROUTING PAGE
 Route::get('/', function () {
-    return view('welcome');
+    return view('main.landing-page');
 });
 
 // MAIN PAGES
 route::get('/home', function () {
-    return view('home');
-}) -> name('home');
+    return view('main.landing-page');
+})->name('home');
 
 Route::get('/contact', function () {
-    return view('contact');
-}) -> name('contact');
+    return view('main.contact');
+})->name('contact');
 
-Route::get('/account', function() {
-    return view('account');
-}) -> name('account');
+Route::get('/account', function () {
+    return view('main.account');
+})->middleware('auth')->name('account');
 
 Route::get('/herbs', function () {
-    return view('herbs');
-}) -> name('herbs');
+    return view('herbs.herbs');
+})->name('herbs');
 
 Route::get('/cart', function () {
-    return view('cart');
-}) -> name('cart');
+    return view('main.cart');
+})->name('cart');
 
 // ACCOUNT RELATED PAGES
 Route::get('/login', function () {
-    return view('login');
-}) -> name('login');
+    return view('auth.login');
+})->middleware('guest')->name('login');
 
 Route::get('/register', function () {
-    return view('register');
-}) -> name('register');
+    return view('auth.register');
+})->middleware('guest')->name('register');
 
+// FORGOT PASSWORD
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('forgot-password');
+
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email:dns']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
+
+})->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+}) -> middleware('guest') -> name('password.reset');
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email:dns',
+        'password' => 'required|min: 6|max: 255',
+        'confirm-password' => 'required|same:password'
+    ]);
+
+    $status = Password::reset(
+        $request -> only('email', 'password', 'confirm-password', 'token'),
+        function($user, $password) {
+            $user -> forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+
+            $user->save();
+
+            event(new PasswordReset($user));
+        }
+    );
+
+    return $status === Password::PASSWORD_RESET
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
+
+}) -> middleware('guest') -> name('password.update');
 
 // COLLECTION PAGES
 Route::get('/alchemical', function () {
-    return view('alchemical');
-}) -> name('alchemical');
+    return view('herbs.alchemical');
+})->name('alchemical');
 
 Route::get('/exotic', function () {
-    return view('exotic');
-}) -> name('exotic');
+    return view('herbs.exotic');
+})->name('exotic');
 
 Route::get('/swiftgrow', function () {
-    return view('swiftgrow');
-}) -> name('swiftgrow');
+    return view('herbs.swiftgrow');
+})->name('swiftgrow');
 
 
 // ROUTING LOGIC
-Route::get('/register', [RegisterController::class, 'register']) -> name('register');
-Route::post('/storeUser', [RegisterController::class, 'storeUser']) -> name('storeUser');
-Route::get('/login', [LoginController::class, 'login']) -> name('login');
-Route::post('/authenticate', [LoginController::class,'authenticate']) -> name('authenticate');
+Route::get('/register', [RegisterController::class, 'register'])->middleware('guest')->name('register');
+Route::post('/storeUser', [RegisterController::class, 'storeUser'])->name('storeUser');
+Route::get('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
+Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');

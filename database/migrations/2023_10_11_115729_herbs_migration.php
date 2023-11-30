@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('herbs', function (Blueprint $table) {
             $table->id('herbsId');
             $table->string('herbName');
-            $table->double('herbPrice');
+            $table->decimal('herbPrice', 8, 2);
             $table->longText('herbFact'); 
             $table->string('scientificName'); 
             $table->string('herbOrigin');
@@ -38,6 +38,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('herbs');
     }
 };

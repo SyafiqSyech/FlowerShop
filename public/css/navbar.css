@@ -1,0 +1,31 @@
+nav{
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.menu-list-tengah{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 8px;
+    font-family: var(--body-font);
+}
+
+.menu-list-kanan{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: var(--body-font);
+}
+
+
+
+.shop-name{
+    font-family: var(--shop-name-font);
+    color: var(--white-color);
+    font-size: var(--h3-font-size);
+}
