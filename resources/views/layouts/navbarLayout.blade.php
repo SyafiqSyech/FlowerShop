@@ -34,14 +34,14 @@
         </div>
 
         <div class="navtrue__list-right" id="navTrueListRight">
-            <a href="#"><i class="ri-shopping-cart-line"></i></a>
-            <a href="#"><i class="ri-user-line"></i></a>
-            <a><i class="ri-menu-line"></i></a>
+            <a href="{{ route('cart') }}"><i class="ri-shopping-cart-line"></i></a>
+            <a href="{{ route('account') }}"><i class="ri-user-line"></i></a>
+            <a onclick="toggleDiv('dropdown')"><i class="ri-menu-line"></i></a>
         </div>
     </nav>
 
     <!--==================== DROPDOWN ====================-->
-    <div class="dropdown">
+    <div id="dropdown" class="dropdown" style="display: none;">
         <div class="dropdown__container">
             <nav class="dropdown__header" id="dropdown-header">
                 <div class="dropdown__header-left">
@@ -54,11 +54,11 @@
 
                 <div class="dropdown__header-right">
                     <div class="dHeader__cart">
-                        <i class="ri-shopping-cart-line"></i>
+                        <a href="{{ route('cart') }}"><i class="ri-shopping-cart-line"></i></a>
                     </div>
 
                     <div class="dHeader__account">
-                        <i class="ri-user-line"></i>
+                        <a href="{{ route('account') }}"><i class="ri-user-line"></i></a>
                     </div>
 
                     <div class="dHeader__menu" id="dHeader-menu">
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="dropdown__left-mid">
-                        <a href="" class="dropdown__herbs">HERBS</a>
+                        <a href="{{ route('herbs') }}" class="dropdown__herbs">HERBS</a>
 
                         <p class="dropdown__herbs-sub">ALCHEMICAL</p>
                         <p class="dropdown__herbs-sub">MAGICAL</p>
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="dropdown__left-bot">
-                        <a href="" class="dropdown__contact">CONTACT</a>
+                        <a href="{{ route('contact') }}" class="dropdown__contact">CONTACT</a>
                     </div>
                 </div>
 
@@ -139,13 +139,22 @@
         @yield('content')
     </div>
 
-     <!--==================== FOOTER ====================-->
-     @include('layouts.footerLayout')
-
     <!--========== SCROLL UP ==========-->
     <a href="#home" class="scrollup" id="scroll-up">
         <i class="ri-arrow-up-s-line"></i>
     </a>
+
+    <!--=============== OPEN DROPDOWN ===============-->
+    <script>
+        function toggleDiv(divId) {
+            var div = document.getElementById(divId)
+            if (div.style.display === 'none' || div.style.display === '') {
+                div.style.display = 'block'
+            } else {
+                div.style.display = 'none'
+            }
+        }
+    </script>
 
     <!--=============== SCROLLREVEAL ===============-->
     <script src="{{ asset('js/scrollreveal.min.js') }}"></script>

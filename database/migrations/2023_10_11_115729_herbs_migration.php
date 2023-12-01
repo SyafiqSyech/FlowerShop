@@ -14,6 +14,7 @@ return new class extends Migration
         //
         Schema::create('herbs', function (Blueprint $table) {
             $table->id('herbsId');
+            $table->longText('link');
             $table->string('herbName');
             $table->decimal('herbPrice', 8, 2);
             $table->longText('herbFact'); 

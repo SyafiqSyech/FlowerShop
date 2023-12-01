@@ -45,7 +45,7 @@
                 <form action="{{ route('password.update') }}" method="POST" class="login__form">
                     @csrf
 
-                    @if ($errors->any())
+                    {{-- @if ($errors->any())
                         <div class="alert alert-danger alert-dismissable fade show" role="alert" id="successAlert">
                             @foreach ($errors->all as $error)
                                 {{ $error }}
@@ -57,7 +57,7 @@
                         <div class="alert alert-success alert-dismissable fade show" role="alert" id="successAlert">
                             {{ session()->get('status') }}
                         </div>
-                    @endif
+                    @endif --}}
 
                     <div class="box">
 

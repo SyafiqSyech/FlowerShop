@@ -405,6 +405,7 @@
             </section>
 
         </main>
-    @endsection
-       
 
+        <!--==================== FOOTER ====================-->
+        @include('layouts.footerLayout')
+    @endsection
