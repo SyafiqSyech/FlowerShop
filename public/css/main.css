@@ -1,0 +1,216 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Serif+Text&family=Raleway:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Sans:opsz@9..40&family=DM+Serif+Text&family=Raleway:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Sans:opsz@9..40&family=DM+Serif+Display:ital@1&family=DM+Serif+Text&family=Raleway:wght@100&display=swap');
+
+/*=============== BASE ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+}
+
+input, ul, li, a, img {
+    all: unset;
+}
+
+button {
+    border: none;
+}
+
+h1 {
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+p{
+    margin-bottom: 0;
+}
+
+a{
+    cursor: pointer;
+}
+
+/*=============== VARIABLES CSS ===============*/
+:root{
+    --header-height: 3.5rem;
+
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --black-color: black;
+    --white-color: white;
+    --title-color: hsl(0, 0%, 0%);
+    --text-color: hsl(0, 0%, 35%);
+    --text-color-light: hsl(0, 0%, 64%);
+    /* --body-color: hsl(0, 0%, 87%) */
+
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --shop-name-font: "DM Serif Display";
+    --title-font: "DM Serif Text";
+    --body-font: "DM Sans";
+    --biggest-font-size: 2.5rem;
+    --h1-font-size: 1.75rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem; 
+    --normal-font-size: 1rem;
+    --small-font-size: .8rem;
+    /* --small-font-size: .75rem; */
+    /* --smaller-font-size: .75rem; */
+
+    /* --normal-font-size: .899rem;
+    --small-font-size: .799rem;
+    --smaller-font-size: .65rem; */
+
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+    
+    /*========== Animation Time ==========*/
+    --default-time: .3s
+}
+
+.toprounded{
+    overflow: hidden;
+    border-top-left-radius: 100vw;
+    border-top-right-radius: 100vw;
+}
+
+.button{
+    position: relative;
+    border-radius: 100vw; 
+    cursor: pointer;
+    overflow: hidden;
+    width: max-content;
+    background-color: transparent;
+}
+
+.button:hover .button__content{
+    color: var(--white-color);
+}
+
+.button:hover::before{
+    transform: none;
+}
+
+.button:hover .button__content .ri-arrow-right-up-line{
+    transform: rotateZ(45deg);
+    margin-left: 24px;
+}
+
+.button::before{
+    content: '';
+    border-radius: 100vw;
+    /* border: 2px solid blue; */
+    background-color: var(--black-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: var(--default-time);
+    transform: translateX(-101%);
+}
+
+.button__content{
+    padding: 12px 24px;
+    border-radius: 100vw;
+    border: 2px solid var(--black-color);
+    display: flex;
+    align-items: center;
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+}
+
+.button__content .ri-arrow-right-up-line{
+    margin-left: 4px;
+}
+
+.button__content div{
+    position: relative;
+    transition: var(--default-time);
+}
+
+
+
+.container__card{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.product__card-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 2/3;
+    width: 18rem;
+    overflow: hidden;
+    margin-bottom: .5rem;
+}
+
+.product__card-img img{
+    width: 100%;
+    transition: .3s;
+}
+
+.product__card{
+    cursor: pointer;
+}
+
+.product__card:hover .product__card-img img{
+    width: 120%;
+}
+
+.product__card p{
+    font-size: var(--small-font-size);
+}
+
+/* HEADER TRUE */
+.header__true{
+    width: 100%;
+    position: fixed;
+    font-size: 1.2rem;
+    z-index: 9;
+}
+
+.navtrue__shop-name{
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+}
+
+.navtrue__list-right{
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    display: flex;
+    gap: .8rem;
+}
+
+.navtrue__list-right a{
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.header__true, #navTrueShopLogo, #navTrueListRight{
+    transition: .3s;
+}
+
+.hidden{
+    opacity: 0;
+}

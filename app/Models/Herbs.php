@@ -25,4 +25,9 @@ class Herbs extends Model
         'history',
         'endingDescription'
     ];
+
+    public function details()
+    {
+        return $this->hasMany(TransactionDetail::class, 'transDetailId');
+    }
 }

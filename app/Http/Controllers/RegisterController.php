@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function register () {
-        return view('register');
+    public function register()
+    {
+        return view('auth.register');
     }
 
     /**
@@ -17,30 +18,41 @@ class RegisterController extends Controller
      */
     public function storeUser(Request $request)
     {
-        $request->validate([
-            'firstName' => 'required|max: 255',
-            'lastName' => 'required|max:255',
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min: 6|max: 255',
-            'confirm-password' => 'required|same:password',
-            // 'phoneNumber' => 'required|numeric|digits:12',
-            // 'DOB' => 'required|date|before_or_equal:today',
-            // 'gender' => 'required|in:male,female'
-        ]);
+        $validatedData = $request->validate(
+            [
+                'firstName' => 'required|max: 255',
+                'lastName' => 'required|max:255',
+                'email' => 'required|email:dns|unique:users',
+                'password' => 'required|min: 6|max: 255',
+                'confirm-password' => 'required|same:password',
+                // 'phoneNumber' => 'required|numeric|digits:12',
+                // 'DOB' => 'required|date|before_or_equal:today',
+                // 'gender' => 'required|in:male,female'
+            ],
+            [
+                'firstName.required' => 'Please enter your first name.',
+                'firstName.max' => 'First name must not exceed 255 characters.',
 
-        
-        User::create([
-            'firstName' => $request -> firstName,
-            'lastName' => $request -> lastName,
-            'email' => $request -> email,
-            'password' => $request -> password,
-            // 'phoneNumber' => $request -> phoneNumber,
-            // 'DOB' => $request -> DOB,
-            // 'gender' => $request -> gender
-        ]);
-        
-        return redirect('/login');
+                'lastName.required' => 'Please enter your last name.',
+                'lastName.max' => 'Last name must not exceed 255 characters.',
+
+                'email.required' => 'Please enter an email',
+                'email.email' => 'Email must be in a valid format.',
+                'email.unique' => 'This email is already taken.',
+
+                'password.required' => 'Please enter a password.',
+                'password.min' => 'Password minimum is 6 characters.',
+                'password.max' => 'Password must not exceed 255 characters.',
+
+                'confirm-password.required' => 'Please confirm you password.',
+                'confirm-password.same' => 'Confirm password does not match with password.'
+            ]
+        );
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        User::create($validatedData);
+
+        return redirect('/login')->with('success', 'Registration Successful! Please Login');
     }
-
-
 }
