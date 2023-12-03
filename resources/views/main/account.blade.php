@@ -56,15 +56,12 @@
         </nav>
 
         <!--==================== ACCOUNT ====================-->
-        <div>
-            <img src="{{ asset('img/top account page.png') }}" alt="" class="img-account">
-            <div class="card-img-overlay">
-                <h1 class="title">Account</h1>
-            </div>
+        <div class="hero__bg">
+            <h1 class="hero__title">Account</h1>
         </div>
 
-        <div class="account_details_container">
-            <div class="account_content_container">
+        <div class="account__container">
+            <!-- <div class="account_content_container"> -->
                 <div class="menu_container">
                     <div class="svg_pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -78,11 +75,17 @@
                     <div class="menu" id="historyButton" onclick="toggleDiv('history')">Order History</div>
                     <div class="menu" id="settingsButton" onclick="toggleDiv('settings')">Account Settings</div>
                 </div>
-
-                <div class="vertical_line"></div>
-
                 <div class="details_personal_data" id="details">
-                    <div class="details_title">Details</div>
+                    <div class="details__top">
+                        <div class="account__title">Details</div>
+                        <div>
+                            <div class="button">
+                                <div class="button__content">
+                                    <div>Edit</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="details_sub_title">Personal Data</div>
                     <div class="horizontal_line"></div>
                     <div class="details_content">
@@ -107,7 +110,6 @@
                                     </div>
                                     <div class="information_title_alone">Email</div>
                                     <div class="information_content_alone">{{ auth()->user()->email }}</div>
-                                    <div class="button_edit">Edit</div>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +151,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="button_edit">Edit</div>
                                 </div>
                             </div>
                         </div>
@@ -170,21 +171,25 @@
                                     <div class="password_content_container">
                                         <div class="password_content">************</div>
                                     </div>
-                                    <div class="button_edit">Edit</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="favorites_container" id="favorites" style="display:none">Favorites</div>
-                <div class="history_container" id="history" style="display:none">History</div>
+                <div class="favorites_container" id="favorites" style="display:none">
+                    <div class="account__title">Favorites</div>
+                </div>
+                <div class="history_container" id="history" style="display:none">
+                    <div class="account__title">Order History</div>
+                </div>
                 <div class="settings_container" id="settings" style="display:none">
+                    <div class="account__title">Account Settings</div>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button type="submit" class="button_edit bg-transparent">Sign Out</button>
                     </form>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
         <img src="{{ asset('img/bottom-account.png') }}" alt="" class="img-account-bottom">
     </main>
