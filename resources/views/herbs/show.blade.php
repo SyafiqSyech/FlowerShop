@@ -6,20 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/account.css') }}">
+    <!--========== WEBSITE LOGO =========-->
+    <link rel="shortcut icon" href="" type="image/x-icon">
 
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
 
-    <!--=============== BOOTSTRAP ERROR HANDLER ===============-->
+    <!--=============== CSS BOOTSTRAP ===============-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
     <title>The Herb Shop &copy;</title>
 </head>
 
 <body>
+    <!--==================== HEADER ====================-->
+    @include('layouts.navbarLayout')
+
     <!--==================== MAIN ====================-->
     <main class="main">
         <!--==================== HOME HEADER ====================-->
@@ -55,191 +61,77 @@
             </ul>
         </nav>
 
-        <!--==================== ACCOUNT ====================-->
-        <div>
-            <img src="{{ asset('img/top account page.png') }}" alt="" class="img-account">
-            <div class="card-img-overlay">
-                <h1 class="title">Account</h1>
+        <section>
+            <div class="container__card">
+                <form action="{{ route('show', ['id' => $herbsDetail->herbsId]) }}">
+                    @csrf
+                    <div class="product__card toprounded">
+                        <div class="product__card-img toprounded">
+                            <img src="{{ asset($herbsDetail->herbsImage) }}" alt="">
+                        </div>
+                        <p>
+                            {{ $herbsDetail->herbName }}
+                        </p>
+                        <p>
+                            ${{ number_format($herbsDetail->herbPrice) }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->herbFact }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->scientificName }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->herbOrigin }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->herbCollection }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->magicalProperty }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->watering }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->temperature }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->sunlight }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->soil }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->appearance }}
+                        </p>
+                        <p>
+                            {{ $herbsDetail->history }}
+                        </p>
+                    </div>
+                </form>
             </div>
-        </div>
+        </section>
 
-        <div class="account_details_container">
-            <div class="account_content_container">
-                <div class="menu_container">
-                    <div class="svg_pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none">
-                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="black" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <div class="menu_active" id="detailsButton" onclick="toggleDiv('details')">Details</div>
-                    </div>
-                    <div class="menu" id="favoritesButton" onclick="toggleDiv('favorites')">Favorites</div>
-                    <div class="menu" id="historyButton" onclick="toggleDiv('history')">Order History</div>
-                    <div class="menu" id="settingsButton" onclick="toggleDiv('settings')">Account Settings</div>
-                </div>
-
-                <div class="vertical_line"></div>
-
-                <div class="details_personal_data" id="details">
-                    <div class="details_title">Details</div>
-                    <div class="details_sub_title">Personal Data</div>
-                    <div class="horizontal_line"></div>
-                    <div class="details_content">
-                        <div class="section_details">
-                            <div class="column">
-                                <div class="details_description">
-                                    Essential information that are necessary for account registration
-                                    and communication.
-                                </div>
-                            </div>
-                            <div class="column-2">
-                                <div class="right_section_details">
-                                    <div class="first_last_name">
-                                        <div class="information_container">
-                                            <div class="information_title">First Name</div>
-                                            <div class="information_content">{{ auth()->user()->firstName }}</div>
-                                        </div>
-                                        <div class="information_container">
-                                            <div class="information_title">Last Name</div>
-                                            <div class="information_content">{{ auth()->user()->lastName }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="information_title_alone">Email</div>
-                                    <div class="information_content_alone">{{ auth()->user()->email }}</div>
-                                    <div class="button_edit">Edit</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="details_sub_title">Optional Data</div>
-                    <div class="horizontal_line"></div>
-                    <div class="details_content">
-                        <div class="section_details">
-                            <div class="column">
-                                <div class="details_description">
-                                    Manage your account information. Update your details to ensure
-                                    better transactions.
-
-                                </div>
-                            </div>
-                            <div class="column-2">
-                                <div class="right_section_details">
-                                    <div class="phone_title">Phone Number</div>
-                                    <div class="line_content">{{ auth()->user()->phoneNumber }}</div>
-                                    <div class="dob_title">Date of Birth</div>
-                                    <div class="line_content">{{ auth()->user()->DOB }}</div>
-                                    <div class="gender_title">Gender</div>
-                                    <div class="male_female_container">
-                                        <div class="gender_radio_button">
-                                            <div class="radio_button">
-                                                <input type="radio" id="male" value="Male"
-                                                    {{ auth()->user()->gender == 'Male' ? 'checked' : '' }}>
-                                            </div>
-                                            <div class="gender_selection_title">
-                                                <label for="male">Male</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="gender_radio_button">
-                                            <div class="radio_button">
-                                                <input type="radio" id="perempuan" value="Female"
-                                                    {{ auth()->user()->gender == 'Female' ? 'checked' : '' }}>
-                                            </div>
-                                            <div class="gender_selection_title">
-                                                <label for="perempuan">Female</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="button_edit">Edit</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="details_sub_title">Password</div>
-                    <div class="horizontal_line"></div>
-                    <div class="details_content">
-                        <div class="section_details">
-                            <div class="column">
-                                <div class="details_description">
-                                    Secure your account with a strong password to protect your data
-                                    and maintain account integrity.
-                                </div>
-                            </div>
-                            <div class="column-2">
-                                <div class="right_section_details">
-                                    <div class="password_title">Password</div>
-                                    <div class="password_content_container">
-                                        <div class="password_content">************</div>
-                                    </div>
-                                    <div class="button_edit">Edit</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="favorites_container" id="favorites" style="display:none">Favorites</div>
-                <div class="history_container" id="history" style="display:none">History</div>
-                <div class="settings_container" id="settings" style="display:none">
-                    <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        <button type="submit" class="button_edit bg-transparent">Sign Out</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <img src="{{ asset('img/bottom-account.png') }}" alt="" class="img-account-bottom">
     </main>
 
     <!--==================== FOOTER ====================-->
     @include('layouts.footerLayout')
 
     <!--========== SCROLL UP ==========-->
-    <a href="#headerHome" class="scrollup" id="scroll-up">
+    <a href="#home" class="scrollup" id="scroll-up">
         <i class="ri-arrow-up-s-line"></i>
     </a>
+
     <!--=============== SCROLLREVEAL ===============-->
     <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="{{ asset('js/landing-page.js') }}"></script>
 
     <!--=============== BOOTSTRAP JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-    <script>
-        function toggleDiv(divId) {
-            var divs = ['details', 'favorites', 'history', 'settings'];
-            divs.forEach(function(div) {
-                document.getElementById(div).style.display = div === divId ? 'block' : 'none';
-                console.log('test')
-            });
-        }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        setTimeout(function() {
-            document.getElementById('successAlert').style.display = 'none';
-        }, 4000);
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 </body>
 

@@ -15,6 +15,7 @@ class HerbsSeeder extends Seeder
     {
         //
         DB::table("herbs")->insert([
+            'herbsImage' => 'img/herbs/luminous lilies.png',
             'herbName' => 'Luminous Lilies',
             'herbPrice' => 30.00,
             'herbFact' => 'In Japanese culture, these lilies are believed to bring good luck and prosperity.',
