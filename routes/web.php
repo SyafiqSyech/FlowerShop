@@ -27,9 +27,7 @@ Route::get('/', function () {
     return view('main.landing-page');
 });
 
-route::get('/home', function () {
-    return view('main.landing-page');
-})->name('home');
+Route::get('/', [HerbsController::class, 'showFeaturedHerbs'])->name('home');
 
 Route::get('/contact', function () {
     return view('main.contact');

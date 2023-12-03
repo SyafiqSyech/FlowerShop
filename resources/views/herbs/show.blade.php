@@ -73,7 +73,7 @@
                             {{ $herbsDetail->herbName }}
                         </p>
                         <p>
-                            ${{ number_format($herbsDetail->herbPrice) }}
+                            $ {{ number_format($herbsDetail->herbPrice) }}
                         </p>
                         <p>
                             {{ $herbsDetail->herbFact }}
@@ -111,6 +111,19 @@
                     </div>
                 </form>
             </div>
+
+            <h1>You Might Also Like</h1>
+            <div class="container__card">
+                @forelse ($youMightAlsoLike as $youMightAlsoLike)
+                    @include('layouts.cardContainer')
+                @empty
+                    <p>No You Might Also Like Herbs!</p>
+                @endforelse
+            </div>
+
+            {{-- INI MAU PAKE LOCAL STORAGE --}}
+            <button>Add to Cart</button>
+            {{-- INI MAU PAKE LOCAL STORAGE --}}
         </section>
 
     </main>

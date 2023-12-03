@@ -130,12 +130,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
-
-    <div>
-        @yield('content')
     </div>
 
     <!--=============== OPEN DROPDOWN ===============-->

@@ -19,6 +19,7 @@
 
         <!--=============== CSS ===============-->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
         <title>The Herb Shop &copy;</title>
     </head>
 
@@ -65,18 +66,7 @@
                 @if ($herbs->count())
                     <div class="container__card">
                         @forelse ($herbs as $herbs)
-                            <div onclick="window.location='{{ route('show', ['id' => $herbs->herbsId]) }}';"
-                                class="product__card toprounded">
-                                <div class="product__card-img toprounded">
-                                    <img src="{{ asset($herbs->herbsImage) }}" alt="">
-                                </div>
-                                <p>
-                                    {{ $herbs->herbName }}
-                                </p>
-                                <p>
-                                    ${{ number_format($herbs->herbPrice) }}
-                                </p>
-                            </div>
+                            @include('layouts.cardContainer')
                         @empty
                             <p>No Herbs in Database!</p>
                         @endforelse

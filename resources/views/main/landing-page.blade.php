@@ -87,41 +87,11 @@
             <h1 class="featured__title">FEATURED</h1>
 
             <div class="container__card">
-                <div class="product__card toprounded">
-                    <div class="product__card-img toprounded">
-                        <img src="{{ asset('img/featured-img.png') }}" alt="">
-                    </div>
-                    <p>
-                        Faerie Dust
-                    </p>
-                    <p>
-                        € 59
-                    </p>
-                </div>
-
-                <div class="product__card toprounded">
-                    <div class="product__card-img toprounded">
-                        <img src="{{ asset('img/featured-img.png') }}" alt="">
-                    </div>
-                    <p>
-                        Faerie Dust
-                    </p>
-                    <p>
-                        € 59
-                    </p>
-                </div>
-
-                <div class="product__card toprounded">
-                    <div class="product__card-img toprounded">
-                        <img src="{{ asset('img/featured-img.png') }}" alt="">
-                    </div>
-                    <p>
-                        Faerie Dust
-                    </p>
-                    <p>
-                        € 59
-                    </p>
-                </div>
+                @forelse ($featuredHerbs as $featuredHerbs)
+                    @include('layouts.cardContainer')
+                @empty
+                    <p>No Featured Herbs!</p>
+                @endforelse
             </div>
 
             <div class="button">
