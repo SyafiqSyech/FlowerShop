@@ -87,9 +87,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
 
         if (
-            isCollide(home) ||
-            isCollide(newCollectionSection) ||
-            isCollide(testimonyCarouselSection)
+            isCollide(home) 
+            || isCollide(newCollectionSection) 
+            || isCollide(testimonyCarouselSection)
         ) {
             changeColor("white");
         } else {
@@ -98,6 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+const dropdownNav = () => {
+    
+}
 
 /*=============== SHOW SCROLL UP ===============*/ 
 const scrollUp = () =>{

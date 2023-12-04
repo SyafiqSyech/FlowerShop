@@ -231,7 +231,7 @@
 
             </div>
         </section>
-
+        
         <!--==================== TESTIMONY CAROUSEL ====================-->
         <section class="testimony__carousel section" id="testimony-carousel">
             <div id="carouselExampleCaptions" class="carousel slide">
@@ -241,48 +241,41 @@
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
                         aria-label="Slide 2" id="carousel__button"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3" id="carousel__button"></button>
+                    aria-label="Slide 3" id="carousel__button"></button>
                 </div>
 
                 <div class="carousel-inner">
+                    <img src="{{ asset('img/testimony-pict.png') }}" class="carousel-img d-block w-100"
+                        id="testimony__carousel-img-1" alt="...">
                     <div class="carousel-item active">
-                        <img src="{{ asset('img/testimony-pict.png') }}" class="d-block w-100"
-                            id="testimony__carousel-img-1" alt="...">
                         <div class="carousel-caption d-none d-md-block" id="bs__overides-carousel-caption-1">
                             <h5 class="carousel__name">GANDALF THE GREY</h5>
                             <p class="carousel__testimony-para">
-                                Through the winding paths of Middle-earth, I have sought wisdom and power. The <br>
+                                Through the winding paths of Middle-earth, I have sought wisdom and power. The
                                 herbs from The Herb Shop are nothing short of magical, a true source of enchantment.
-                                <br>
-                                They have been a trusted companion on my journey. <br>
+                                They have been a trusted companion on my journey.
                             </p>
                         </div>
                     </div>
 
                     <div class="carousel-item">
-                        <img src="{{ asset('img/testimony-pict.png') }}" class="d-block w-100"
-                            id="testimony__carousel-img-2 alt="...">
                         <div class="carousel-caption d-none d-md-block" id="bs__overides-carousel-caption-2">
                             <h5 class="carousel__name">SYAFIQ THE HOBBIT</h5>
                             <p class="carousel__testimony-para">
-                                Through the winding paths of Middle-earth, I have sought wisdom and power. The <br>
+                                Through the winding paths of Middle-earth, I have sought wisdom and power. The
                                 herbs from The Herb Shop are nothing short of magical, a true source of enchantment.
-                                <br>
-                                They have been a trusted companion on my journey. <br>
+                                They have been a trusted companion on my journey.
                             </p>
                         </div>
                     </div>
 
                     <div class="carousel-item">
-                        <img src="{{ asset('img/testimony-pict.png') }}" class="d-block w-100"
-                            id="testimony__carousel-img-3 alt="...">
                         <div class="carousel-caption d-none d-md-block" id="bs__overides-carousel-caption-3">
                             <h5 class="carousel__name">MATT THE EXECUTOR</h5>
                             <p class="carousel__testimony-para">
-                                Through the winding paths of Middle-earth, I have sought wisdom and power. The <br>
+                                Through the winding paths of Middle-earth, I have sought wisdom and power. The
                                 herbs from The Herb Shop are nothing short of magical, a true source of enchantment.
-                                <br>
-                                They have been a trusted companion on my journey. <br>
+                                They have been a trusted companion on my journey.
                             </p>
                         </div>
                     </div>
