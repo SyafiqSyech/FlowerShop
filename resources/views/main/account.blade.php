@@ -129,7 +129,8 @@
                                 <div class="information__content-radio">
                                     <div class="gender_radio_button">
                                         <div class="radio_button">
-                                            <input type="radio" id="male" value="Male" {{ auth()->user()->gender == 'Male' ? 'checked' : '' }}>
+                                            <input type="radio" id="male" value="Male" 
+                                                {{ auth()->user()->gender == 'Male' ? 'checked' : '' }}>
                                         </div>
                                         <div class="gender_selection_title">
                                             <label for="male">Male</label>
@@ -138,7 +139,8 @@
                                     
                                     <div class="gender_radio_button">
                                         <div class="radio_button radio_button-selected">
-                                            <input type="radio" id="perempuan" value="Female" {{ auth()->user()->gender == 'Female' ? 'checked' : '' }}>
+                                            <input type="radio" id="perempuan" value="Female" 
+                                                {{ auth()->user()->gender == 'Female' ? 'checked' : '' }}>
                                         </div>
                                         <div class="gender_selection_title gender_selection_title-selected">
                                             <label for="perempuan">Female</label>
