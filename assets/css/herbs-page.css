@@ -3,22 +3,31 @@
 }
 
 /*=============== HERO ===============*/
-.hero{
+.hero{  
     background-image: url(/assets/img/product-page-pict-background.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     width: 100%;
     height: max(100vh, 420px);
-    padding: 100px 10rem;
-    padding-top: 25rem;
+    padding: 10rem;
+    display: flex;
+    align-items: end;
+}
+
+.hero::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: rgba(97, 56, 172, 0.2)
 }
 
 .hero__content{
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    z-index: 2;
+    width: 100%;
 }
 
 .hero__title, 
@@ -34,15 +43,13 @@
 .hero__subTitle{
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
-    width: 70%;
+    width: 50%;
+    margin-bottom: 1.5rem;
 }
 
 .hero .button__content{
     border: 2px solid var(--main-color);
     color: var(--main-color);
-    height: 40px;
-    font-size: var(--normal-font-size);
-   
 }
 
 .hero .button:hover .button__content{
@@ -56,10 +63,10 @@
 
 /*=============== HERBS COLLECTIONS ===============*/
 .herbs__collection{
-    padding: 100px 10rem;
+    padding: 10rem;
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 10rem;
 }
 
 
