@@ -86,7 +86,7 @@
 /* Move label up & sticky label */ 
 .input:focus + .label,
 .input:not(:placeholder-shown) + .label{
-    font-size:var(--small-font-size);
+    font-size: var(--small-font-size);
     top: -16px;
     transition: .4s;
 }

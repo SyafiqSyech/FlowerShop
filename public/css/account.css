@@ -1,6 +1,7 @@
 .account__container {
     padding: 10rem 10rem;
     display: flex;
+    min-height: 100vh;
 }
 
 /* @keyframes parallax {
@@ -38,12 +39,14 @@
     padding: 0 20px;
 } */
 
-.menu_container {
+/*=============== Account Menu ===============*/
+.account__menu-container {
     display: flex;
     flex-direction: column;
     padding-right: 4rem;
     margin-right: 4rem;
     border-right: 2px solid var(--black-color);
+    min-height: 100%;
 }
 
 .svg_pointer {
@@ -52,30 +55,12 @@
     gap: 10px;
 }
 
-.menu_active {
-    color: #000;
-    flex-grow: 1;
-    white-space: nowrap;
-    font: 500 20px/26px DM Sans, sans-serif;
+.account__menu {
+    transition: .2s ease-in-out;
 }
 
-.menu {
-    color: #000;
-    margin-top: 14px;
-    white-space: nowrap;
-    font: 500 20px/26px DM Sans, sans-serif;
-}
-
-.vertical_line {
-    background-color: #000;
-    align-self: stretch;
-    width: 2px;
-    height: 1400px;
-    margin-right: 120px;
-    margin-left: 77px;
-}
-
-.details_personal_data {
+/*=============== Details ===============*/
+.details__container {
     align-self: stretch;
     display: flex;
     flex-grow: 1;
@@ -96,97 +81,58 @@
     text-transform: uppercase;
 }
 
-.details_sub_title {
-    color: #000;
+.details__subtitle {
     text-transform: uppercase;
-    margin-top: 50px;
-    white-space: nowrap;
-    font: 700 16px/21px DM Sans, sans-serif;
-}
-
-.horizontal_line {
-    background-color: #000;
-    margin-top: 8px;
-    height: 2px;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-bold);
+    margin-top: 5rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--black-color);
 }
 
 .details_content {
-    margin-top: 50px;
-}
-
-.section_details {
+    margin-top: 3rem;
     gap: 20px;
     display: flex;
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 42%;
-    margin-left: 0px;
 }
 
 .details_description {
     color: var(--Gray, #b7b7b7);
-    font: 400 17px/26px DM Sans, sans-serif;
-}
-
-.column-2 {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 58%;
-    margin-left: 20px;
+    width: 40%;
+    padding-right: 3rem;
 }
 
 .right_section_details {
-    align-items: flex-end;
+    width: 60%;
     display: flex;
-    flex-grow: 1;
     flex-direction: column;
-    padding: 2px 0;
+    gap: 40px;
 }
 
 .first_last_name {
-    align-self: start;
     display: flex;
-    width: 388px;
-    max-width: 100%;
+    flex-direction: row;
     justify-content: space-between;
-    gap: 20px;
+    gap: 40px;
 }
 
-.information_container {
+.information__container {
+    width:100%;
+}
+
+.information__title {
+    margin-bottom: 15px;
+    font-size: var(--small-font-size);
+}
+
+.information__content-radio {
+    width: 100%;
     display: flex;
-    flex-grow: 1;
-    flex-basis: 0%;
-    flex-direction: column;
 }
 
-.information_title {
-    color: var(--Black, #000);
-    font: 400 16px/21px DM Sans, sans-serif;
-}
-
-.information_content {
-    color: var(--Black, #000);
-    margin-top: 21px;
-    font: 400 17px/26px DM Sans, sans-serif;
-}
-
-.information_title_alone {
-    color: var(--Black, #000);
-    align-self: stretch;
-    margin-top: 70px;
-    font: 400 16px/21px DM Sans, sans-serif;
-}
-
-.information_content_alone {
-    color: var(--Black, #000);
-    align-self: stretch;
-    margin-top: 21px;
-    font: 400 17px/26px DM Sans, sans-serif;
+.information__content-empty {
+    height: 1.6rem;
+    border-bottom: 2px solid var(--Gray, #b7b7b7);
 }
 
 /* .button_edit {
@@ -206,32 +152,32 @@
     font: 500 17px/26px DM Sans, sans-serif;
 } */
 
-.phone_title {
+/* .phone_title {
     color: var(--Black, #000);
     align-self: stretch;
     font: 400 16px/21px DM Sans, sans-serif;
-}
+} */
 
-.line_content {
+/* .line_content {
     background-color: #b7b7b7;
     align-self: stretch;
     margin-top: 60px;
     height: 1px;
-}
+} */
 
-.dob_title {
+/* .dob_title {
     color: var(--Black, #000);
     align-self: stretch;
     margin-top: 60px;
     font: 400 16px/21px DM Sans, sans-serif;
-}
+} */
 
-.gender_title {
+/* .gender_title {
     color: var(--Black, #000);
     align-self: stretch;
     margin-top: 60px;
     font: 400 16px/21px DM Sans, sans-serif;
-}
+} */
 
 .male_female_container {
     align-self: start;
@@ -242,57 +188,77 @@
     justify-content: space-between;
     gap: 20px;
 }
+
 .gender_radio_button {
-    align-items: center;
+    width: 50%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     gap: 10px;
 }
+
 .radio_button {
-    stroke-width: 2px;
-    border-radius: 50%;
+    border-radius: 100vw;
     display: flex;
     width: 20px;
     height: 20px;
-    flex-direction: column;
-    margin: auto 0;
-    border: 1px solid black;
+    border: 2px solid var(--Gray, #b7b7b7);
+}
+
+.radio_button-selected {
+    position: relative;
+    border: 2px solid var(--black-color);
+}
+
+.radio_button-selected::before {
+    content: "";
+    border-radius: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border: 3px solid var(--white-color);
+    background-color: var(--black-color);
 }
 
 .gender_selection_title {
-    color: var(--Black, #000);
-    align-self: stretch;
-    flex-grow: 1;
-    white-space: nowrap;
-    font: 400 18px/26px DM Sans, sans-serif;
+    color: var(--Gray, #b7b7b7);
 }
 
-.password_title {
+.gender_selection_title-selected {
+    color: var(--black-color);
+}
+
+/* .password_title {
     color: var(--Black, #000);
     align-self: stretch;
     font: 400 16px/21px DM Sans, sans-serif;
-}
+} */
 
-.password_content_container {
+/* .password_content_container {
     justify-content: space-between;
     align-self: stretch;
     display: flex;
     margin-top: 10px;
-}
+} */
 
-.password_content {
+/* .password_content {
     color: var(--Black, #000);
     flex-grow: 1;
     flex-basis: auto;
     font: 400 20px/26px DM Sans, sans-serif;
-}
+} */
 
-.img-account {
+/* .img-account {
     width: 100%;
-}
+} */
 
-.img-account-bottom {
+/* .img-account-bottom {
     width: 100%;
     padding-top: 300px;
     margin-bottom: -10px;
-}
+} */
+
+/*=============== Favorites ===============*/
+/*=============== Histroy ===============*/
+/*=============== Settings ===============*/
