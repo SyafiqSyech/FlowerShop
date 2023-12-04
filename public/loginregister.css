@@ -2,10 +2,6 @@
     display: flex;
 }
 
-.input__form .invalid-feedback{
-    margin-bottom: -1.5rem;
-}
-
 .left__container,
 .right__container{
     flex: 50vw;
@@ -29,11 +25,11 @@
 }
 
 .image-background::before {
-    content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2); /* Adjust the opacity here */
+    width: calc(100% + 120px);
+    height: calc(100% + 120px);
+    content: "";
+    background-color: rgba(0, 0, 0, 0.12); /* Adjust the opacity here */
 }
 
 .image{
@@ -86,7 +82,7 @@
 /* Move label up & sticky label */ 
 .input:focus + .label,
 .input:not(:placeholder-shown) + .label{
-    font-size: var(--small-font-size);
+    font-size:var(--small-font-size);
     top: -16px;
     transition: .4s;
 }
@@ -99,16 +95,11 @@
     gap: 20px
 }
 
-.button__container .button__content{
-    cursor: pointer;
-    width: auto;
+.button__container .button{
+    padding: 12px 0;
     border: 2px solid var(--main-color);
-}
-
-.button__container .button__content p{
-    width: 100%;
+    font-weight: var(--font-medium);
     text-align: center;
-    text-decoration: none;
 }
 
 .top__button{
@@ -119,19 +110,4 @@
 .bottom__button{
     color: var(--main-color);
     background-color: var(--white-color);
-    text-decoration: none;
-}
-
-.button__container a:hover{
-    text-decoration: none;
-    color: var(--main-color);
-}
-
-.bottom__button p{
-    margin-bottom: 0rem;
-}
-
-.bottom__button, .top__button p{
-    height: 50%;
-    margin-bottom: 0rem;
 }

@@ -8,7 +8,7 @@
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('css/account.css') }}">
 
 
@@ -23,7 +23,7 @@
     <!--==================== MAIN ====================-->
     <main class="main">
         <!--==================== HOME HEADER ====================-->
-        <nav class="header__home" id="headerHome">
+        <!-- <nav class="header__home" id="headerHome">
             <div class="nav__shop-name">
                 <svg viewBox="0 0 192 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -53,146 +53,143 @@
                     <a href="{{ route('account') }}" class="nav__link">Account</a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
 
         <!--==================== ACCOUNT ====================-->
-        <div>
-            <img src="{{ asset('img/top account page.png') }}" alt="" class="img-account">
-            <div class="card-img-overlay">
-                <h1 class="title">Account</h1>
-            </div>
+        <div class="hero__bg">
+            <h1 class="hero__title">Account</h1>
         </div>
 
-        <div class="account_details_container">
-            <div class="account_content_container">
-                <div class="menu_container">
-                    <div class="svg_pointer">
+        <div class="account__container">
+            <!-- <div class="account_content_container"> -->
+                <div class="account__menu-container">
+                    <!-- <div class="svg_pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
                             <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="black" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <div class="menu_active" id="detailsButton" onclick="toggleDiv('details')">Details</div>
-                    </div>
-                    <div class="menu" id="favoritesButton" onclick="toggleDiv('favorites')">Favorites</div>
-                    <div class="menu" id="historyButton" onclick="toggleDiv('history')">Order History</div>
-                    <div class="menu" id="settingsButton" onclick="toggleDiv('settings')">Account Settings</div>
+                    </div> -->
+                    <div class="account__menu" id="detailsButton" onclick="toggleDiv('details')" style="transform: translateX(2rem);">Details</div>
+                    <div class="account__menu" id="favoritesButton" onclick="toggleDiv('favorites')">Favorites</div>
+                    <div class="account__menu" id="historyButton" onclick="toggleDiv('history')">Order History</div>
+                    <div class="account__menu" id="settingsButton" onclick="toggleDiv('settings')">Account Settings</div>
                 </div>
-
-                <div class="vertical_line"></div>
-
-                <div class="details_personal_data" id="details">
-                    <div class="details_title">Details</div>
-                    <div class="details_sub_title">Personal Data</div>
-                    <div class="horizontal_line"></div>
-                    <div class="details_content">
-                        <div class="section_details">
-                            <div class="column">
-                                <div class="details_description">
-                                    Essential information that are necessary for account registration
-                                    and communication.
-                                </div>
-                            </div>
-                            <div class="column-2">
-                                <div class="right_section_details">
-                                    <div class="first_last_name">
-                                        <div class="information_container">
-                                            <div class="information_title">First Name</div>
-                                            <div class="information_content">{{ auth()->user()->firstName }}</div>
-                                        </div>
-                                        <div class="information_container">
-                                            <div class="information_title">Last Name</div>
-                                            <div class="information_content">{{ auth()->user()->lastName }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="information_title_alone">Email</div>
-                                    <div class="information_content_alone">{{ auth()->user()->email }}</div>
-                                    <div class="button_edit">Edit</div>
+                <div class="details__container" id="details">
+                    <div class="details__top">
+                        <div class="account__title">Details</div>
+                        <div>
+                            <div class="button">
+                                <div class="button__content">
+                                    <div>Edit</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="details_sub_title">Optional Data</div>
-                    <div class="horizontal_line"></div>
+                    <div class="details__subtitle">Personal Data</div>
                     <div class="details_content">
-                        <div class="section_details">
-                            <div class="column">
-                                <div class="details_description">
-                                    Manage your account information. Update your details to ensure
-                                    better transactions.
-
+                        <div class="details_description">
+                            Essential information that are necessary for account registration
+                            and communication.
+                        </div>
+                        <div class="right_section_details">
+                            <div class="first_last_name">
+                                <div class="information__container">
+                                    <div class="information__title">First Name</div>
+                                    <div class="information__content">{{ auth()->user()->firstName }}</div>
+                                </div>
+                                <div class="information__container">
+                                    <div class="information__title">Last Name</div>
+                                    <div class="information__content">{{ auth()->user()->lastName }}</div>
                                 </div>
                             </div>
-                            <div class="column-2">
-                                <div class="right_section_details">
-                                    <div class="phone_title">Phone Number</div>
-                                    <div class="line_content">{{ auth()->user()->phoneNumber }}</div>
-                                    <div class="dob_title">Date of Birth</div>
-                                    <div class="line_content">{{ auth()->user()->DOB }}</div>
-                                    <div class="gender_title">Gender</div>
-                                    <div class="male_female_container">
-                                        <div class="gender_radio_button">
-                                            <div class="radio_button">
-                                                <input type="radio" id="male" value="Male"
-                                                    {{ auth()->user()->gender == 'Male' ? 'checked' : '' }}>
-                                            </div>
-                                            <div class="gender_selection_title">
-                                                <label for="male">Male</label>
-                                            </div>
+                            <div class="information__container">
+                                <div class="information__title">Email</div>
+                                <div class="information__content">{{ auth()->user()->email }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details__subtitle">Optional Data</div>
+                    <div class="details_content">
+                        <div class="details_description">
+                            Manage your account information. Update your details to ensure
+                            better transactions.
+                        </div>
+                        <div class="right_section_details">
+                            <div class="information__container">
+                                <div class="information__title">Phone Number</div>
+                                <div class="information__content information__content-empty">{{ auth()->user()->phoneNumber }}</div>
+                            </div>
+                            <div class="information__container">
+                                <div class="information__title">Date of Birth</div>
+                                <div class="information__content information__content-empty">{{ auth()->user()->DOB }}</div>
+                            </div>
+                            <div class="information__container">
+                                <div class="information__title">Gender</div>
+                                <div class="information__content-radio">
+                                    <div class="gender_radio_button">
+                                        <div class="radio_button">
+                                            <input type="radio" id="male" value="Male" 
+                                                {{ auth()->user()->gender == 'Male' ? 'checked' : '' }}>
                                         </div>
-
-                                        <div class="gender_radio_button">
-                                            <div class="radio_button">
-                                                <input type="radio" id="perempuan" value="Female"
-                                                    {{ auth()->user()->gender == 'Female' ? 'checked' : '' }}>
-                                            </div>
-                                            <div class="gender_selection_title">
-                                                <label for="perempuan">Female</label>
-                                            </div>
+                                        <div class="gender_selection_title">
+                                            <label for="male">Male</label>
                                         </div>
                                     </div>
-                                    <div class="button_edit">Edit</div>
+                                    
+                                    <div class="gender_radio_button">
+                                        <div class="radio_button radio_button-selected">
+                                            <input type="radio" id="perempuan" value="Female" 
+                                                {{ auth()->user()->gender == 'Female' ? 'checked' : '' }}>
+                                        </div>
+                                        <div class="gender_selection_title gender_selection_title-selected">
+                                            <label for="perempuan">Female</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="details_sub_title">Password</div>
-                    <div class="horizontal_line"></div>
+                    <div class="details__subtitle">Password</div>
                     <div class="details_content">
-                        <div class="section_details">
-                            <div class="column">
-                                <div class="details_description">
-                                    Secure your account with a strong password to protect your data
-                                    and maintain account integrity.
-                                </div>
-                            </div>
-                            <div class="column-2">
-                                <div class="right_section_details">
-                                    <div class="password_title">Password</div>
-                                    <div class="password_content_container">
-                                        <div class="password_content">************</div>
-                                    </div>
-                                    <div class="button_edit">Edit</div>
+                        <div class="details_description">
+                            Secure your account with a strong password to protect your data
+                            and maintain account integrity.
+                        </div>
+                        <div class="right_section_details">
+                            <div class="information__container">
+                                <div class="information__title">Password</div>
+                                <div class="information__content">
+                                    ************
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="favorites_container" id="favorites" style="display:none">Favorites</div>
-                <div class="history_container" id="history" style="display:none">History</div>
+                <div class="favorites_container" id="favorites" style="display:none">
+                    <div class="account__title">Favorites</div>
+                </div>
+                <div class="history_container" id="history" style="display:none">
+                    <div class="account__title">Order History</div>
+                </div>
                 <div class="settings_container" id="settings" style="display:none">
+                    <div class="account__title">Account Settings</div>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <button type="submit" class="button_edit bg-transparent">Sign Out</button>
+                        <button type="submit" class="button">
+                            <div class="button__content">
+                                <div>Sign Out</div>
+                            </div>
+                        </button>
                     </form>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
         <img src="{{ asset('img/bottom-account.png') }}" alt="" class="img-account-bottom">
     </main>
 
     <!--==================== FOOTER ====================-->
-    @include('layouts.footerLayout')
+    <!-- @include('layouts.footerLayout') -->
 
     <!--========== SCROLL UP ==========-->
     <a href="#headerHome" class="scrollup" id="scroll-up">
@@ -209,8 +206,15 @@
         function toggleDiv(divId) {
             var divs = ['details', 'favorites', 'history', 'settings'];
             divs.forEach(function(div) {
-                document.getElementById(div).style.display = div === divId ? 'block' : 'none';
-                console.log('test')
+                var button = document.getElementById(div+"Button")
+                var content = document.getElementById(div)
+                if(div == divId){
+                    button.style.transform = "translateX(2rem)";
+                    content.style.display = 'block';
+                } else {
+                    button.style.transform = "translateX(0)";
+                    content.style.display = 'none';
+                }
             });
         }
     </script>
