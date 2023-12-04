@@ -9,6 +9,10 @@ class Transactions extends Model
 {
     use HasFactory;
 
+    protected $table = "herbs";
+
+    protected $primaryKey = "transId";
+    
     protected $fillable = [
         'userId',
         'paymentMethod',

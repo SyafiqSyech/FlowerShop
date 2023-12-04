@@ -18,7 +18,6 @@
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
     <title>The Herb Shop &copy;</title>
 </head>
 
@@ -131,18 +130,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
-    <div>
-        @yield('content')
-    </div>
-
-    <!--========== SCROLL UP ==========-->
-    <a href="#home" class="scrollup" id="scroll-up">
-        <i class="ri-arrow-up-s-line"></i>
-    </a>
 
     <!--=============== OPEN DROPDOWN ===============-->
     <script>
@@ -155,12 +144,6 @@
             }
         }
     </script>
-
-    <!--=============== SCROLLREVEAL ===============-->
-    <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
-
-    <!--=============== MAIN JS ===============-->
-    <script src="{{ asset('js/landing-page.js') }}"></script>
 
     <!--=============== BOOTSTRAP JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

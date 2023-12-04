@@ -15,6 +15,7 @@ class HerbsSeeder extends Seeder
     {
         //
         DB::table("herbs")->insert([
+            'herbsImage' => 'img/herbs/luminous lilies.png',
             'herbName' => 'Luminous Lilies',
             'herbPrice' => 30.00,
             'herbFact' => 'In Japanese culture, these lilies are believed to bring good luck and prosperity.',
@@ -32,6 +33,7 @@ class HerbsSeeder extends Seeder
         ]);
 
         DB::table("herbs")->insert([
+            'herbsImage' => 'img/herbs/mystical marigolds.png',
             'herbName' => 'Mystical Marigolds',
             'herbPrice' => 30.00,
             'herbFact' => 'In Mexican culture, these marigolds are used to celebrate the Day of the Dead.',
@@ -49,6 +51,7 @@ class HerbsSeeder extends Seeder
         ]);
 
         DB::table("herbs")->insert([
+            'herbsImage' => 'img/herbs/enchanted echinaceas.png',
             'herbName' => 'Enchanted Echinaceas',
             'herbPrice' => 30.00,
             'herbFact' => 'In Native American culture, these echinaceas are used to treat colds and other ailments.',
@@ -66,6 +69,7 @@ class HerbsSeeder extends Seeder
         ]);
 
         DB::table('herbs')->insert([
+            'herbsImage' => 'img/herbs/Whimsical Wisterias.png',
             'herbName' => 'Whimsical Wisterias',
             'herbPrice' => 30.00,
             'herbFact' => 'In Chinese culture, these wisterias are associated with good luck and prosperity.',
@@ -83,6 +87,7 @@ class HerbsSeeder extends Seeder
         ]);
 
         DB::table('herbs')->insert([
+            'herbsImage' => 'img/herbs/Magical Magnolias.png',
             'herbName' => 'Magical Magnolias',
             'herbPrice' => 30.00,
             'herbFact' => 'In ancient Chinese culture, these magnolias were used to treat anxiety and depression.',
@@ -100,6 +105,7 @@ class HerbsSeeder extends Seeder
         ]);
 
         DB::table('herbs')->insert([
+            'herbsImage' => 'img/herbs/Radiant Roses.png',
             'herbName' => 'Radiant Roses',
             'herbPrice' => 30.00,
             'herbFact' => 'In Greek mythology, roses were associated with Aphrodite, the goddess of love.',
@@ -117,6 +123,7 @@ class HerbsSeeder extends Seeder
         ]);
 
         DB::table('herbs')->insert([
+            'herbsImage' => 'img/herbs/Mystic Moonflowers.png',
             'herbName' => 'Mystic Moonflowers',
             'herbPrice' => 30.00,
             'herbFact' => 'In some cultures, these moonflowers are used to treat insomnia.',
@@ -134,6 +141,7 @@ class HerbsSeeder extends Seeder
         ]);
 
         DB::table('herbs')->insert([
+            'herbsImage' => 'img/herbs/Enchanted Eryngiums.png',
             'herbName' => 'Enchanted Eryngiums',
             'herbPrice' => 30.00,
             'herbFact' => 'In medieval times, these eryngiums were used to ward off evil spirits.',
@@ -151,6 +159,7 @@ class HerbsSeeder extends Seeder
         ]);
 
         DB::table('herbs')->insert([
+            'herbsImage' => 'img/herbs/Whimsical Wildflowers.png',
             'herbName' => 'Whimsical Wildflowers',
             'herbPrice' => 30.00,
             'herbFact' => 'In Mexican culture, these wildflower are used to celebrate Christmas.',
@@ -168,6 +177,7 @@ class HerbsSeeder extends Seeder
         ]);
 
         DB::table('herbs')->insert([
+            'herbsImage' => 'img/herbs/Magical Morning Glories.png',
             'herbName' => 'Magical Morning Glories',
             'herbPrice' => 30.00,
             'herbFact' => 'In Aztec culture, these morning glories were used to induce hallucinations.',

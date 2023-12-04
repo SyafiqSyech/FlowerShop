@@ -23,9 +23,6 @@
 </head>
 
 <body>
-    <div>
-        @yield('content')
-    </div>
 
     <!--==================== FOOTER ====================-->
     <footer class="footer">
@@ -85,12 +82,6 @@
             </svg>
         </div>
     </footer>
-
-    <!--=============== SCROLLREVEAL ===============-->
-    <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
-
-    <!--=============== MAIN JS ===============-->
-    <script src="{{ asset('js/landing-page.js') }}"></script>
 
     <!--=============== BOOTSTRAP JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

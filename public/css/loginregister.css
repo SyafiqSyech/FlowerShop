@@ -122,6 +122,11 @@
     text-decoration: none;
 }
 
+.button__container a:hover{
+    text-decoration: none;
+    color: var(--main-color);
+}
+
 .bottom__button p{
     margin-bottom: 0rem;
 }
