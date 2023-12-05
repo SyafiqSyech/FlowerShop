@@ -134,3 +134,15 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->
 //HERBS
 Route::get('/herbs', [HerbsController::class, 'showHerbsList'])->name('herbs');
 Route::get('/show/{id}', [HerbsController::class, 'showHerbsDetail'])->name('show');
+
+
+// TEst doang
+// untuk product-page
+Route::get('/prod', function () {
+    return view('main.product-page');
+});
+
+// untuk herbs-page
+Route::get('/hb', function () {
+    return view('main.herbs-page');
+});
