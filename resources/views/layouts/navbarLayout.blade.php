@@ -84,31 +84,7 @@
         </div>
     </div>
 
-    <!--=============== OPEN DROPDOWN ===============-->
-    <script>
-        var f = 1;
-        var navColor = 'black';
-        // var navColor = document.getElementById('navTrueShopLogo').style.fill;
-        
-        function toggleDiv(divId) {
-            var div = document.getElementById(divId)
-            if (f == 1) {
-                f = 0
-                div.style.transform = 'translateY(0)'
-                document.body.style.overflow = 'hidden'
-                navColor = document.getElementById('navTrueShopLogo').style.fill
-                document.getElementById('navTrueShopLogo').style.fill = 'white'
-                document.getElementById('navTrueListRight').style.color = 'white'
-            } else {
-                f = 1
-                div.style.transform = 'translateY(-100%)'
-                document.body.style.overflow = 'auto'
-                document.getElementById('navTrueShopLogo').style.fill = navColor
-                document.getElementById('navTrueListRight').style.color= navColor
-            }
-        }
-
-    </script>
+    <script src="{{ asset('js/navbar.js') }}"></script>
 
     <!--=============== BOOTSTRAP JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

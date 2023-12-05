@@ -61,26 +61,27 @@
         </nav>
 
         <!--==================== HOME ====================-->
-        <section class="hero" id="home">
-            <div class="hero__background"></div>
-            <div class="hero__content">
-                <h1>GROW MAGIC</h1>
-                <div class="hero__bottom-content" id="heroBottomContent">
-                    <div class="hero__subtitle">
-                        At The Herb Shop, we cultivate the mystical and the
-                        extraordinary. Explore our enchanted collection of magical
-                        herbs and uncover the essence of wonder.
-                    </div>
-                    <div class="button">
-                        <div class="button__content">
-                            <div>Discover Nature’s Arcane</div>
-                            <div class="ri-arrow-right-up-line"></div>
+        <section class="hero darkSection" id="home">
+            <div class="hero__container">
+                <div class="hero__background"></div>
+                <div class="hero__content">
+                    <h1>GROW MAGIC</h1>
+                    <div class="hero__bottom-content" id="heroBottomContent">
+                        <div class="hero__subtitle">
+                            At The Herb Shop, we cultivate the mystical and the
+                            extraordinary. Explore our enchanted collection of magical
+                            herbs and uncover the essence of wonder.
+                        </div>
+                        <div class="button">
+                            <div class="button__content">
+                                <div>Discover Nature’s Arcane</div>
+                                <div class="ri-arrow-right-up-line"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <div class="hero__rounded-bottom"></div>
 
         <!--==================== FEATURED ====================-->
         <section class="featured section" id="featured">
@@ -103,7 +104,7 @@
         </section>
 
         <!--==================== NEW COLLECTION ====================-->
-        <section class="new__collection section" id="new-collection">
+        <section class="new__collection section darkSection" id="new-collection">
             <!--==================== LEFT ====================-->
             <div class="newcollect__left-container">
                 <img src="{{ asset('img/newcollect-pict.png') }}" alt="">
@@ -233,7 +234,7 @@
         </section>
         
         <!--==================== TESTIMONY CAROUSEL ====================-->
-        <section class="testimony__carousel section" id="testimony-carousel">
+        <section class="testimony__carousel section darkSection" id="testimony-carousel">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators" id="bs__overides-carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"

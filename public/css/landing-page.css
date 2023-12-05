@@ -112,6 +112,10 @@
 }
 
 .hero{
+    padding-bottom: 10vh;
+}
+
+.hero__container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -176,11 +180,6 @@
 .hero .button::before{
     border: 2px solid var(--main-color);
     background-color: var(--main-color);
-}
-
-.hero__rounded-bottom{
-    height: 10vh;
-
 }
 
 /*=============== FEATURED ===============*/
