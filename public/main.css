@@ -1,7 +1,7 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Serif+Text&family=Raleway:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Sans:opsz@9..40&family=DM+Serif+Text&family=Raleway:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Sans:opsz@9..40&family=DM+Serif+Display:ital@1&family=DM+Serif+Text&family=Raleway:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Serif+Text&family=Raleway:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Sans:opsz@9..40&family=DM+Serif+Text&family=Raleway:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital@1&family=DM+Sans:opsz@9..40&family=DM+Serif+Display:ital@1&family=DM+Serif+Text&family=Raleway:wght@100&display=swap");
 
 /*=============== BASE ===============*/
 * {
@@ -17,7 +17,7 @@ html {
 body {
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
-  }
+}
 
 ul {
     list-style: none;
@@ -36,7 +36,7 @@ input {
 }
 
 /*=============== VARIABLES CSS ===============*/
-:root{
+:root {
     --header-height: 3.5rem;
 
     /*========== Colors ==========*/
@@ -59,9 +59,9 @@ input {
     --h1-font-size: 1.75rem;
     --h2-font-size: 1.25rem;
     --h3-font-size: 1.125rem;
-    --normal-font-size: .899rem;
-    --small-font-size: .799rem;
-    --smaller-font-size: .65rem;
+    --normal-font-size: 0.899rem;
+    --small-font-size: 0.799rem;
+    --smaller-font-size: 0.65rem;
 
     /*========== Font weight ==========*/
     --font-regular: 400;
@@ -70,11 +70,11 @@ input {
     --font-bold: 700;
 }
 
-.toprounded{
+.toprounded {
     border-top-left-radius: 100vw;
     border-top-right-radius: 100vw;
 }
 
-.button{
+.button {
     border-radius: 100vw;
 }

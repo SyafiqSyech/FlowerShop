@@ -18,6 +18,9 @@
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
+
     <title>The Herb Shop &copy;</title>
 </head>
 
@@ -61,26 +64,27 @@
         </nav>
 
         <!--==================== HOME ====================-->
-        <section class="hero" id="home">
-            <div class="hero__background"></div>
-            <div class="hero__content">
-                <h1>GROW MAGIC</h1>
-                <div class="hero__bottom-content" id="heroBottomContent">
-                    <div class="hero__subtitle">
-                        At The Herb Shop, we cultivate the mystical and the
-                        extraordinary. Explore our enchanted collection of magical
-                        herbs and uncover the essence of wonder.
-                    </div>
-                    <div class="button">
-                        <div class="button__content">
-                            <div>Discover Nature’s Arcane</div>
-                            <div class="ri-arrow-right-up-line"></div>
+        <section class="hero darkSection" id="home">
+            <div class="hero__container">
+                <div class="hero__background"></div>
+                <div class="hero__content">
+                    <h1>GROW MAGIC</h1>
+                    <div class="hero__bottom-content" id="heroBottomContent">
+                        <div class="hero__subtitle">
+                            At The Herb Shop, we cultivate the mystical and the
+                            extraordinary. Explore our enchanted collection of magical
+                            herbs and uncover the essence of wonder.
+                        </div>
+                        <div onclick="window.location='{{ route('herbs') }}';" class="button">
+                            <div class="button__content">
+                                <div>Discover Nature’s Arcane</div>
+                                <div class="ri-arrow-right-up-line"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <div class="hero__rounded-bottom"></div>
 
         <!--==================== FEATURED ====================-->
         <section class="featured section" id="featured">
@@ -94,7 +98,7 @@
                 @endforelse
             </div>
 
-            <div class="button">
+            <div onclick="window.location='{{ route('herbs') }}';" class="button">
                 <div class="button__content">
                     <div>See More</div>
                     <div class="ri-arrow-right-up-line"></div>
@@ -103,7 +107,7 @@
         </section>
 
         <!--==================== NEW COLLECTION ====================-->
-        <section class="new__collection section" id="new-collection">
+        <section class="new__collection section darkSection" id="new-collection">
             <!--==================== LEFT ====================-->
             <div class="newcollect__left-container">
                 <img src="{{ asset('img/newcollect-pict.png') }}" alt="">
@@ -128,7 +132,7 @@
                     power of nature's agility with Swiftgrow herbs.
                 </p>
 
-                <div class="button">
+                <div onclick="window.location='{{ route('swiftgrow') }}';" class="button">
                     <div class="button__content">
                         <div>Discover</div>
                         <div class="ri-arrow-right-up-line"></div>
@@ -161,7 +165,7 @@
                         </p>
                     </div>
 
-                    <div class="button">
+                    <div onclick="window.location='{{ route('exotic') }}';" class="button">
                         <div class="button__content">
                             <div>Explore</div>
                             <div class="ri-arrow-right-up-line"></div>
@@ -171,8 +175,7 @@
 
                 <div class="collection__container">
                     <div class="collection__image">
-                        <img src="{{ asset('img/collection-swiftgrow.png') }}" alt=""
-                            class="collection__img">
+                        <img src="{{ asset('img/collection-swiftgrow.png') }}" alt="" class="collection__img">
                     </div>
 
 
@@ -193,7 +196,7 @@
                         </p>
                     </div>
 
-                    <div class="button">
+                    <div onclick="window.location='{{ route('swiftgrow') }}';" class="button">
                         <div class="button__content">
                             <div>Explore</div>
                             <div class="ri-arrow-right-up-line"></div>
@@ -221,7 +224,7 @@
                         </p>
                     </div>
 
-                    <div class="button">
+                    <div onclick="window.location='{{ route('alchemical') }}';" class="button">
                         <div class="button__content">
                             <div>Explore</div>
                             <div class="ri-arrow-right-up-line"></div>
@@ -233,7 +236,7 @@
         </section>
 
         <!--==================== TESTIMONY CAROUSEL ====================-->
-        <section class="testimony__carousel section" id="testimony-carousel">
+        <section class="testimony__carousel section darkSection" id="testimony-carousel">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators" id="bs__overides-carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
@@ -245,44 +248,37 @@
                 </div>
 
                 <div class="carousel-inner">
+                    <img src="{{ asset('img/testimony-pict.png') }}" class="carousel-img d-block w-100"
+                        id="testimony__carousel-img-1" alt="...">
                     <div class="carousel-item active">
-                        <img src="{{ asset('img/testimony-pict.png') }}" class="d-block w-100"
-                            id="testimony__carousel-img-1" alt="...">
                         <div class="carousel-caption d-none d-md-block" id="bs__overides-carousel-caption-1">
                             <h5 class="carousel__name">GANDALF THE GREY</h5>
                             <p class="carousel__testimony-para">
-                                Through the winding paths of Middle-earth, I have sought wisdom and power. The <br>
+                                Through the winding paths of Middle-earth, I have sought wisdom and power. The
                                 herbs from The Herb Shop are nothing short of magical, a true source of enchantment.
-                                <br>
-                                They have been a trusted companion on my journey. <br>
+                                They have been a trusted companion on my journey.
                             </p>
                         </div>
                     </div>
 
                     <div class="carousel-item">
-                        <img src="{{ asset('img/testimony-pict.png') }}" class="d-block w-100"
-                            id="testimony__carousel-img-2 alt="...">
                         <div class="carousel-caption d-none d-md-block" id="bs__overides-carousel-caption-2">
                             <h5 class="carousel__name">SYAFIQ THE HOBBIT</h5>
                             <p class="carousel__testimony-para">
-                                Through the winding paths of Middle-earth, I have sought wisdom and power. The <br>
+                                Through the winding paths of Middle-earth, I have sought wisdom and power. The
                                 herbs from The Herb Shop are nothing short of magical, a true source of enchantment.
-                                <br>
-                                They have been a trusted companion on my journey. <br>
+                                They have been a trusted companion on my journey.
                             </p>
                         </div>
                     </div>
 
                     <div class="carousel-item">
-                        <img src="{{ asset('img/testimony-pict.png') }}" class="d-block w-100"
-                            id="testimony__carousel-img-3 alt="...">
                         <div class="carousel-caption d-none d-md-block" id="bs__overides-carousel-caption-3">
                             <h5 class="carousel__name">MATT THE EXECUTOR</h5>
                             <p class="carousel__testimony-para">
-                                Through the winding paths of Middle-earth, I have sought wisdom and power. The <br>
+                                Through the winding paths of Middle-earth, I have sought wisdom and power. The
                                 herbs from The Herb Shop are nothing short of magical, a true source of enchantment.
-                                <br>
-                                They have been a trusted companion on my journey. <br>
+                                They have been a trusted companion on my journey.
                             </p>
                         </div>
                     </div>
@@ -387,7 +383,7 @@
                         the ordinary world.
                     </p>
 
-                    <div class="button">
+                    <div onclick="window.location='{{ route('contact') }}';" class="button">
                         <div class="button__content">
                             <div>Learn more</div>
                             <div class="ri-arrow-right-up-line"></div>

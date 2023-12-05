@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('gender')->nullable();;
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

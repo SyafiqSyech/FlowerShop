@@ -40,110 +40,51 @@
     </nav>
 
     <!--==================== DROPDOWN ====================-->
-    <div id="dropdown" class="dropdown" style="display: none;">
+    <div id="dropdown" class="dropdown" style="transform: translateY(-100%);">
         <div class="dropdown__container">
-            <nav class="dropdown__header" id="dropdown-header">
-                <div class="dropdown__header-left">
-                    <div class="dHeader__shop-name">
-                        <p class="dHeader__the">THE</p>
-                        <p class="dHeader__herb">HERB</p>
-                        <p class="dHeader__shop">SHOP</p>
-                    </div>
+
+            <div class="dropdown__left">
+                <a href="{{ route('home') }}" class="dropdown__menu">HOME</a>
+                <div>
+                    <a href="{{ route('herbs') }}" class="dropdown__menu">HERBS</a>
+                    <p class="dropdown__-sub">ALCHEMICAL</p>
+                    <p class="dropdown__-sub">MAGICAL</p>
+                    <p class="dropdown__-sub">HEALING</p>
                 </div>
-
-                <div class="dropdown__header-right">
-                    <div class="dHeader__cart">
-                        <a href="{{ route('cart') }}"><i class="ri-shopping-cart-line"></i></a>
-                    </div>
-
-                    <div class="dHeader__account">
-                        <a href="{{ route('account') }}"><i class="ri-user-line"></i></a>
-                    </div>
-
-                    <div class="dHeader__menu" id="dHeader-menu">
-                        <i class="ri-close-line" id="dHeader-close"></i>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="drowdown__content-main">
-                <div class="dropdown__left">
-                    <div class="dropdown__left-up">
-                        <a href="{{ route('home') }}" class="dropdown__home">HOME</a>
-                    </div>
-
-                    <div class="dropdown__left-mid">
-                        <a href="{{ route('herbs') }}" class="dropdown__herbs">HERBS</a>
-
-                        <p class="dropdown__herbs-sub">ALCHEMICAL</p>
-                        <p class="dropdown__herbs-sub">MAGICAL</p>
-                        <p class="dropdown__herbs-sub">HEALING</p>
-                    </div>
-
-                    <div class="dropdown__left-bot">
-                        <a href="{{ route('contact') }}" class="dropdown__contact">CONTACT</a>
-                    </div>
-                </div>
-
-                <div class="dropdown__right">
-
-                </div>
+                <a href="{{ route('contact') }}" class="dropdown__menu">CONTACT</a>
             </div>
 
-            <div class="dropdown__footer">
-                <div class="dropdown__footer-left">
-                    <div class="dropdown__footer__ig">
-                        <a href="" class="dropdown__footer__ig-link">
-                            <img src="{{ asset('img/icon/ri_instagram-fill.png') }}" alt=""
-                                class="dropdown__footer__icon-img">
-                        </a>
-                    </div>
+            <div class="dropdown__right">
 
-                    <div class="dropdown__footer__twit">
-                        <a href="" class="dropdown__footer__twit-link">
-                            <img src="{{ asset('img/icon/twitter-icon.png') }}" alt=""
-                                class="dropdown__footer__icon-img">
-                        </a>
-                    </div>
+            </div>
 
-                    <div class="dropdown__footer__linkedin">
-                        <a href="" class="dropdown__footer__linked-link">
-                            <img src="{{ asset('img/icon/ri_linkedin-fill.png') }}" alt=""
-                                class="dropdown__footer__icon-img">
-                        </a>
-                    </div>
+            <div class="dropdown__footer-container">
+                <div class="dropdown__footer-content">
+                    <a href="" class="footer__icon-link">
+                        <img src="{{ asset('img/icon/ri_instagram-fill.png') }}" alt="" class="footer__icon">
+                    </a>
+                    <a href="" class="footer__icon-link">
+                        <img src="{{ asset('img/icon/twitter-icon.png') }}" alt="" class="footer__icon">
+                    </a>
+                    <a href="" class="footer__icon-link">
+                        <img src="{{ asset('img/icon/ri_linkedin-fill.png') }}" alt="" class="footer__icon">
+                    </a>
+                    <a href="" class="footer__icon-link">
+                        <img src="{{ asset('img/icon/ri_discord-fill.png') }}" alt="" class="footer__icon">
+                    </a>
+                </div>
 
-                    <div class="dropdown__footer__discord">
-                        <a href="" class="dropdown__footer__dc-link">
-                            <img src="{{ asset('img/icon/ri_discord-fill.png') }}" alt=""
-                                class="dropdown__footer__icon-img">
-                        </a>
+                <div class="button">
+                    <div class="button__content">
+                        <div>Our Story</div>
                     </div>
                 </div>
 
-                <div class="dropdown__footer-right">
-                    <div class="dropdown__footer__button-os-container">
-                        <button class="dropdown__footer__os-btn button">
-                            Our Story
-                            <i class="ri-arrow-right-up-line"></i>
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!--=============== OPEN DROPDOWN ===============-->
-    <script>
-        function toggleDiv(divId) {
-            var div = document.getElementById(divId)
-            if (div.style.display === 'none' || div.style.display === '') {
-                div.style.display = 'block'
-            } else {
-                div.style.display = 'none'
-            }
-        }
-    </script>
+    <script src="{{ asset('js/navbar.js') }}"></script>
 
     <!--=============== BOOTSTRAP JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

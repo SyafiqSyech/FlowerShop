@@ -11,13 +11,25 @@
     } 
 } */
 
-
 .hero__bg {
     height: 50vh;
     padding: 50px 10rem;
     display: flex;
     align-items: end;
     background-image: url("../img/top-account-page.png");
+}
+
+.pop-up__container {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.alert {
+    margin-top: 2%;
+    text-align: center;
+    width: 20rem;
+    /* margin-inline: 50%; */
 }
 
 .hero__title {
@@ -56,7 +68,7 @@
 }
 
 .account__menu {
-    transition: .2s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 
 /*=============== Details ===============*/
@@ -68,7 +80,7 @@
     flex-direction: column;
 }
 
-.details__top{
+.details__top {
     display: flex;
     justify-content: space-between;
 }
@@ -86,7 +98,7 @@
     font-size: var(--small-font-size);
     font-weight: var(--font-bold);
     margin-top: 5rem;
-    padding-bottom: .5rem;
+    padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--black-color);
 }
 
@@ -117,7 +129,7 @@
 }
 
 .information__container {
-    width:100%;
+    width: 100%;
 }
 
 .information__title {
@@ -179,6 +191,12 @@
     font: 400 16px/21px DM Sans, sans-serif;
 } */
 
+.gender__form {
+    position: relative;
+    width: 100%;
+    margin-top: 40px;
+}
+
 .male_female_container {
     align-self: start;
     display: flex;
@@ -202,6 +220,121 @@
     width: 20px;
     height: 20px;
     border: 2px solid var(--Gray, #b7b7b7);
+}
+
+.editAccountForm {
+    z-index: 999;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding-inline: 3rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-block: 1rem;
+    width: 40rem;
+    /* height: 41.7rem; */
+}
+
+.editAccountForm .account__title {
+    font-size: 1.5rem;
+}
+
+.editAccountForm .buttonContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.editAccountForm .input__form {
+    position: relative;
+    width: 100%;
+    margin-top: 35px;
+    border-bottom: 1px solid black;
+}
+
+.editAccountForm .input__form .invalid-feedback {
+    margin-bottom: -1rem;
+    font-size: 0.65rem;
+}
+
+.editAccountForm .input {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 0.65rem;
+    font-family: var(--body-font);
+}
+
+.editAccountForm .label {
+    position: absolute;
+    top: 8px;
+    left: 0px;
+    font-size: 0.65rem;
+    font-family: var(--body-font);
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.editAccountForm .button {
+    margin-top: 35px;
+    width: 6rem;
+    height: 1.7rem;
+}
+
+.editAccountForm .button .button__content {
+    background-color: white;
+    padding: auto;
+    width: 6rem;
+    height: 1.7rem;
+    font-size: small;
+}
+
+.editAccountForm .passwordDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.editAccountForm .button .button__content div {
+    padding-inline: 15%;
+    padding-block: 55%;
+}
+
+.input:-webkit-autofill {
+    transition: background-color 6000s, color 6000s;
+}
+
+/* Move label up & sticky label */
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+    font-size: 0.65rem;
+    top: -16px;
+    transition: 0.4s;
+}
+
+.edit_radio {
+    margin-top: 10px;
+}
+
+.edit_radio .gender_radio_button {
+    margin-top: 5px;
+}
+
+.edit_radio .gender_selection_title {
+    margin-top: -3px;
+    margin-left: 20px;
+    font-size: var(--small-font-size);
+}
+
+.edit_radio .radio_button {
+    width: 15px;
+    height: 15px;
+}
+
+.edit_radio .label {
+    font-size: var(--small-font-size);
 }
 
 .radio_button-selected {
@@ -253,12 +386,53 @@
     width: 100%;
 } */
 
-/* .img-account-bottom {
+.img-account-bottom {
     width: 100%;
-    padding-top: 300px;
-    margin-bottom: -10px;
-} */
+    /* padding-top: 300px; */
+    margin-bottom: -6px;
+}
 
 /*=============== Favorites ===============*/
-/*=============== Histroy ===============*/
+/*=============== History ===============*/
 /*=============== Settings ===============*/
+.settings_container{
+    width: 100%;
+}
+
+.settingsContent{
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.signOutDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.deleteAccountDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.deleteAccountDiv .button{
+    background-color: black;
+    border: 2px solid black;
+}
+
+.deleteAccountDiv .button .button__content div{
+    color: white;
+}
+
+.deleteAccountDiv .button .button__content {
+    border: 2px solid black;
+    color: black;
+}
+
+.deleteAccountDiv .button::before {
+    border: 2px solid red;
+    background-color: red;
+}

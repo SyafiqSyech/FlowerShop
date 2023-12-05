@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\HerbsController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -33,9 +34,11 @@ Route::get('/contact', function () {
     return view('main.contact');
 })->name('contact');
 
-Route::get('/account', function () {
-    return view('main.account');
-})->middleware('auth')->name('account');
+// Route::get('/account', function () {
+//     return view('main.account');
+// })->middleware('auth')->name('account');
+
+route::get('/account', [AccountController::class, 'showFavoriteHerbs'])->middleware('auth')->name('account');
 
 Route::get('/herbs', function () {
     return view('herbs.herbs');
@@ -54,20 +57,20 @@ Route::get('/register', function () {
     return view('auth.register');
 })->middleware('guest')->name('register');
 
-// COLLECTION PAGES
-Route::get('/alchemical', function () {
-    return view('herbs.alchemical');
+//COLLECTION PAGES
+Route::get('/herbs/#alchemicalSection', function () {
+    return view('herbs');
 })->name('alchemical');
-Route::get('/exotic', function () {
-    return view('herbs.exotic');
+Route::get('/herbs/#exoticSection', function () {
+    return view('herbs');
 })->name('exotic');
-Route::get('/swiftgrow', function () {
-    return view('herbs.swiftgrow');
+Route::get('/herbs/#swiftgrowSection', function () {
+    return view('herbs');
 })->name('swiftgrow');
 
 // ===================================================================
 //ROUTING LOGIC
-// FORGOT PASSWORD
+//FORGOT PASSWORD
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('forgot-password');
@@ -134,3 +137,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->
 //HERBS
 Route::get('/herbs', [HerbsController::class, 'showHerbsList'])->name('herbs');
 Route::get('/show/{id}', [HerbsController::class, 'showHerbsDetail'])->name('show');
+
+//ACCOUNT
+Route::post('/updateAccount', [AccountController::class, 'updateAccount'])->middleware('auth')->name('update');
+Route::delete('/deleteAccount', [AccountController::class, 'deleteAccount'])->middleware('auth')->name('deleteAccount');
+
+

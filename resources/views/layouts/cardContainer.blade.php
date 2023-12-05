@@ -22,20 +22,20 @@
 </head>
 
 <body>
-    <div onclick="window.location='{{ route('show', ['id' => isset($featuredHerbs) ? $featuredHerbs->herbsId : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbsId : $herbs->herbsId)]) }}';"
+    <div onclick="window.location='{{ route('show', ['id' => isset($featuredHerbs) ? $featuredHerbs->herbsId : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbsId : (isset($favorites) ? $favorites->herbsId : $herb->herbsId))]) }}';"
         class="product__card toprounded">
         <div class="product__card-img toprounded">
-            <img src="{{ asset(isset($featuredHerbs) ? $featuredHerbs->herbsImage : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbsImage : $herbs->herbsImage)) }}"
+            <img src="{{ asset(isset($featuredHerbs) ? $featuredHerbs->herbsImage : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbsImage : (isset($favorites) ? $favorites->herbsImage : $herb->herbsImage))) }}"
                 alt="">
         </div>
         <p>
-            {{ isset($featuredHerbs) ? $featuredHerbs->herbName : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbName : $herbs->herbName) }}
+            {{ isset($featuredHerbs) ? $featuredHerbs->herbName : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbName : (isset($favorites) ? $favorites->herbName : $herb->herbName)) }}
         </p>
         <p>
-            $
-            {{ number_format(isset($featuredHerbs) ? $featuredHerbs->herbPrice : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbPrice : $herbs->herbPrice)) }}
+            ${{ number_format(isset($featuredHerbs) ? $featuredHerbs->herbPrice : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbPrice : (isset($favorites) ? $favorites->herbPrice : $herb->herbPrice))) }}
         </p>
     </div>
+
 
 </body>
 

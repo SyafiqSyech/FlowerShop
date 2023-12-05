@@ -1,13 +1,13 @@
-.main{
+.main {
     display: flex;
 }
 
-.input__form .invalid-feedback{
+.input__form .invalid-feedback {
     margin-bottom: -1.5rem;
 }
 
 .left__container,
-.right__container{
+.right__container {
     flex: 50vw;
     height: 100vh;
     position: relative;
@@ -17,7 +17,7 @@
     overflow: hidden;
 }
 
-.image-background{
+.image-background {
     position: absolute;
     width: calc(100% + 100px);
     height: calc(100% + 40px);
@@ -29,109 +29,110 @@
 }
 
 .image-background::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2); /* Adjust the opacity here */
 }
 
-.image{
+.image {
     max-width: 80%;
     max-height: 80%;
 }
 
 /* Form */
-.inner__container{
+.inner__container {
     width: 450px;
     display: flex;
     flex-direction: column;
 }
 
-.title{
+.title {
     margin: 0;
     text-align: center;
     font-family: var(--title-font);
     font-size: var(--biggest-font-size);
 }
 
-.input__form{
+.input__form {
     position: relative;
-    width:100%;
+    width: 100%;
     margin-top: 40px;
-    border-bottom:1px solid black;  
+    border-bottom: 1px solid black;
 }
 
-.input{
-    width:100%;
+.input {
+    width: 100%;
     padding: 8px 0;
-    font-size:var(--normal-font-size);
+    font-size: var(--normal-font-size);
     font-family: var(--body-font);
 }
 
-.label{
-    position:absolute;
-	top:8px;
-	left:0px;
+.label {
+    position: absolute;
+    top: 8px;
+    left: 0px;
     font-size: var(--normal-font-size);
     font-family: var(--body-font);
     pointer-events: none;
-    transition: .4s;
+    transition: 0.4s;
 }
 
-.input:-webkit-autofill{
+.input:-webkit-autofill {
     transition: background-color 6000s, color 6000s;
 }
 
-/* Move label up & sticky label */ 
+/* Move label up & sticky label */
 .input:focus + .label,
-.input:not(:placeholder-shown) + .label{
+.input:not(:placeholder-shown) + .label {
     font-size: var(--small-font-size);
     top: -16px;
-    transition: .4s;
+    transition: 0.4s;
 }
 
 /* Button */
-.button__container{
+.button__container {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
-    gap: 20px
+    gap: 20px;
 }
 
-.button__container .button__content{
+.button__container .button__content {
     cursor: pointer;
     width: auto;
     border: 2px solid var(--main-color);
 }
 
-.button__container .button__content p{
+.button__container .button__content p {
     width: 100%;
     text-align: center;
     text-decoration: none;
 }
 
-.top__button{
+.top__button {
     color: var(--white-color);
     background-color: var(--main-color);
 }
 
-.bottom__button{
+.bottom__button {
     color: var(--main-color);
     background-color: var(--white-color);
     text-decoration: none;
 }
 
-.button__container a:hover{
+.button__container a:hover {
     text-decoration: none;
     color: var(--main-color);
 }
 
-.bottom__button p{
+.bottom__button p {
     margin-bottom: 0rem;
 }
 
-.bottom__button, .top__button p{
+.bottom__button,
+.top__button p {
     height: 50%;
     margin-bottom: 0rem;
 }

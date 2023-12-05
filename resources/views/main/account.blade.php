@@ -8,22 +8,174 @@
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <!-- <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/account.css') }}">
-
 
     <!--=============== BOOTSTRAP ERROR HANDLER ===============-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
+
     <title>The Herb Shop &copy;</title>
 </head>
 
 <body>
+    <!--==================== FORM EDIT ACCOUNT ====================-->
+    <div id="editAccountForm" class="editAccountForm"
+        @if ($errors->any()) style="display: block;"
+        @else
+            style="display: none;" @endif>
+        <div class="account__title">Edit Account</div>
+
+        <form id="editAccountForm" action="{{ route('update') }}" method="POST">
+            @csrf
+
+            <!--==================== FORM ====================-->
+            <div class="name__container">
+                <div class="input__form">
+                    <input name="firstName" type="text" class="input @error('firstName') is-invalid @enderror"
+                        id="fname" required placeholder=" "
+                        value="{{ old('firstName', auth()->user()->firstName) }}">
+                    <label for="fname" class="label">First Name</label>
+                    @error('firstName')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="input__form">
+                    <input name="lastName" type="text" class="input @error('lastName') is-invalid @enderror"
+                        id="lname" required placeholder=" " value="{{ old('lastName', auth()->user()->lastName) }}">
+                    <label for="lname" class="label">Last Name</label>
+                    @error('lastName')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="input__form">
+                <input name="email" type="text" class="input @error('email') is-invalid @enderror" id="email"
+                    required placeholder=" " value="{{ old('email', auth()->user()->email) }}">
+                <label for="email" class="label">Email</label>
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="input__form">
+                <input name="phoneNumber" type="tel" class="input @error('phoneNumber') is-invalid @enderror"
+                    id="phoneNumber" placeholder=" " value="{{ old('phoneNumber', auth()->user()->phoneNumber) }}">
+                <label for="phoneNumber" class="label">Phone Number</label>
+                @error('phoneNumber')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="input__form">
+                <input name="DOB" type="date" class="input @error('DOB') is-invalid @enderror" id="DOB"
+                    placeholder=" " value="{{ old('DOB', auth()->user()->DOB) }}">
+                <label for="DOB" class="label">Date of Birth</label>
+                @error('DOB')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="gender__form edit_radio">
+                <label for="" class="label">Gender</label>
+                <br>
+                <div class="gender_radio_button">
+                    <label for="male"
+                        class="radio_button {{ auth()->user()->gender == 'Male' ? 'radio_button-selected' : '' }}">
+                        <input type="radio" id="male" value="Male"
+                            {{ auth()->user()->gender == 'Male' ? 'checked' : '' }} name="gender">
+                        <div id="maleLabel"
+                            class="gender_selection_title {{ auth()->user()->gender == 'Male' ? 'gender_selection_title-selected' : '' }}">
+                            Male
+                        </div>
+                    </label>
+                </div>
+                <div class="gender_radio_button">
+                    <label for="female"
+                        class="radio_button {{ auth()->user()->gender == 'Female' ? 'radio_button-selected' : '' }}">
+                        <input type="radio" id="female" value="Female"
+                            {{ auth()->user()->gender == 'Female' ? 'checked' : '' }} name="gender">
+                        <div id="femaleLabel"
+                            class="gender_selection_title {{ auth()->user()->gender == 'Female' ? 'gender_selection_title-selected' : '' }}">
+                            Female
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="passwordDiv">
+                <div class="input__form">
+                    <input name="password" type="password" class="input @error('password') is-invalid @enderror"
+                        id="password" placeholder=" ">
+                    <label for="password" class="label">New Password</label>
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="input__form">
+                    <input name="confirm-password" type="password"
+                        class="input @error('confirm-password') is-invalid @enderror" id="cpassword" placeholder=" ">
+                    <label for="password" class="label">Confirm New Password</label>
+                    @error('confirm-password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="input__form">
+                <input name="passwordConfirm" type="password"
+                    class="input @error('passwordConfirm') is-invalid @enderror" id="passwordConfirm"
+                    placeholder=" ">
+                <label for="passwordConfirm" class="label">Old Password to Confirm Edit</label>
+                @error('passwordConfirm')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="buttonContainer">
+                <div class="button">
+                    <button type="submit" class="button__content">
+                        <div>
+                            Save
+                        </div>
+                    </button>
+                </div>
+                <div onclick="toggleEdit('editAccountForm')" class="button">
+                    <div class="button__content">
+                        <div>
+                            Close
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <!--==================== MAIN ====================-->
     <main class="main">
         <!--==================== HOME HEADER ====================-->
-        <!-- <nav class="header__home" id="headerHome">
+        <nav class="header__home" id="headerHome">
             <div class="nav__shop-name">
                 <svg viewBox="0 0 192 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -53,143 +205,214 @@
                     <a href="{{ route('account') }}" class="nav__link">Account</a>
                 </li>
             </ul>
-        </nav> -->
+        </nav>
 
         <!--==================== ACCOUNT ====================-->
         <div class="hero__bg">
             <h1 class="hero__title">Account</h1>
         </div>
 
+        @if (session()->has('success'))
+            <div class="pop-up__container">
+                <div class="alert alert-success alert-dismissable fade show" role="alert" id="successAlert">
+                    {{ session('success') }}
+                </div>
+            </div>
+        @endif
+
+        @if (session()->has('error'))
+            <div class="pop-up__container">
+                <div class="alert alert-danger alert-dismissable fade show" role="alert" id="successAlert">
+                    {{ session('error') }}
+                </div>
+            </div>
+        @endif
+
         <div class="account__container">
             <!-- <div class="account_content_container"> -->
-                <div class="account__menu-container">
-                    <!-- <div class="svg_pointer">
+            <div class="account__menu-container">
+                <!-- <div class="svg_pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
                             <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="black" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div> -->
-                    <div class="account__menu" id="detailsButton" onclick="toggleDiv('details')" style="transform: translateX(2rem);">Details</div>
-                    <div class="account__menu" id="favoritesButton" onclick="toggleDiv('favorites')">Favorites</div>
-                    <div class="account__menu" id="historyButton" onclick="toggleDiv('history')">Order History</div>
-                    <div class="account__menu" id="settingsButton" onclick="toggleDiv('settings')">Account Settings</div>
-                </div>
-                <div class="details__container" id="details">
-                    <div class="details__top">
-                        <div class="account__title">Details</div>
-                        <div>
-                            <div class="button">
-                                <div class="button__content">
-                                    <div>Edit</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="details__subtitle">Personal Data</div>
-                    <div class="details_content">
-                        <div class="details_description">
-                            Essential information that are necessary for account registration
-                            and communication.
-                        </div>
-                        <div class="right_section_details">
-                            <div class="first_last_name">
-                                <div class="information__container">
-                                    <div class="information__title">First Name</div>
-                                    <div class="information__content">{{ auth()->user()->firstName }}</div>
-                                </div>
-                                <div class="information__container">
-                                    <div class="information__title">Last Name</div>
-                                    <div class="information__content">{{ auth()->user()->lastName }}</div>
-                                </div>
-                            </div>
-                            <div class="information__container">
-                                <div class="information__title">Email</div>
-                                <div class="information__content">{{ auth()->user()->email }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="details__subtitle">Optional Data</div>
-                    <div class="details_content">
-                        <div class="details_description">
-                            Manage your account information. Update your details to ensure
-                            better transactions.
-                        </div>
-                        <div class="right_section_details">
-                            <div class="information__container">
-                                <div class="information__title">Phone Number</div>
-                                <div class="information__content information__content-empty">{{ auth()->user()->phoneNumber }}</div>
-                            </div>
-                            <div class="information__container">
-                                <div class="information__title">Date of Birth</div>
-                                <div class="information__content information__content-empty">{{ auth()->user()->DOB }}</div>
-                            </div>
-                            <div class="information__container">
-                                <div class="information__title">Gender</div>
-                                <div class="information__content-radio">
-                                    <div class="gender_radio_button">
-                                        <div class="radio_button">
-                                            <input type="radio" id="male" value="Male" 
-                                                {{ auth()->user()->gender == 'Male' ? 'checked' : '' }}>
-                                        </div>
-                                        <div class="gender_selection_title">
-                                            <label for="male">Male</label>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="gender_radio_button">
-                                        <div class="radio_button radio_button-selected">
-                                            <input type="radio" id="perempuan" value="Female" 
-                                                {{ auth()->user()->gender == 'Female' ? 'checked' : '' }}>
-                                        </div>
-                                        <div class="gender_selection_title gender_selection_title-selected">
-                                            <label for="perempuan">Female</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="details__subtitle">Password</div>
-                    <div class="details_content">
-                        <div class="details_description">
-                            Secure your account with a strong password to protect your data
-                            and maintain account integrity.
-                        </div>
-                        <div class="right_section_details">
-                            <div class="information__container">
-                                <div class="information__title">Password</div>
-                                <div class="information__content">
-                                    ************
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="favorites_container" id="favorites" style="display:none">
-                    <div class="account__title">Favorites</div>
-                </div>
-                <div class="history_container" id="history" style="display:none">
-                    <div class="account__title">Order History</div>
-                </div>
-                <div class="settings_container" id="settings" style="display:none">
-                    <div class="account__title">Account Settings</div>
-                    <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        <button type="submit" class="button">
+                <div class="account__menu" id="detailsButton" onclick="toggleDiv('details')"
+                    style="transform: translateX(2rem);">Details</div>
+                <div class="account__menu" id="favoritesButton" onclick="toggleDiv('favorites')">Favorites</div>
+                <div class="account__menu" id="historyButton" onclick="toggleDiv('history')">Order History</div>
+                <div class="account__menu" id="settingsButton" onclick="toggleDiv('settings')">Account Settings</div>
+            </div>
+
+            <div class="details__container" id="details">
+                <div class="details__top">
+                    <div class="account__title">Details</div>
+                    <div>
+                        <div onclick="toggleEdit('editAccountForm')" class="button">
                             <div class="button__content">
-                                <div>Sign Out</div>
+                                <div>Edit</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="details__subtitle">Personal Data</div>
+                <div class="details_content">
+                    <div class="details_description">
+                        Essential information that are necessary for account registration
+                        and communication.
+                    </div>
+                    <div class="right_section_details">
+                        <div class="first_last_name">
+                            <div class="information__container">
+                                <div class="information__title">First Name</div>
+                                <div class="information__content">{{ auth()->user()->firstName }}</div>
+                            </div>
+                            <div class="information__container">
+                                <div class="information__title">Last Name</div>
+                                <div class="information__content">{{ auth()->user()->lastName }}</div>
+                            </div>
+                        </div>
+                        <div class="information__container">
+                            <div class="information__title">Email</div>
+                            <div class="information__content">{{ auth()->user()->email }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="details__subtitle">Optional Data</div>
+                <div class="details_content">
+                    <div class="details_description">
+                        Manage your account information. Update your details to ensure
+                        better transactions.
+                    </div>
+                    <div class="right_section_details">
+                        <div class="information__container">
+                            <div class="information__title">Phone Number</div>
+                            <div class="information__content information__content-empty">
+                                {{ auth()->user()->phoneNumber }}</div>
+                        </div>
+                        <div class="information__container">
+                            <div class="information__title">Date of Birth</div>
+                            <div class="information__content information__content-empty">{{ auth()->user()->DOB }}
+                            </div>
+                        </div>
+                        <div class="information__container">
+                            <div class="information__title">Gender</div>
+                            <div class="information__content-radio">
+                                <div class="gender_radio_button">
+                                    <div
+                                        class="radio_button {{ auth()->user()->gender == 'Male' ? 'radio_button-selected' : '' }}">
+                                        <input type="radio" id="male" value="Male"
+                                            {{ auth()->user()->gender == 'Male' ? 'checked' : '' }}>
+                                    </div>
+                                    <div
+                                        class="gender_selection_title {{ auth()->user()->gender == 'Male' ? 'gender_selection_title-selected' : '' }}">
+                                        <label for="male">Male</label>
+                                    </div>
+                                </div>
+
+                                <div class="gender_radio_button">
+                                    <div
+                                        class="radio_button {{ auth()->user()->gender == 'Female' ? 'radio_button-selected' : '' }}">
+                                        <input type="radio" id="female" value="Female"
+                                            {{ auth()->user()->gender == 'Female' ? 'checked' : '' }}>
+                                    </div>
+                                    <div
+                                        class="gender_selection_title {{ auth()->user()->gender == 'Female' ? 'gender_selection_title-selected' : '' }}">
+                                        <label for="female">Female</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="details__subtitle">Password</div>
+                <div class="details_content">
+                    <div class="details_description">
+                        Secure your account with a strong password to protect your data
+                        and maintain account integrity.
+                    </div>
+                    <div class="right_section_details">
+                        <div class="information__container">
+                            <div class="information__title">Password</div>
+                            <div class="information__content">
+                                ************
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="favorites_container" id="favorites" style="display:none">
+                <div class="account__title">Favorites</div>
+                <div class="container__card">
+                    @forelse ($favorites as $favorites)
+                        @include('layouts.cardContainer')
+                    @empty
+                        <p>You don't have Favorite Herbs!</p>
+                    @endforelse
+                </div>
+            </div>
+            <div class="history_container" id="history" style="display:none">
+                <div class="account__title">Order History</div>
+            </div>
+            <div class="settings_container" id="settings" style="display:none">
+                <div class="account__title">Account Settings</div>
+                <div class="settingsContent">
+                    <div class="signOutDiv">
+                        <p>Click to safely and securely sign out and protect your accounts privacy.</p>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button type="submit" class="button">
+                                <div class="button__content">
+                                    <div>Sign Out</div>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="deleteAccountDiv">
+                        <p>Click to permanently remove your account and all associated data. Proceed with caution.</p>
+                        <button type="button" class="button" data-bs-toggle="modal"
+                            data-bs-target="#deleteConfirmationModal">
+                            <div class="button__content">
+                                <div>Delete Account</div>
                             </div>
                         </button>
-                    </form>
+                    </div>
                 </div>
+
+            </div>
             <!-- </div> -->
         </div>
+
         <img src="{{ asset('img/bottom-account.png') }}" alt="" class="img-account-bottom">
     </main>
 
+    <!--==================== DELETE CONFIRMATION ====================-->
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirmation</h5>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to <b>delete</b> this account?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form method="POST" action="{{ route('deleteAccount') }}" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--==================== FOOTER ====================-->
-    <!-- @include('layouts.footerLayout') -->
+    @include('layouts.footerLayout')
 
     <!--========== SCROLL UP ==========-->
     <a href="#headerHome" class="scrollup" id="scroll-up">
@@ -199,16 +422,23 @@
     <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
 
     <!--=============== BOOTSTRAP JS ===============-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+    <script src="{{ asset('js/account.js') }}"></script>
     <script>
         function toggleDiv(divId) {
             var divs = ['details', 'favorites', 'history', 'settings'];
             divs.forEach(function(div) {
-                var button = document.getElementById(div+"Button")
+                var button = document.getElementById(div + "Button")
                 var content = document.getElementById(div)
-                if(div == divId){
+                if (div == divId) {
                     button.style.transform = "translateX(2rem)";
                     content.style.display = 'block';
                 } else {
@@ -217,6 +447,19 @@
                 }
             });
         }
+
+        function toggleEdit(divId) {
+            var content = document.getElementById(divId)
+            // var main = document.getElementByClass(main)
+            // var hasErrors = content.querySelectorAll('.invalid-feedback').length > 0;
+
+            if (content.style.display == 'none') {
+                content.style.display = 'block'
+                // main.style.opacity = .5
+            } else {
+                content.style.display = 'none'
+            }
+        }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
@@ -224,17 +467,8 @@
             document.getElementById('successAlert').style.display = 'none';
         }, 4000);
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"> --}}
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -242,8 +476,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"> --}}
     </script>
 </body>
 

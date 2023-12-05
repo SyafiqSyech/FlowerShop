@@ -1,14 +1,14 @@
 /*=============== VARIABLES CSS ===============*/
-:root{
+:root {
     --main-color: hsl(295, 47%, 71%);
 }
 
 /*=============== RIGHT CONTENT ===============*/
-.image-background{
-    background: url('/img/login/LoginPlant.png');
+.image-background {
+    background: url("/img/login/LoginPlant.png");
 }
 
-.shop__name{
+.shop__name {
     font-family: var(--shop-name-font);
     color: var(--white-color);
     position: absolute;
@@ -19,17 +19,13 @@
 }
 
 /*=============== lEFT CONTENT ===============*/
-.forgot__password{
+.forgot__password {
     margin-top: 10px;
     display: flex;
     justify-content: end;
 }
 
-.forgot__password a{
+.forgot__password a {
     font-size: var(--small-font-size);
     color: var(--main-color);
 }
-
-
-
-
