@@ -278,7 +278,7 @@
     <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
 
     <!--=============== LOCAL STORAGE ===============-->
-    <script src="{{ asset('js/herbs.js') }}"></script>
+    <script src="{{ asset('js/addHerbsToCart.js') }}"></script>
 
     <!--=============== MAIN JS ===============-->
     <script src="{{ asset('js/landing-page.js') }}"></script>

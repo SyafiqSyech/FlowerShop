@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HerbsController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -44,9 +45,7 @@ Route::get('/herbs', function () {
     return view('herbs.herbs');
 })->name('herbs');
 
-Route::get('/cart', function () {
-    return view('main.cart');
-})->middleware('auth')->name('cart');
+Route::get('/showCart', [CartController::class, 'showCart'])->name('cart');
 
 // ACCOUNT RELATED PAGES
 Route::get('/login', function () {
