@@ -45,7 +45,7 @@ Route::get('/herbs', function () {
     return view('herbs.herbs');
 })->name('herbs');
 
-Route::get('/showCart', [CartController::class, 'showCart'])->name('cart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 // ACCOUNT RELATED PAGES
 Route::get('/login', function () {

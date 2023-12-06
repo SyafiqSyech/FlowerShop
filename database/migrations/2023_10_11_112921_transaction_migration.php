@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('address'); 
             $table->string('city'); 
             $table->string('state');
+            $table->string('zipcode');
             $table->string('country');
+            $table->decimal('totalPrice', 8, 2);
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('herbsId')->unsigned();
             $table->foreign('herbsId')->references('herbsId')->on('herbs');
             $table->integer('quantity');
+            $table->decimal('price', 8, 2);
             $table->timestamps();
         });
     }
