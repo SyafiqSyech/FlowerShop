@@ -1,0 +1,43 @@
+onclick="addToCart(this)" data-herb-id="{{ $herbsDetail->herbsId }}" data-herb-image="{{ $herbsDetail->herbsImage }}" data-herb-name="{{ $herbsDetail->herbName }}" data-herb-price="{{ $herbsDetail->herbPrice }}"
+
+
+{{-- <script>
+        function addToCart(herbId) {
+            @auth
+            $.ajax({
+                type: "POST",
+                url: "{{ route('addToCart', ['id' => $herbsDetail->herbsId]) }}",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    herbId: herbId
+                },
+                success: function(data) {
+                    console.log("Success:", data);
+                    window.location.href = "{{ route('show', ['id' => $herbsDetail->herbsId]) }}";
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", xhr.responseText);
+                }
+            });
+        @else
+            window.location.href = "{{ route('login') }}";
+        @endauth
+        }
+    </script> --}}
+
+{{-- <script>
+        let cart = JSON.parse(localStorage.cartItems)
+
+        cart.forEach((n) => {
+            var img = document.createElement('img')
+            var name = document.createElement('p')
+            var price = document.createElement('p')
+            var box = document.createElement('div')
+            img.src = n.herbImage
+            name.innerHTML = n.herbName
+            price.innerHTML = n.herbPrice
+            box.append(img, name, price)
+            document.body.appendChild(box)
+            console.log(img, name, price)
+        })
+    </script> --}}

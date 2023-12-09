@@ -17,6 +17,10 @@
 
     <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
 
+    <!--=============== BOOTSTRAP ERROR HANDLER ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <title>The Herb Shop</title>
 </head>
 
@@ -61,13 +65,20 @@
         <!--==================== PRODUCT ====================-->
         <form action="{{ route('show', ['id' => $herbsDetail->herbsId]) }}" id="home">
             @csrf
+            <div class="pop-up__container position-absolute">
+                <div class="alert alert-success alert-dismissable fade show d-none" role="alert"
+                    id="successAlert">
+                    Herbs successfully added to carts!
+                </div>
+            </div>
             <div class="product__container">
+                
                 <div class="product__container-left">
                     <div class="product__inner-container-left">
                         <div class="product__card-img toprounded">
                             <img src="{{ asset($herbsDetail->herbsImage) }}" alt="">
                         </div>
-                        <div onclick="addToCart(this)" data-herb-id="{{ $herbsDetail->herbsId }}" data-herb-image="{{ $herbsDetail->herbsImage }}" data-herb-name="{{ $herbsDetail->herbName }}" data-herb-price="{{ $herbsDetail->herbPrice }}" class="button">
+                        <div onclick="addToCart({{ $herbsDetail->herbsId }})" class="button">
                             <div class="button__content">
                                 <div>Add to Cart</div>
                             </div>
@@ -81,6 +92,7 @@
                         <p class="product__desc">
                             {{ $herbsDetail->magicalProperty }}
                         </p>
+                        <a href=""><img src="{{asset('img/icon/favorite.svg')}}" alt=""></a>
                     </div>
                     <div class="funfact">
                         <p class="funfact__title caps">FUNFACT</p>
@@ -274,6 +286,22 @@
         }
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        window.authenticated = @json(auth()->check());
+        window.csrfToken = @json(csrf_token());
+    </script>
+
+    <script>
+        setTimeout(function() {
+            var successAlert = document.getElementById('successAlert');
+            if (successAlert) {
+                successAlert.style.display = 'block';
+            }
+        }, 4000);
+    </script>
+
     <!--=============== SCROLLREVEAL ===============-->
     <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
 
@@ -287,6 +315,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+
 </body>
 
 </html>

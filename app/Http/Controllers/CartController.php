@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Carts;
+use App\Models\Herbs;
 
 class CartController extends Controller
 {
@@ -13,7 +16,11 @@ class CartController extends Controller
     public function index()
     {
         //
-        return view('main.cart');
+        $existingCarts = Carts::all();
+
+        return view('main.cart', [
+            'carts' => $existingCarts
+        ]);
     }
 
     // /**
@@ -35,10 +42,33 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      */
-    public function checkout()
+    public function storeToCarts($id)
     {
         //
+        $userId = Auth::id();
 
+        $herbs = Herbs::findOrFail($id);
+
+        $existingCart = Carts::where('userId', $userId)->where('herbsId', $herbs->herbsId)->first();
+
+        if ($existingCart) {
+            $existingCart->quantity += 1;
+            $existingCart->save();
+        } else {
+            Carts::create([
+                'userId' => $userId,
+                'herbsId' => $herbs->herbsId,
+                'herbsImage' => $herbs->herbsImage,
+                'herbName' => $herbs->herbName,
+                'herbPrice' => $herbs->herbPrice,
+                'quantity' => 1
+            ]);
+        }
+
+        // dd(session('success'));
+        // sleep(0.5);
+        $successMessage = 'Herbs added to cart successfully!';
+        return redirect()->route('show', ['id' => $id, 'successMessage' => $successMessage]);
     }
 
     // /**

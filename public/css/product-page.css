@@ -283,3 +283,17 @@
 .show-scroll {
     bottom: 3rem;
 }
+
+.pop-up__container {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    margin-block: 4rem;
+}
+
+.alert {
+    margin-top: 2%;
+    text-align: center;
+    width: 20rem;
+    /* margin-inline: 50%; */
+}

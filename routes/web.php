@@ -35,17 +35,13 @@ Route::get('/contact', function () {
     return view('main.contact');
 })->name('contact');
 
-// Route::get('/account', function () {
-//     return view('main.account');
-// })->middleware('auth')->name('account');
-
 route::get('/account', [AccountController::class, 'showFavoriteHerbs'])->middleware('auth')->name('account');
 
 Route::get('/herbs', function () {
     return view('herbs.herbs');
 })->name('herbs');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name('cart');
 
 // ACCOUNT RELATED PAGES
 Route::get('/login', function () {
@@ -140,5 +136,8 @@ Route::get('/show/{id}', [HerbsController::class, 'showHerbsDetail'])->name('sho
 //ACCOUNT
 Route::post('/updateAccount', [AccountController::class, 'updateAccount'])->middleware('auth')->name('update');
 Route::delete('/deleteAccount', [AccountController::class, 'deleteAccount'])->middleware('auth')->name('deleteAccount');
+
+//CART
+Route::post('addToCart/{id}', [CartController::class, 'storeToCarts'])->middleware('auth')->name('addToCart');
 
 
