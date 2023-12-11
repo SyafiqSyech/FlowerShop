@@ -65,7 +65,7 @@
                     </a>
                 </div>
 
-                <div class="button">
+                <div onclick="window.location='{{ route('contact') }}';" class="button">
                     <div class="button__content">
                         <div>Our Story</div>
                     </div>

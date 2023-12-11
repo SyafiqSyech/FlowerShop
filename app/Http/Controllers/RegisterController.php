@@ -25,9 +25,6 @@ class RegisterController extends Controller
                 'email' => 'required|email:dns|unique:users',
                 'password' => 'required|min: 6|max: 255',
                 'confirm-password' => 'required|same:password',
-                // 'phoneNumber' => 'required|numeric|digits:12',
-                // 'DOB' => 'required|date|before_or_equal:today',
-                // 'gender' => 'required|in:male,female'
             ],
             [
                 'firstName.required' => 'Please enter your first name.',

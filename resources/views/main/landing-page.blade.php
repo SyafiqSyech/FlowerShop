@@ -18,6 +18,9 @@
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
+
     <title>The Herb Shop &copy;</title>
 </head>
 
@@ -72,7 +75,7 @@
                             extraordinary. Explore our enchanted collection of magical
                             herbs and uncover the essence of wonder.
                         </div>
-                        <div class="button">
+                        <div onclick="window.location='{{ route('herbs') }}';" class="button">
                             <div class="button__content">
                                 <div>Discover Nature’s Arcane</div>
                                 <div class="ri-arrow-right-up-line"></div>
@@ -95,7 +98,7 @@
                 @endforelse
             </div>
 
-            <div class="button">
+            <div onclick="window.location='{{ route('herbs') }}';" class="button">
                 <div class="button__content">
                     <div>See More</div>
                     <div class="ri-arrow-right-up-line"></div>
@@ -129,7 +132,7 @@
                     power of nature's agility with Swiftgrow herbs.
                 </p>
 
-                <div class="button">
+                <div onclick="window.location='{{ route('swiftgrow') }}';" class="button">
                     <div class="button__content">
                         <div>Discover</div>
                         <div class="ri-arrow-right-up-line"></div>
@@ -162,7 +165,7 @@
                         </p>
                     </div>
 
-                    <div class="button">
+                    <div onclick="window.location='{{ route('exotic') }}';" class="button">
                         <div class="button__content">
                             <div>Explore</div>
                             <div class="ri-arrow-right-up-line"></div>
@@ -172,8 +175,7 @@
 
                 <div class="collection__container">
                     <div class="collection__image">
-                        <img src="{{ asset('img/collection-swiftgrow.png') }}" alt=""
-                            class="collection__img">
+                        <img src="{{ asset('img/collection-swiftgrow.png') }}" alt="" class="collection__img">
                     </div>
 
 
@@ -194,7 +196,7 @@
                         </p>
                     </div>
 
-                    <div class="button">
+                    <div onclick="window.location='{{ route('swiftgrow') }}';" class="button">
                         <div class="button__content">
                             <div>Explore</div>
                             <div class="ri-arrow-right-up-line"></div>
@@ -222,7 +224,7 @@
                         </p>
                     </div>
 
-                    <div class="button">
+                    <div onclick="window.location='{{ route('alchemical') }}';" class="button">
                         <div class="button__content">
                             <div>Explore</div>
                             <div class="ri-arrow-right-up-line"></div>
@@ -232,7 +234,7 @@
 
             </div>
         </section>
-        
+
         <!--==================== TESTIMONY CAROUSEL ====================-->
         <section class="testimony__carousel section darkSection" id="testimony-carousel">
             <div id="carouselExampleCaptions" class="carousel slide">
@@ -242,7 +244,7 @@
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
                         aria-label="Slide 2" id="carousel__button"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3" id="carousel__button"></button>
+                        aria-label="Slide 3" id="carousel__button"></button>
                 </div>
 
                 <div class="carousel-inner">
@@ -381,7 +383,7 @@
                         the ordinary world.
                     </p>
 
-                    <div class="button">
+                    <div onclick="window.location='{{ route('contact') }}';" class="button">
                         <div class="button__content">
                             <div>Learn more</div>
                             <div class="ri-arrow-right-up-line"></div>

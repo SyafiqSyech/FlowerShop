@@ -12,9 +12,15 @@ class HerbsController extends Controller
     public function showHerbsList()
     {
         $herbs = Herbs::all();
+        $alchemicalHerbs = DB::select("SELECT * FROM herbs WHERE herbCollection = 'Alchemical' ", );
+        $exoticHerbs = DB::select("SELECT * FROM herbs WHERE herbCollection = 'Exotic' ", );
+        $swiftgrowHerbs = DB::select("SELECT * FROM herbs WHERE herbCollection = 'Swiftgrow' ", );
 
         return view('herbs.herbs', [
-            'herbs' => $herbs
+            'herbs' => $herbs,
+            'alchemicalHerbs' => $alchemicalHerbs,
+            'exoticHerbs' => $exoticHerbs,
+            'swiftgrowHerbs' => $swiftgrowHerbs
         ]);
     }
 

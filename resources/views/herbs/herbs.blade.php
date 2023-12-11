@@ -4,14 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <!--========== WEBSITE LOGO =========-->
         <link rel="shortcut icon" href="" type="image/x-icon">
 
         <!--=============== REMIXICONS ===============-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css"
-            crossorigin="">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
 
         <!--=============== CSS BOOTSTRAP ===============-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -19,7 +17,10 @@
 
         <!--=============== CSS ===============-->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/herbs-page.css') }}">
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
+
         <title>The Herb Shop &copy;</title>
     </head>
 
@@ -62,17 +63,91 @@
                 </ul>
             </nav>
 
-            <section>
-                @if ($herbs->count())
-                    <div class="container__card">
-                        @forelse ($herbs as $herbs)
-                            @include('layouts.cardContainer')
-                        @empty
-                            <p>No Herbs in Database!</p>
-                        @endforelse
+            <!--==================== HOME ====================-->
+            <div class="hero" id="home">
+                <div class="hero__content">
+                    <h1 class="hero__title">KANYE WEST</h1>
+
+                    <p class="hero__subTitle">
+                        Radiates a tranquil glow at a gentle touch. Inducing all who succumb
+                        to its enchantment into a deep slumber.
+                    </p>
+
+                    <div class="button">
+                        <div class="button__content">
+                            <div>Discover</div>
+                            <div class="ri-arrow-right-up-line"></div>
+                        </div>
                     </div>
-                @endif
-            </section>
+                </div>
+            </div>
+
+            <div class="herbs__collection">
+                <div class="hc__alchemical" id="alchemicalSection">
+                    <div class="herbs__title">
+                        <h1>ALCHEMICAL COLLECTION</h1>
+                        <p>Craft potions and elixirs like a true sorcerer. Our alchemical herbs possess mystical
+                            properties,
+                            waiting to be harnessed for your mystical experiments.</p>
+                    </div>
+
+                    <div class="herbs__content">
+                        <div class="container__card">
+                            @if ($herbs->count())
+                                <div class="container__card">
+                                    @forelse ($alchemicalHerbs as $herb)
+                                        @include('layouts.cardContainer', ['herb' => $herb])
+                                    @empty
+                                        <p>No Herbs in Database!</p>
+                                    @endforelse
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hc__exotic" id="exoticSection">
+                    <div class="herbs__title">
+                        <h1>EXOTIC COLLECTION</h1>
+                        <p>Immerse yourself in the enchanting world of rare and mystical herbs, handpicked from the far corners of the earth, offering extraordinary qualities and untold wonders.</p>
+                    </div>
+
+                    <div class="herbs__content">
+                        <div class="container__card">
+                            @if ($herbs->count())
+                                <div class="container__card">
+                                    @forelse ($exoticHerbs as $herb)
+                                        @include('layouts.cardContainer', ['herb' => $herb])
+                                    @empty
+                                        <p>No Herbs in Database!</p>
+                                    @endforelse
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hc__swiftgrow" id="swiftgrowSection">
+                    <div class="herbs__title">
+                        <h1>SWIFTGROW COLLECTION</h1>
+                        <p>Experience the magic of nature's efficiency with our SwiftGrow herbs – small, swift to cultivate, and quick to manifest their remarkable properties for your needs.</p>
+                    </div>
+
+                    <div class="herbs__content">
+                        <div class="container__card">
+                            @if ($herbs->count())
+                                <div class="container__card">
+                                    @forelse ($swiftgrowHerbs as $herb)
+                                        @include('layouts.cardContainer', ['herb' => $herb])
+                                    @empty
+                                        <p>No Herbs in Database!</p>
+                                    @endforelse
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </main>
 

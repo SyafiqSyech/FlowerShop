@@ -12,17 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('transactionsDetail', function (Blueprint $table) {
-            $table->id('transDetailId');
-            $table->bigInteger('transId')->unsigned();
-            $table->foreign('transId')->references('transId')->on('transactions');
+        Schema::create('carts', function (Blueprint $table) {
+            $table->id('cartsId');
+            $table->bigInteger('userId')->unsigned();
+            $table->foreign('userId')->references('userId')->on('users');
             $table->bigInteger('herbsId')->unsigned();
             $table->foreign('herbsId')->references('herbsId')->on('herbs');
+            $table->longText('herbsImage');
+            $table->string('herbName');
+            $table->decimal('herbPrice', 8, 2);
             $table->integer('quantity');
-            $table->decimal('price', 8, 2);
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -30,6 +33,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('transactionsDetail');
+        Schema::dropIfExists('carts');
     }
 };

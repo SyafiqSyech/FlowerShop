@@ -1,14 +1,14 @@
 /*=============== VARIABLES CSS ===============*/
-:root{
+:root {
     --main-color: hsl(23.1, 43.6%, 70.8%);
 }
 
 /*=============== LEFT CONTENT ===============*/
-.image-background{
-    background: url('/img/register/RegisterPlant.png');
+.image-background {
+    background: url("/img/register/RegisterPlant.png");
 }
 
-.shop__name{
+.shop__name {
     font-family: var(--shop-name-font);
     color: var(--white-color);
     position: absolute;
@@ -20,7 +20,7 @@
 
 /*=============== RIGHT CONTENT ===============*/
 
-.name__container{
+.name__container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

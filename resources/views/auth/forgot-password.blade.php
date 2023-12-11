@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
+
     <title>The Herb Shop &copy;</title>
 </head>
 
@@ -45,13 +47,13 @@
                 <form action="{{ route('password.email') }}" method="POST" class="login__form">
                     @csrf
 
-                    @if ($errors->any())
+                    {{-- @if ($errors->any())
                         <div class="alert alert-danger alert-dismissable fade show" role="alert" id="successAlert">
                             @foreach ($errors->all as $error)
                                 {{ $error }}
                             @endforeach
                         </div>
-                    @endif
+                    @endif --}}
 
                     @if (session()->has('status'))
                         <div class="alert alert-success alert-dismissable fade show" role="alert" id="successAlert">
