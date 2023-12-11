@@ -7,6 +7,7 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
@@ -144,3 +145,10 @@ Route::delete('/deleteFromCarts/{id?}', [CartController::class, 'removeFromCarts
 
 //FAVORITES
 Route::post('/storeToFavorites/{id}', [AccountController::class, 'storeToFavorites'])->middleware('auth')->name('storeToFavorites');
+
+
+//TRANSACTION
+Route::get('/transaction/{id}', [TransactionController::class, 'showItems'])->middleware('auth')->name('showCartItems');
+Route::post('/checkOut', [TransactionController::class, 'checkOut'])->middleware('auth')->name('checkOut');
+
+

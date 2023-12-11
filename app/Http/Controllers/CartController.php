@@ -24,10 +24,14 @@ class CartController extends Controller
 
         $existingCarts = Carts::where('userId', $userId)->get();
 
+        if (count($existingCarts) <= 0) {
+            redirect('/herbs');
+        }
+
         $favorites = Favorites::where('userId', $userId)
-        ->whereIn('herbsId', $existingCarts->pluck('herbsId'))
-        ->pluck('herbsId')
-        ->toArray();
+            ->whereIn('herbsId', $existingCarts->pluck('herbsId'))
+            ->pluck('herbsId')
+            ->toArray();
 
         //itung total harga
         $totalPrice = 0;
@@ -96,7 +100,7 @@ class CartController extends Controller
 
             $formattedTotalPrice = '$ ' . number_format($totalPrice);
 
-            return response()->json(['status' => 'success', 'message' => 'Item removed from cart', 'isCartEmpty'=> $isCartEmpty, 'newTotalPrice' => $formattedTotalPrice]);
+            return response()->json(['status' => 'success', 'message' => 'Item removed from cart', 'isCartEmpty' => $isCartEmpty, 'newTotalPrice' => $formattedTotalPrice]);
         } else {
             return response()->json(['status' => 'error', 'message' => 'Remove Failed!']);
         }
@@ -153,7 +157,5 @@ class CartController extends Controller
     //     $carts->update(['quantity' => $quantity]);
     // }
 
-    public function checkout()
-    {
-    }
+
 }

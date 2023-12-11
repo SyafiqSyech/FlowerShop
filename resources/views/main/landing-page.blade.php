@@ -21,6 +21,9 @@
 
     <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
     <title>The Herb Shop &copy;</title>
 </head>
 
@@ -395,7 +398,39 @@
 
         </section>
 
+        @if (session('success'))
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="successModalLabel">Success</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center mb-4">
+                                <span class="fa-stack fa-4x text-green-600">
+                                    <i class="fas fa-circle fa-stack-2x text-success"></i>
+                                    <i class="fas fa-check fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </div>
+                            <p class="py-4 text-xl text-center">{!! session('success') !!}</p>
+                            <p class="py-4 text-sm text-center">Press ESC key or click outside to close</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open the modal using Bootstrap JavaScript -->
+            <script>
+                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+            </script>
+        @endif
     </main>
+
 
     <!--==================== FOOTER ====================-->
     @include('layouts.footerLayout')

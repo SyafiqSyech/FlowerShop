@@ -78,10 +78,12 @@
                     </div>
                     <img src="{{ asset('img/icon/removeCart.svg') }}"
                         onclick="removeFromCarts({{ $cart->cartsId ?? null }})">
-                    <img class="favoriteImg" onclick="addToFavorites({{ $cart->herbs->herbsId }}, {{ $cart->cartsId }})"
+                    <img class="favoriteImg"
+                        onclick="addToFavorites({{ $cart->herbs->herbsId }}, {{ $cart->cartsId }})"
                         src="{{ asset($cart->herbs->isFavorited(auth()->id()) ? 'img/icon/favoriteSelected.svg' : 'img/icon/favorite.svg') }}"
                         alt="" id="favoriteImage">
-                    <p class="favoriteText" style="color:{{ $cart->herbs->isFavorited(auth()->id()) ? 'black' : '#b7b7b7' }}  ;">Favorites
+                    <p class="favoriteText"
+                        style="color:{{ $cart->herbs->isFavorited(auth()->id()) ? 'black' : '#b7b7b7' }}  ;">Favorites
                     </p>
                 </div>
             @empty
@@ -103,6 +105,10 @@
             <input type="hidden" id="cartsId" name="cartsId" />
             <input type="hidden" id="quantity" name="quantity" />
         </form>
+
+        <a href="{{ route('showCartItems', $cart->userId) }}">
+            <button type="submit">Check Out</button>
+        </a>
 
     </main>
 
@@ -225,7 +231,7 @@
                 url: "{{ route('storeToFavorites', ['id' => $cart->herbsId]) }}",
                 data: {
                     _token: "{{ csrf_token() }}",
-                    herbsId: herbsId, 
+                    herbsId: herbsId,
                     cartsId: cartsId
                 },
                 success: function(data) {
