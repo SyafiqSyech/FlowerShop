@@ -66,13 +66,12 @@
         <form action="{{ route('show', ['id' => $herbsDetail->herbsId]) }}" id="home">
             @csrf
             <div class="pop-up__container position-absolute">
-                <div class="alert alert-success alert-dismissable fade show d-none" role="alert"
-                    id="successAlert">
+                <div class="alert alert-success alert-dismissable fade show d-none" role="alert" id="successAlert">
                     Herbs successfully added to carts!
                 </div>
             </div>
             <div class="product__container">
-                
+
                 <div class="product__container-left">
                     <div class="product__inner-container-left">
                         <div class="product__card-img toprounded">
@@ -92,7 +91,8 @@
                         <p class="product__desc">
                             {{ $herbsDetail->magicalProperty }}
                         </p>
-                        <a href=""><img src="{{asset('img/icon/favorite.svg')}}" alt=""></a>
+                        <img class="favoriteImg" onclick="addToFavorites({{ $herbsDetail->herbsId }})"
+                            src="{{ asset($herbsDetail->isFavorited() ? 'img/icon/favoriteSelected.svg' : 'img/icon/favorite.svg') }}" alt="" id="favoriteImage">
                     </div>
                     <div class="funfact">
                         <p class="funfact__title caps">FUNFACT</p>
@@ -301,6 +301,40 @@
             }
         }, 4000);
     </script>
+
+    <script>
+        function addToFavorites(herbId) {
+            @auth
+            $.ajax({
+                type: "POST",
+                url: "{{ route('storeToFavorites', ['id' => $herbsDetail->herbsId]) }}",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    herbId: herbId
+                },
+                success: function(data) {
+                    console.log("Success:", data);
+
+                    var imgElement = document.getElementById('favoriteImage');
+                    if (data.status === 'favorited') {
+                        imgElement.src = "{{ asset('img/icon/favoriteSelected.svg') }}";
+                    } else if (data.status === 'unfavorited') {
+                        imgElement.src = "{{ asset('img/icon/favorite.svg') }}";
+                    }
+
+                    window.location.href = "{{ route('show', ['id' => $herbsDetail->herbsId]) }}";
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", xhr.responseText);
+                }
+            });
+        @else
+            window.location.href = "{{ route('login') }}";
+        @endauth
+        }
+    </script>
+
+
 
     <!--=============== SCROLLREVEAL ===============-->
     <script src="{{ asset('js/scrollreveal.min.js') }}"></script>

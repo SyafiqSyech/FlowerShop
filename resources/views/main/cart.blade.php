@@ -9,6 +9,13 @@
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/carts.css') }}">
+
+    <!--=============== COUNTER ===============-->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
     <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
 
@@ -53,17 +60,53 @@
                 </li>
             </ul>
         </nav>
-<br><br><br>
-<br><br><br>
-        @forelse ($carts as $cart)
-            <img src="{{ asset($cart->herbsImage)}}" alt="">
-            <p class="product__title">{{ $cart->herbName }}</p>
-            <p class="product__title">$ {{ number_format($cart->herbPrice) }}</p>
-        @empty
-            <p>No Herbs in Cart!</p>
-        @endforelse
+        <br><br><br>
+        <br><br><br>
+        <div id="cart-container" class="cart-container">
+            @forelse ($carts as $cart)
+                <div id="cartItem-{{ $cart->cartsId }}">
+                    <img src="{{ asset($cart->herbsImage) }}" alt="">
+                    <p class="product__title">{{ $cart->herbName }}</p>
+                    <p class="herbPrice product__title" data-id="{{ $cart->cartsId }}">
+                        ${{ number_format($cart->herbPrice) }}
+                    </p>
+                    <div class="counter qty mt-5">
+                        <span class="plus">+</span>
+                        <input type="number" class="count" name="quantity" data-carts-id="{{ $cart->cartsId }}"
+                            value="{{ $cart->quantity }}" data-id="{{ $cart->cartsId }}">
+                        <span class="minus">-</span>
+                    </div>
+                    <img src="{{ asset('img/icon/removeCart.svg') }}"
+                        onclick="removeFromCarts({{ $cart->cartsId ?? null }})">
+                    <img class="favoriteImg" onclick="addToFavorites({{ $cart->herbs->herbsId }}, {{ $cart->cartsId }})"
+                        src="{{ asset($cart->herbs->isFavorited(auth()->id()) ? 'img/icon/favoriteSelected.svg' : 'img/icon/favorite.svg') }}"
+                        alt="" id="favoriteImage">
+                    <p class="favoriteText" style="color:{{ $cart->herbs->isFavorited(auth()->id()) ? 'black' : '#b7b7b7' }}  ;">Favorites
+                    </p>
+                </div>
+            @empty
+                <p>No Herbs in Cart!</p>
+            @endforelse
+        </div>
+
+        <div class="checkout-container">
+            <h3>Total Price</h3>
+            <p id="totalPrice">$ {{ number_format($totalPrice) }}</p>
+        </div>
+
+
+
+
+        <form id="updateCartQty" action="{{ route('updateCart') }}" method="POST">
+            @csrf
+            {{-- @method('PUT') --}}
+            <input type="hidden" id="cartsId" name="cartsId" />
+            <input type="hidden" id="quantity" name="quantity" />
+        </form>
 
     </main>
+
+
     <!--==================== FOOTER ====================-->
     @include('layouts.footerLayout')
 
@@ -75,6 +118,137 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+
+    <script>
+        function updateQuantity(qty) {
+            console.log("Updating quantity:", qty);
+            // $('#cartsId').val($(qty).data('cartsId'))
+            // $('#quantity').val($(qty).val())
+            // $('#updateCartQty').submit()
+
+            $.ajax({
+                url: "{{ route('updateCart') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    quantity: qty.value,
+                    cartsId: $(qty).data('id')
+                },
+                success: function(response) {
+                    console.log("AJAX request successful");
+                    if (response.success) {
+                        var cartsId = $(qty).data('id');
+                        var herbPriceElement = $('.herbPrice[data-id="' + cartsId + '"]');
+                        herbPriceElement.text(response.newHerbPrice);
+
+                        var totalPriceElement = $('#totalPrice')
+                        totalPriceElement.text(response.newTotalPrice);
+                        console.log(response);
+                        // window.location.href = "{{ route('cart') }}";
+                    } else {
+                        console.error("Update failed");
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+        window.authenticated = @json(auth()->check());
+        window.csrfToken = @json(csrf_token());
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.count').prop('disabled', true);
+
+            $('.count').on('change', function() {
+                updateQuantity(this);
+            });
+
+            $(document).on('click', '.plus', function() {
+                var countInput = $(this).closest('.counter').find('.count');
+                countInput.val(parseInt(countInput.val()) + 1).trigger('change');
+            });
+
+            $(document).on('click', '.minus', function() {
+                var countInput = $(this).closest('.counter').find('.count');
+                countInput.val(Math.max(parseInt(countInput.val()) - 1, 1)).trigger('change');
+            });
+        });
+    </script>
+
+    <script>
+        function removeFromCarts(cartsId) {
+            let url = "{{ route('removeFromCarts', ['id' => '']) }}";
+
+            if (cartsId !== null) {
+                url += "/" + cartsId;
+            } else {
+                console.log("No cart item to remove.");
+                return;
+            }
+
+            $.ajax({
+                type: "DELETE",
+                url: url,
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    cartsId: cartsId
+                },
+                success: function(data) {
+                    console.log("Success:", data);
+
+                    if (data.status === 'success') {
+                        if (data.isCartEmpty) {
+                            $('#cart-container').html('<p>No Herbs in Cart!</p>');
+                            var totalPriceElement = $('#totalPrice')
+                            totalPriceElement.text('$ 0');
+                        } else {
+                            $('#cartItem-' + cartsId).remove();
+                        }
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", xhr.responseText);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function addToFavorites(herbsId, cartsId) {
+            @auth
+            $.ajax({
+                type: "POST",
+                url: "{{ route('storeToFavorites', ['id' => $cart->herbsId]) }}",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    herbsId: herbsId, 
+                    cartsId: cartsId
+                },
+                success: function(data) {
+                    console.log("Success:", data);
+
+                    var imgElement = $('#cartItem-' + cartsId).find('.favoriteImg');
+                    var pElement = $('#cartItem-' + cartsId).find('.favoriteText');
+                    if (data.status === 'favorited') {
+                        imgElement.attr('src', "{{ asset('img/icon/favoriteSelected.svg') }}");
+                        pElement.css('color', 'black');
+                    } else if (data.status === 'unfavorited') {
+                        imgElement.attr('src', "{{ asset('img/icon/favorite.svg') }}");
+                        pElement.css('color', '#b7b7b7');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", xhr.responseText);
+                }
+            });
+        @else
+            window.location.href = "{{ route('login') }}";
+        @endauth
+        }
     </script>
 
 </body>

@@ -41,3 +41,82 @@ onclick="addToCart(this)" data-herb-id="{{ $herbsDetail->herbsId }}" data-herb-i
             console.log(img, name, price)
         })
     </script> --}}
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var imgElement = document.getElementById('favoriteImage');
+
+            if (imgElement) {
+                @if (session('status') == 'favorited')
+                    console.log(session('status'))
+                    imgElement.src = "{{ asset('img/icon/favoriteSelected.svg') }}";
+                @elseif (session('status') == 'unfavorited')
+                    imgElement.src = "{{ asset('img/icon/favorite.svg') }}";
+                @endif
+            }
+        });
+    </script>
+
+    // function addToCart(element) {
+//     var herbsId = element.getAttribute('data-herb-id');
+//     var herbImage = element.getAttribute('data-herb-image').trim();
+//     var herbName = element.getAttribute('data-herb-name').trim();
+//     var herbPrice = element.getAttribute('data-herb-price').trim();
+
+//     var cartItem = {
+//         herbsId: herbsId,
+//         herbImage: herbImage,
+//         herbName: herbName,
+//         herbPrice: herbPrice
+//     };
+
+//     var existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+//     let cartItems = JSON.parse(localStorage.getItem('cartItems'));
+//     console.log("Cart items in local storage:", existingCartItems);
+
+//     existingCartItems.push(cartItem);
+
+//     localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+
+//     //update cookie dengan cart Items up to date
+//     document.cookie = "cartItems=" + encodeURIComponent(JSON.stringify(existingCartItems));
+// }
+
+function updateQuantity(listen, cartsId) {
+            var input = $('.count')
+            var currentQuantity = parseInt(input.val())
+
+            if(listen === 'increase')
+            {
+                input.val(currentQuantity + 1)
+            }
+            else if(listen === 'decrease' && currentQuantity > 1)
+            {
+                input.val(currentQuantity - 1)
+            }
+
+            // var cartId = '{{ $cart -> cartsId}}'
+            var latestQuantity = input.val()
+
+            $.ajax({
+                type: "PUT",
+                url: "{{ route('updateCart', ['id' => $cart->cartsId]) }}",
+                // url: "{{ route('updateCart', ['id' => ':id']) }}".replace(':id', cartsId),
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    cartsId : cartsId,
+                    qty: latestQuantity 
+                },
+                success: function(data) {
+                    console.log("Success:", data);
+                    window.location.href = "{{ route('cart') }}";
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", xhr.responseText);
+                }
+        
+            });
+        }
+
+        onclick="updateQuantity('increase', {{ $cart->cartsId}})"
+        onclick="updateQuantity('decrease', {{ $cart->cartsId }})"

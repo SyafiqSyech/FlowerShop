@@ -354,6 +354,87 @@
             </div>
             <div class="history_container" id="history" style="display:none">
                 <div class="account__title">Order History</div>
+                <div class="content_container">
+                    <!-- content 1-->
+                    <div class="inner_content_container">
+                        <div class="date_container">
+                            <div class="order_date">October 15, 2023</div>
+                            <div class="order_code">#12345</div>
+                        </div>
+                        <div class="inner_line_content"></div>
+                        <div class="title_sub_content">
+                            <div class="order_details">Payment Method</div>
+                            <div class="order_details_content">: Bitcoin</div>
+                        </div>
+                        <div class="title_sub_content">
+                            <div class="order_details">Courier</div>
+                            <div class="order_details_content">: Owl Post</div>
+                        </div>
+                        <div class="inner_line_content"></div>
+                        <div class="title_sub_content">
+                            <div class="order_details">Shipping Address</div>
+                            <div class="order_details_content">:</div>
+                        </div>
+                        <div class="shipping_container">
+                            <div class="shipping_details">Name</div>
+                            <div class="shipping_content">: Cedric Diggory</div>
+                        </div>
+                        <div class="shipping_container">
+                            <div class="shipping_details">Address</div>
+                            <div class="shipping_content">: 678 Mystic Grove, Everwood</div>
+                        </div>
+                        <div class="shipping_container">
+                            <div class="shipping_details">City</div>
+                            <div class="shipping_content">: Enchanted Hollow</div>
+                        </div>
+                        <div class="shipping_container">
+                            <div class="shipping_details">State</div>
+                            <div class="shipping_content">: Fae Realm</div>
+                        </div>
+                        <div class="shipping_container">
+                            <div class="shipping_details">Zip Code</div>
+                            <div class="shipping_content">: 90123</div>
+                        </div>
+                        <div class="shipping_container">
+                            <div class="shipping_details">Country</div>
+                            <div class="shipping_content">: Faerieland</div>
+                        </div>
+                        <div class="inner_line_content"></div>
+                        <div class="title_sub_content">
+                            <div class="order_details">Items Ordered</div>
+                            <div class="order_details_content">:</div>
+                        </div>
+                        <div class="items_ordered_container">
+                            <div class="items_container">
+                                <div class="quantity">Quantity</div>
+                                <div class="product">Product</div>
+                                <div class="price">Price</div>
+                            </div>
+                            <div class="items_container">
+                                <div class="quantity_content">2</div>
+                                <div class="product_content">Mandrake</div>
+                                <div class="price_content">€ 49</div>
+                            </div>
+                            <div class="items_container">
+                                <div class="quantity_content">1</div>
+                                <div class="product_content">Gillyweed</div>
+                                <div class="price_content">€ 89</div>
+                            </div>
+                            <div class="items_container">
+                                <div class="quantity_content">3</div>
+                                <div class="product_content">Dittany</div>
+                                <div class="price_content">€ 69</div>
+                            </div>
+                            <div class="items_container">
+                                <div class="quantity_content">2</div>
+                                <div class="product_content">Hobbit’s Weed</div>
+                                <div class="price_content">€ 29</div>
+                            </div>
+                            <div class="line_total"></div>
+                            <div class="total_price">€ 236</div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="settings_container" id="settings" style="display:none">
                 <div class="account__title">Account Settings</div>

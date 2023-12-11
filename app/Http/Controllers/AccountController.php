@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Favorites;
 use App\Models\Herbs;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Carts;
 
 class AccountController extends Controller
 {
@@ -83,7 +84,7 @@ class AccountController extends Controller
         $validateData['gender'] = $request->input('gender');
         $request->offsetUnset('gender');
         User::findOrFail($userId)->update($validateData);
-       
+
         // $user = User::findOrFail($userId);
         // $user->update($validateData);
 
@@ -102,6 +103,53 @@ class AccountController extends Controller
             'favorites' => $favorites
         ]);
     }
+
+    public function storeToFavorites($id, Request $request)
+    {
+        $userId = Auth::id();
+
+        $herbs = Herbs::findOrFail($id);
+
+        $cartsId = $request->input('cartsId');
+
+        if ($cartsId) {
+            $cart = Carts::findOrFail($cartsId);
+
+            $favorite = Favorites::where('userId', $userId)
+                ->where('herbsId', $herbs->herbsId)
+                ->first();
+
+            if ($favorite) {
+                $favorite->delete();
+                // return redirect()->route('show', ['id' => $id])->with('status', 'unfavorited');
+                return response()->json(['status' => 'unfavorited']);
+            } else {
+                Favorites::create([
+                    'userId' => $userId,
+                    'herbsId' => $herbs->herbsId,
+                ]);
+                return response()->json(['status' => 'favorited']);
+            }
+        }
+        else {
+            $favorite = Favorites::where('userId', $userId)
+                ->where('herbsId', $herbs->herbsId)
+                ->first();
+
+            if ($favorite) {
+                $favorite->delete();
+                // return redirect()->route('show', ['id' => $id])->with('status', 'unfavorited');
+                return response()->json(['status' => 'unfavorited']);
+            } else {
+                Favorites::create([
+                    'userId' => $userId,
+                    'herbsId' => $herbs->herbsId,
+                ]);
+                return response()->json(['status' => 'favorited']);
+            }
+        }    
+    }
+
     public function deleteAccount()
     {
         $accountToDeleteID = Auth::id();

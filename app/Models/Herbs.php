@@ -33,4 +33,21 @@ class Herbs extends Model
     {
         return $this->hasMany(TransactionDetail::class, 'transDetailId');
     }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorites::class, 'herbsId', 'herbsId');
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Carts::class, 'herbsId', 'herbsId');
+    }
+
+    public function isFavorited()
+    {
+        $userId = auth()->id();
+
+        return $this->favorites()->where('userId', $userId)->exists();
+    }
 }

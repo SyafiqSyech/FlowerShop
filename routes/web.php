@@ -139,5 +139,8 @@ Route::delete('/deleteAccount', [AccountController::class, 'deleteAccount'])->mi
 
 //CART
 Route::post('addToCart/{id}', [CartController::class, 'storeToCarts'])->middleware('auth')->name('addToCart');
+Route::post('/updateCart', [CartController::class, 'editCartsItem'])->name('updateCart');
+Route::delete('/deleteFromCarts/{id?}', [CartController::class, 'removeFromCarts'])->name('removeFromCarts');
 
-
+//FAVORITES
+Route::post('/storeToFavorites/{id}', [AccountController::class, 'storeToFavorites'])->middleware('auth')->name('storeToFavorites');

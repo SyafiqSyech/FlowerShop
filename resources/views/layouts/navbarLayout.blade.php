@@ -1,3 +1,7 @@
+{{-- @php
+    use App\Models\Carts;
+@endphp --}}
+
 <!DOCTYPE html>
 <html lang="en">
 
