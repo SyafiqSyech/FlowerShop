@@ -35,25 +35,12 @@ class CartController extends Controller
         foreach ($existingCarts as $cart) {
             $totalPrice += $cart->herbPrice;
         }
-        // @php
-        //                 $cartItems = \App\Models\Carts::where('userId', auth()->id())->get();
-        //             @endphp
-        //             @if ($cartItems->isEmpty())
-        //                 <a href="{{ route('herbs') }}" class="nav__link">Cart</a>
-        //             @else
-        //                 <a href="{{ route('cart') }}" class="nav__link">Cart</a>
-        //             @endif
-
-
-        $herbs = Herbs::all();
-        $alchemicalHerbs = DB::select("SELECT * FROM herbs WHERE herbCollection = 'Alchemical' ",);
-        $exoticHerbs = DB::select("SELECT * FROM herbs WHERE herbCollection = 'Exotic' ",);
-        $swiftgrowHerbs = DB::select("SELECT * FROM herbs WHERE herbCollection = 'Swiftgrow' ",);
 
         if (count($existingCarts) <= 0) {
             return redirect()->route('herbs')->with('success', 'No herbs in your cart! How about start looking for one?');
         } else {
             return view('main.cart', [
+                'userId' => $userId,
                 'carts' => $existingCarts,
                 'totalPrice' => $totalPrice,
                 'favorites' => $favorites
@@ -123,13 +110,6 @@ class CartController extends Controller
 
     public function editCartsItem(Request $request)
     {
-        // $carts = Carts::findOrFail($id);
-
-        // $quantity = $request->input('qty');
-        // $carts->quantity = $quantity;
-        // $carts->herbPrice = $carts->herbPrice * $quantity;
-        // $carts->save();
-
         $cart = Carts::find($request->cartsId);
 
         if ($cart) {
@@ -144,18 +124,21 @@ class CartController extends Controller
 
             $existingCarts = Carts::where('userId', $userId)->get();
 
-            $totalPrice = 0;
-            foreach ($existingCarts as $cart) {
-                $totalPrice += $cart->herbPrice;
+            $formattedHerbPrices = [];
+            foreach ($existingCarts as $cartItem) {
+                $formattedHerbPrices[$cartItem->cartsId] = 'Total: $ ' . number_format($cartItem->herbPrice);
             }
 
-            $formattedHerbPrice = '$ ' . number_format($cart->herbPrice);
+            $totalPrice = $existingCarts->sum('herbPrice');
             $formattedTotalPrice = '$ ' . number_format($totalPrice);
 
-            return response()->json(['success' => true, 'newHerbPrice' => $formattedHerbPrice, 'newTotalPrice' => $formattedTotalPrice]);
+            return response()->json([
+                'success' => true,
+                'newHerbPrice' => $formattedHerbPrices,
+                'newTotalPrice' => $formattedTotalPrice,
+            ]);
         }
 
-        // return redirect()->route('cart');
         return response()->json(['success' => false]);
     }
 

@@ -22,7 +22,7 @@ class TransactionController extends Controller
             $totalPrice += $item->herbPrice;
         }
 
-        return view('main.transaction', [
+        return view('main.cart', [
             'items' => $items,
             'totalPrice' => $totalPrice,
             'userId' => $userId
@@ -63,8 +63,6 @@ class TransactionController extends Controller
             ]
         );
 
-
-
         Transactions::create($validatedData);
 
         // Store Transaction Detail
@@ -78,6 +76,8 @@ class TransactionController extends Controller
                 'price' => $cart->herbPrice
             ]);
         }
+
+        // dd($request->all());
 
         // Delete Cart
         $records = Carts::where('userId', $userId)->get();

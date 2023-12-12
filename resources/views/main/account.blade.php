@@ -363,7 +363,7 @@
                     @forelse ($transactions as $tr)
                         <div class="inner_content_container">
                             <div class="date_container">
-                                <div class="order_date">{{ $tr->created_at }}</div>
+                                <div class="order_date">{{ \Carbon\Carbon::parse($tr->created_at)->format('Y-m-d') }}</div>
                                 <div class="order_code">#{{ $tr->transId }}</div>
                             </div>
                             <div class="inner_line_content"></div>

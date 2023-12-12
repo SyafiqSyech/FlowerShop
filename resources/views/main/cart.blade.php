@@ -60,44 +60,182 @@
                 </li>
             </ul>
         </nav>
-        <br><br><br>
-        <br><br><br>
-        <div id="cart-container" class="cart-container">
-            @forelse ($carts as $cart)
-                <div id="cartItem-{{ $cart->cartsId }}">
-                    <img src="{{ asset($cart->herbsImage) }}" alt="">
-                    <p class="product__title">{{ $cart->herbName }}</p>
-                    <p class="herbPrice product__title" data-id="{{ $cart->cartsId }}">
-                        ${{ number_format($cart->herbPrice) }}
-                    </p>
-                    <div class="counter qty mt-5">
-                        <span class="plus">+</span>
-                        <input type="number" class="count" name="quantity" data-carts-id="{{ $cart->cartsId }}"
-                            value="{{ $cart->quantity }}" data-id="{{ $cart->cartsId }}">
-                        <span class="minus">-</span>
-                    </div>
-                    <img src="{{ asset('img/icon/removeCart.svg') }}"
-                        onclick="removeFromCarts({{ $cart->cartsId ?? null }});">
-                    <img class="favoriteImg"
-                        onclick="addToFavorites({{ $cart->herbs->herbsId }}, {{ $cart->cartsId }})"
-                        src="{{ asset($cart->herbs->isFavorited(auth()->id()) ? 'img/icon/favoriteSelected.svg' : 'img/icon/favorite.svg') }}"
-                        alt="" id="favoriteImage">
-                    <p class="favoriteText"
-                        style="color:{{ $cart->herbs->isFavorited(auth()->id()) ? 'black' : '#b7b7b7' }}  ;">Favorites
-                    </p>
+
+        <!--==================== CART ====================-->
+        <div class="cart__container">
+            <div class="cart__left">
+                <p class="cart__title">CART</p>
+                <div id="cart-container" class="cart-container">
+                    @forelse ($carts as $cart)
+                        <div class="cart__item" id="cartItem-{{ $cart->cartsId }}">
+                            <div class="product__card-img toprounded">
+                                <img src="{{ asset($cart->herbsImage) }}" alt="">
+                            </div>
+                            <div class="item__mid">
+                                <div class="item__top">
+                                    <p class="item__name">{{ $cart->herbName }}</p>
+                                    <img class="favoriteImg"
+                                        onclick="addToFavorites({{ $cart->herbs->herbsId }}, {{ $cart->cartsId }})"
+                                        src="{{ asset($cart->herbs->isFavorited(auth()->id()) ? 'img/icon/favoriteSelected.svg' : 'img/icon/favorite.svg') }}"
+                                        alt="" id="favoriteImage">
+                                </div>
+                                <p class="item__price" data-id="{{ $cart->cartsId }}">
+                                    ${{ number_format($cart->herbPrice / $cart->quantity) }}</p>
+                                <p id="herbPrice-{{ $cart->cartsId }}" class="item__price herbPrice"
+                                    data-id="{{ $cart->cartsId }}">Total:
+                                    $ {{ number_format($cart->herbPrice) }}
+                                </p>
+                                <div>
+                                    <img class="item__remove" src="{{ asset('img/icon/removeCart.svg') }}"
+                                        onclick="removeFromCarts({{ $cart->cartsId ?? null }});">
+                                </div>
+                            </div>
+                            <div class="counter item__qty">
+                                <span class="plus">+</span>
+                                <input type="number" class="count" name="quantity"
+                                    data-carts-id="{{ $cart->cartsId }}" value="{{ $cart->quantity }}"
+                                    data-id="{{ $cart->cartsId }}">
+                                <span class="minus">-</span>
+                            </div>
+                        </div>
+                    @empty
+                        <p>No Herbs in Cart!</p>
+                    @endforelse
                 </div>
-            @empty
-                <p>No Herbs in Cart!</p>
-            @endforelse
+            </div>
+
+            <form method="POST" action="{{ route('checkOut') }}">
+                @csrf
+            <div class="cart__right toprounded">
+                <div class="right__section">
+                    <div class="right__title">
+                        Total
+                    </div>
+                    <p class="grandtotal" id="totalPrice">$ {{ number_format($totalPrice) }}</p>
+                </div>
+                <div class="right__section">
+                    <div class="right__title">
+                        Courier
+                    </div>
+                    <div class="input__form">
+                        {!! Form::select(
+                            'courier',
+                            ['Owl Post' => 'Owl Post', 'Porter' => 'Porter', 'Spacing Guild' => 'Spacing Guild'],
+                            null,
+                            ['class' => 'input__dropdown'],
+                        ) !!}
+                        @error('courier')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="right__section">
+                    <div class="right__title">
+                        Payment Method
+                    </div>
+                    <div class="input__form">
+                        {!! Form::select(
+                            'paymentMethod',
+                            ['Paypal' => 'Paypal', 'Gopay' => 'Gopay', 'Blood Sacrifice' => 'Blood Sacrifice'],
+                            null,
+                            ['class' => 'input__dropdown'],
+                        ) !!}
+                        @error('paymentMethod')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="right__section">
+                    <div class="button" onclick="togglePopup()">
+                        <div class="button__content">
+                            <div>Check Out</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="checkout-container">
-            <h3>Total Price</h3>
-            <p id="totalPrice">$ {{ number_format($totalPrice) }}</p>
+        <div id="popup" class="popup hidden">
+            <div class="popup__bg" onclick="togglePopup()"></div>
+            <div class="popup__content">
+                <span class="close" onclick="togglePopup()">&times;</span>
+                <p class="popup__title">Shipping Address</p>
+                
+                    <input name="userId" type="hidden" id="userId" required placeholder=" "
+                        value={{ $userId }}>
+                    {{-- <input type="hidden" name="method" value="{{ old('method') }}" />
+                    <input type="hidden" name="courier" value="{{ old('courier') }}" /> --}}
+                    <div class="input__form">
+                        <input name="address" type="text" class="input @error('address') is-invalid @enderror"
+                            id="address" required placeholder=" " value="{{ old('address') }}">
+                        <label for="address" class="label">Address</label>
+                        @error('address')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="double__container">
+                        <div class="input__form">
+                            <input name="city" type="text" class="input @error('city') is-invalid @enderror"
+                                id="city" required placeholder=" " value="{{ old('city') }}">
+                            <label for="city" class="label">City</label>
+                            @error('city')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="input__form">
+                            <input name="state" type="text" class="input @error('state') is-invalid @enderror"
+                                id="state" required placeholder=" " value="{{ old('state') }}">
+                            <label for="state" class="label">State</label>
+                            @error('state')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="double__container">
+                        <div class="input__form">
+                            <input name="zipcode" type="text" class="input @error('zipcode') is-invalid @enderror"
+                                id="zipcode" required placeholder=" " value="{{ old('zipcode') }}">
+                            <label for="zipcode" class="label">Zip Code</label>
+                            @error('zipcode')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="input__form">
+                            <input name="country" type="text" class="input @error('country') is-invalid @enderror"
+                                id="country" required placeholder=" " value="{{ old('country') }}">
+                            <label for="country" class="label">Country</label>
+                            @error('country')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <input name="totalPrice" type="hidden" id="totalPrice" required placeholder=" "
+                    value={{ $totalPrice }}>
+                    <button class="button" type="submit">
+                        <div class="button__content">
+                            <div>Check Out</div>
+                        </div>
+                    </button>
+                </form>
+            </div>
         </div>
-
-
-
 
         <form id="updateCartQty" action="{{ route('updateCart') }}" method="POST">
             @csrf
@@ -105,10 +243,6 @@
             <input type="hidden" id="cartsId" name="cartsId" />
             <input type="hidden" id="quantity" name="quantity" />
         </form>
-
-        <a href="{{ route('showCartItems', $cart->userId) }}">
-            <button type="submit">Check Out</button>
-        </a>
 
     </main>
 
@@ -124,6 +258,13 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+
+    <script>
+        function togglePopup() {
+            var popup = document.getElementById("popup");
+            popup.classList.toggle("hidden");
+        }
     </script>
 
     <script>
@@ -145,8 +286,8 @@
                     console.log("AJAX request successful");
                     if (response.success) {
                         var cartsId = $(qty).data('id');
-                        var herbPriceElement = $('.herbPrice[data-id="' + cartsId + '"]');
-                        herbPriceElement.text(response.newHerbPrice);
+                        var herbPriceElement = $('#herbPrice-' + cartsId);
+                        herbPriceElement.text(response.newHerbPrice[cartsId]);
 
                         var totalPriceElement = $('#totalPrice')
                         totalPriceElement.text(response.newTotalPrice);
@@ -238,13 +379,13 @@
                     console.log("Success:", data);
 
                     var imgElement = $('#cartItem-' + cartsId).find('.favoriteImg');
-                    var pElement = $('#cartItem-' + cartsId).find('.favoriteText');
+                    // var pElement = $('#cartItem-' + cartsId).find('.favoriteText');
                     if (data.status === 'favorited') {
                         imgElement.attr('src', "{{ asset('img/icon/favoriteSelected.svg') }}");
-                        pElement.css('color', 'black');
+                        // pElement.css('color', 'black');
                     } else if (data.status === 'unfavorited') {
                         imgElement.attr('src', "{{ asset('img/icon/favorite.svg') }}");
-                        pElement.css('color', '#b7b7b7');
+                        // pElement.css('color', '#b7b7b7');
                     }
                 },
                 error: function(xhr, status, error) {

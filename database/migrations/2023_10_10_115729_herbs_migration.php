@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('soil');
             $table->string('appearance');
             $table->longText('history');
-            $table->string('endingDescription');
+            $table->longtext('endingDescription');
             $table->timestamps();
         });
     }
