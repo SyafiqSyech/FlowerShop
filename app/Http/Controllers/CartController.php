@@ -11,6 +11,7 @@ use App\Models\Herbs;
 use Illuminate\Http\Request;
 use Illuminate\Log;
 use App\Models\Favorites;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -24,10 +25,6 @@ class CartController extends Controller
 
         $existingCarts = Carts::where('userId', $userId)->get();
 
-        if (count($existingCarts) <= 0) {
-            redirect('/herbs');
-        }
-
         $favorites = Favorites::where('userId', $userId)
             ->whereIn('herbsId', $existingCarts->pluck('herbsId'))
             ->pluck('herbsId')
@@ -38,12 +35,30 @@ class CartController extends Controller
         foreach ($existingCarts as $cart) {
             $totalPrice += $cart->herbPrice;
         }
+        // @php
+        //                 $cartItems = \App\Models\Carts::where('userId', auth()->id())->get();
+        //             @endphp
+        //             @if ($cartItems->isEmpty())
+        //                 <a href="{{ route('herbs') }}" class="nav__link">Cart</a>
+        //             @else
+        //                 <a href="{{ route('cart') }}" class="nav__link">Cart</a>
+        //             @endif
 
-        return view('main.cart', [
-            'carts' => $existingCarts,
-            'totalPrice' => $totalPrice,
-            'favorites' => $favorites
-        ]);
+
+        $herbs = Herbs::all();
+        $alchemicalHerbs = DB::select("SELECT * FROM herbs WHERE herbCollection = 'Alchemical' ",);
+        $exoticHerbs = DB::select("SELECT * FROM herbs WHERE herbCollection = 'Exotic' ",);
+        $swiftgrowHerbs = DB::select("SELECT * FROM herbs WHERE herbCollection = 'Swiftgrow' ",);
+
+        if (count($existingCarts) <= 0) {
+            return redirect()->route('herbs')->with('success', 'No herbs in your cart! How about start looking for one?');
+        } else {
+            return view('main.cart', [
+                'carts' => $existingCarts,
+                'totalPrice' => $totalPrice,
+                'favorites' => $favorites
+            ]);
+        }
     }
 
     public function storeToCarts($id)

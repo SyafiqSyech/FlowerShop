@@ -27,7 +27,7 @@ class Carts extends Model
     }
 
     public function herbs()
-{
-    return $this->belongsTo(Herbs::class, 'herbsId', 'herbsId');
-}
+    {
+        return $this->belongsTo(Herbs::class, 'herbsId', 'herbsId');
+    }
 }

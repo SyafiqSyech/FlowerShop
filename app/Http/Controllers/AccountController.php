@@ -9,6 +9,9 @@ use App\Models\Favorites;
 use App\Models\Herbs;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Carts;
+use App\Models\TransactionDetail;
+use App\Models\Transactions;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AccountController extends Controller
 {
@@ -90,17 +93,32 @@ class AccountController extends Controller
 
         return redirect('/account')->with('success', 'Update Success!');
     }
-    public function showFavoriteHerbs()
+    public function showFavoriteHerbsAndHistory()
     {
         $userId = Auth::id();
 
+        // Show Favorite
         $favorites = Favorites::where('userId', $userId)
             ->join('herbs', 'favorites.herbsId', '=', 'herbs.herbsId')
             ->select('herbs.herbsId', 'herbs.herbsImage', 'herbs.herbName', 'herbs.herbPrice')
             ->get();
 
+        $transactions = Transactions::where('userId', $userId)->distinct()->get();
+
+        $groupedData = TransactionDetail::join('herbs', 'transactionsdetail.herbsId', '=', 'herbs.herbsId')
+            ->join('transactions', 'transactionsdetail.transId', '=', 'transactions.transId')
+            ->where('transactions.userId', $userId)
+            ->select('transactionsdetail.*', 'herbs.herbName')
+            ->get()
+            ->groupBy('transId');
+
+        // dd($groupedData);
+        // $groupedData = TransactionDetail::all()->groupBy('transId');
+
         return view('main.account', [
-            'favorites' => $favorites
+            'favorites' => $favorites,
+            'transactions' => $transactions,
+            'groupedData' => $groupedData
         ]);
     }
 
@@ -112,9 +130,29 @@ class AccountController extends Controller
 
         $cartsId = $request->input('cartsId');
 
-        if ($cartsId) {
+        $favoritesId = $request->input('favoritesId');
+
+        if ($cartsId || $favoritesId) {
             $cart = Carts::findOrFail($cartsId);
 
+            $favorite = Favorites::where('userId', $userId)
+                ->where('herbsId', $herbs->herbsId)
+                ->first();
+
+            if ($favorite) {
+                $favorite->delete();
+                // return redirect()->route('show', ['id' => $id])->with('status', 'unfavorited');
+                $isFavoriteEmpty = Favorites::where('userId', $userId)->count() == 0;
+
+                return response()->json(['status' => 'unfavorited', 'isFavoriteEmpty' => $isFavoriteEmpty]);
+            } else {
+                Favorites::create([
+                    'userId' => $userId,
+                    'herbsId' => $herbs->herbsId,
+                ]);
+                return response()->json(['status' => 'favorited']);
+            }
+        } else {
             $favorite = Favorites::where('userId', $userId)
                 ->where('herbsId', $herbs->herbsId)
                 ->first();
@@ -131,23 +169,6 @@ class AccountController extends Controller
                 return response()->json(['status' => 'favorited']);
             }
         }
-        else {
-            $favorite = Favorites::where('userId', $userId)
-                ->where('herbsId', $herbs->herbsId)
-                ->first();
-
-            if ($favorite) {
-                $favorite->delete();
-                // return redirect()->route('show', ['id' => $id])->with('status', 'unfavorited');
-                return response()->json(['status' => 'unfavorited']);
-            } else {
-                Favorites::create([
-                    'userId' => $userId,
-                    'herbsId' => $herbs->herbsId,
-                ]);
-                return response()->json(['status' => 'favorited']);
-            }
-        }    
     }
 
     public function deleteAccount()
@@ -156,5 +177,24 @@ class AccountController extends Controller
         User::findOrFail($accountToDeleteID)->delete();
 
         return redirect('/');
+    }
+
+    public function removeFromFavorites(Request $request)
+    {
+        $userId = Auth::id();
+        $herbsId = $request->input('herbsId');
+
+        $favorite = Favorites::where('userId', $userId)
+            ->where('herbsId', $herbsId)
+            ->first();
+
+        if ($favorite) {
+            $favorite->delete();
+            $isFavoriteEmpty = Favorites::where('userId', $userId)->count() == 0;
+
+            return response()->json(['status' => 'unfavorited', 'isFavoriteEmpty' => $isFavoriteEmpty]);
+        }
+
+        return response()->json(['status' => 'error', 'message' => 'Favorite not found']);
     }
 }

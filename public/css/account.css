@@ -394,7 +394,20 @@
 }
 
 /*=============== Favorites ===============*/
+.container__card{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  
+}
 
+.favoriteImg {
+  width: 1.5em;
+  height: 1.5em;
+  margin-top: 53%;
+  margin-left: -12%;
+  cursor: pointer;
+}
 /*=============== History ===============*/
 .order_history_container {
     display: flex;

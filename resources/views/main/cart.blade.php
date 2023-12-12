@@ -77,7 +77,7 @@
                         <span class="minus">-</span>
                     </div>
                     <img src="{{ asset('img/icon/removeCart.svg') }}"
-                        onclick="removeFromCarts({{ $cart->cartsId ?? null }})">
+                        onclick="removeFromCarts({{ $cart->cartsId ?? null }});">
                     <img class="favoriteImg"
                         onclick="addToFavorites({{ $cart->herbs->herbsId }}, {{ $cart->cartsId }})"
                         src="{{ asset($cart->herbs->isFavorited(auth()->id()) ? 'img/icon/favoriteSelected.svg' : 'img/icon/favorite.svg') }}"

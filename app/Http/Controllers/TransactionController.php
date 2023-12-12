@@ -29,7 +29,6 @@ class TransactionController extends Controller
         ]);
     }
 
-    // public function 
 
     public function checkOut(Request $request)
     {
@@ -65,7 +64,20 @@ class TransactionController extends Controller
         );
 
 
+
         Transactions::create($validatedData);
+
+        // Store Transaction Detail
+        $carts = Carts::where('userId', $userId)->get();
+        $transId = Transactions::where('userId', $userId)->get();
+        foreach ($carts as $cart) {
+            TransactionDetail::create([
+                'transId' => $transId[count($transId) - 1]->transId,
+                'herbsId' => $cart->herbsId,
+                'quantity' => $cart->quantity,
+                'price' => $cart->herbPrice
+            ]);
+        }
 
         // Delete Cart
         $records = Carts::where('userId', $userId)->get();
@@ -75,19 +87,6 @@ class TransactionController extends Controller
             }
         }
 
-        // Store Transaction Detail (Masih belum bisa)
-        // $transId = Transactions::where('transId', $transId)->get();
-        // dd($transId);
-        // $herbsId = Carts::where('herbsId', $herbsId)->get();
-        // $quantity = Carts::where('quantity', $quantity)->get();
-        // $price = Carts::where('herbPrice', $herbPrice)->get();
-
-        // TransactionDetail::create([
-        //     'transId' => $transId,
-        //     'herbsId' => $herbs->herbsId,
-        //     'quantity' => $quantity,
-        //     'price' => $price
-        // ]);
 
         return redirect('/')->with('success', 'Check Out successful !');
     }

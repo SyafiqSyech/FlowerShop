@@ -36,7 +36,7 @@ Route::get('/contact', function () {
     return view('main.contact');
 })->name('contact');
 
-route::get('/account', [AccountController::class, 'showFavoriteHerbs'])->middleware('auth')->name('account');
+route::get('/account', [AccountController::class, 'showFavoriteHerbsAndHistory'])->middleware('auth')->name('account');
 
 Route::get('/herbs', function () {
     return view('herbs.herbs');
@@ -145,6 +145,7 @@ Route::delete('/deleteFromCarts/{id?}', [CartController::class, 'removeFromCarts
 
 //FAVORITES
 Route::post('/storeToFavorites/{id}', [AccountController::class, 'storeToFavorites'])->middleware('auth')->name('storeToFavorites');
+Route::post('/removeFromFavorites', [AccountController::class, 'removeFromFavorites'])->name('removeFromFavorites');
 
 
 //TRANSACTION

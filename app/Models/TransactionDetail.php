@@ -13,6 +13,7 @@ class TransactionDetail extends Model
     protected $fillable = [
         'transId',
         'herbsId',
+        'price',
         'quantity',
     ];
 

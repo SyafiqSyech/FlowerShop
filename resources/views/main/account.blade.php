@@ -344,9 +344,14 @@
             </div>
             <div class="favorites_container" id="favorites" style="display:none">
                 <div class="account__title">Favorites</div>
-                <div class="container__card">
-                    @forelse ($favorites as $favorites)
+                <div class="container__card" id="container__favorite">
+                    @forelse ($favorites as $favorite)
                         @include('layouts.cardContainer')
+                        <div id="favoritesItem-{{ $favorite->herbsId }}">
+                            <img class="favoriteImg" onclick="removeFromFavorites({{ $favorite->herbsId }})"
+                                src="{{ asset($favorite->herbs->isFavorited(auth()->id()) ? 'img/icon/favoriteSelected.svg' : 'img/icon/favorite.svg') }}"
+                                alt="" id="favoriteImage">
+                        </div>
                     @empty
                         <p>You don't have Favorite Herbs!</p>
                     @endforelse
@@ -355,85 +360,76 @@
             <div class="history_container" id="history" style="display:none">
                 <div class="account__title">Order History</div>
                 <div class="content_container">
-                    <!-- content 1-->
-                    <div class="inner_content_container">
-                        <div class="date_container">
-                            <div class="order_date">October 15, 2023</div>
-                            <div class="order_code">#12345</div>
-                        </div>
-                        <div class="inner_line_content"></div>
-                        <div class="title_sub_content">
-                            <div class="order_details">Payment Method</div>
-                            <div class="order_details_content">: Bitcoin</div>
-                        </div>
-                        <div class="title_sub_content">
-                            <div class="order_details">Courier</div>
-                            <div class="order_details_content">: Owl Post</div>
-                        </div>
-                        <div class="inner_line_content"></div>
-                        <div class="title_sub_content">
-                            <div class="order_details">Shipping Address</div>
-                            <div class="order_details_content">:</div>
-                        </div>
-                        <div class="shipping_container">
-                            <div class="shipping_details">Name</div>
-                            <div class="shipping_content">: Cedric Diggory</div>
-                        </div>
-                        <div class="shipping_container">
-                            <div class="shipping_details">Address</div>
-                            <div class="shipping_content">: 678 Mystic Grove, Everwood</div>
-                        </div>
-                        <div class="shipping_container">
-                            <div class="shipping_details">City</div>
-                            <div class="shipping_content">: Enchanted Hollow</div>
-                        </div>
-                        <div class="shipping_container">
-                            <div class="shipping_details">State</div>
-                            <div class="shipping_content">: Fae Realm</div>
-                        </div>
-                        <div class="shipping_container">
-                            <div class="shipping_details">Zip Code</div>
-                            <div class="shipping_content">: 90123</div>
-                        </div>
-                        <div class="shipping_container">
-                            <div class="shipping_details">Country</div>
-                            <div class="shipping_content">: Faerieland</div>
-                        </div>
-                        <div class="inner_line_content"></div>
-                        <div class="title_sub_content">
-                            <div class="order_details">Items Ordered</div>
-                            <div class="order_details_content">:</div>
-                        </div>
-                        <div class="items_ordered_container">
-                            <div class="items_container">
-                                <div class="quantity">Quantity</div>
-                                <div class="product">Product</div>
-                                <div class="price">Price</div>
+                    @forelse ($transactions as $tr)
+                        <div class="inner_content_container">
+                            <div class="date_container">
+                                <div class="order_date">{{ $tr->created_at }}</div>
+                                <div class="order_code">#{{ $tr->transId }}</div>
                             </div>
-                            <div class="items_container">
-                                <div class="quantity_content">2</div>
-                                <div class="product_content">Mandrake</div>
-                                <div class="price_content">€ 49</div>
+                            <div class="inner_line_content"></div>
+                            <div class="title_sub_content">
+                                <div class="order_details">Payment Method</div>
+                                <div class="order_details_content">: {{ $tr->paymentMethod }}</div>
                             </div>
-                            <div class="items_container">
-                                <div class="quantity_content">1</div>
-                                <div class="product_content">Gillyweed</div>
-                                <div class="price_content">€ 89</div>
+                            <div class="title_sub_content">
+                                <div class="order_details">Courier</div>
+                                <div class="order_details_content">: {{ $tr->courier }}</div>
                             </div>
-                            <div class="items_container">
-                                <div class="quantity_content">3</div>
-                                <div class="product_content">Dittany</div>
-                                <div class="price_content">€ 69</div>
+                            <div class="inner_line_content"></div>
+                            <div class="title_sub_content">
+                                <div class="order_details">Shipping Address</div>
+                                <div class="order_details_content">:</div>
                             </div>
-                            <div class="items_container">
-                                <div class="quantity_content">2</div>
-                                <div class="product_content">Hobbit’s Weed</div>
-                                <div class="price_content">€ 29</div>
+                            <div class="shipping_container">
+                                <div class="shipping_details">Name</div>
+                                <div class="shipping_content">: {{ auth()->user()->firstName }}
+                                    {{ auth()->user()->lastName }}</div>
                             </div>
-                            <div class="line_total"></div>
-                            <div class="total_price">€ 236</div>
-                        </div>
-                    </div>
+                            <div class="shipping_container">
+                                <div class="shipping_details">Address</div>
+                                <div class="shipping_content">: {{ $tr->address }}</div>
+                            </div>
+                            <div class="shipping_container">
+                                <div class="shipping_details">City</div>
+                                <div class="shipping_content">: {{ $tr->city }}</div>
+                            </div>
+                            <div class="shipping_container">
+                                <div class="shipping_details">State</div>
+                                <div class="shipping_content">: {{ $tr->state }}</div>
+                            </div>
+                            <div class="shipping_container">
+                                <div class="shipping_details">Zip Code</div>
+                                <div class="shipping_content">: {{ $tr->zipcode }}</div>
+                            </div>
+                            <div class="shipping_container">
+                                <div class="shipping_details">Country</div>
+                                <div class="shipping_content">: {{ $tr->country }}</div>
+                            </div>
+                            <div class="inner_line_content"></div>
+                            <div class="title_sub_content">
+                                <div class="order_details">Items Ordered</div>
+                                <div class="order_details_content">:</div>
+                            </div>
+                            <div class="items_ordered_container">
+                                <div class="items_container">
+                                    <div class="quantity">Quantity</div>
+                                    <div class="product">Product</div>
+                                    <div class="price">Price</div>
+                                </div>
+
+
+                                @foreach ($groupedData[$tr->transId] ?? [] as $record)
+                                    <div class="items_container">
+                                        <div class="quantity_content">{{ $record->quantity }}</div>
+                                        <div class="product_content">{{ $record->herbName }}</div>
+                                        <div class="price_content">$ {{ number_format($record->price) }}</div>
+                                    </div>
+                                @endforeach
+                                <div class="line_total"></div>
+                                <div class="total_price">$ {{ number_format($tr->totalPrice) }}</div>
+                            @empty
+                                <p>You haven't ordered yet!</p>
+                    @endforelse
                 </div>
             </div>
             <div class="settings_container" id="settings" style="display:none">
@@ -461,7 +457,6 @@
                         </button>
                     </div>
                 </div>
-
             </div>
             <!-- </div> -->
         </div>
@@ -548,18 +543,49 @@
             document.getElementById('successAlert').style.display = 'none';
         }, 4000);
     </script>
+
+    <script>
+        function removeFromFavorites(herbsId) {
+            @auth
+            let url = "{{ route('removeFromFavorites') }}";
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    herbsId: herbsId,
+
+                },
+                success: function(data) {
+                    console.log("Success:", data);
+                    console.log(herbsId)
+                    // Update your UI accordingly based on the response
+                    if (data.status === 'unfavorited') {
+                        var imgElement = $('#favoritesItem-' + herbsId).find('.favoriteImg');
+                        imgElement.attr('src', "{{ asset('img/icon/favorite.svg') }}");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", xhr.responseText);
+                }
+            });
+        @else
+            window.location.href = "{{ route('login') }}";
+        @endauth
+        }
+    </script>
+
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"> --}}
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    </script> --}}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"> --}}
-    </script>
 </body>
 
 </html>

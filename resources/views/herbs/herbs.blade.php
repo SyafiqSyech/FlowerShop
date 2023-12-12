@@ -109,7 +109,8 @@
                 <div class="hc__exotic" id="exoticSection">
                     <div class="herbs__title">
                         <h1>EXOTIC COLLECTION</h1>
-                        <p>Immerse yourself in the enchanting world of rare and mystical herbs, handpicked from the far corners of the earth, offering extraordinary qualities and untold wonders.</p>
+                        <p>Immerse yourself in the enchanting world of rare and mystical herbs, handpicked from the far
+                            corners of the earth, offering extraordinary qualities and untold wonders.</p>
                     </div>
 
                     <div class="herbs__content">
@@ -130,7 +131,8 @@
                 <div class="hc__swiftgrow" id="swiftgrowSection">
                     <div class="herbs__title">
                         <h1>SWIFTGROW COLLECTION</h1>
-                        <p>Experience the magic of nature's efficiency with our SwiftGrow herbs – small, swift to cultivate, and quick to manifest their remarkable properties for your needs.</p>
+                        <p>Experience the magic of nature's efficiency with our SwiftGrow herbs – small, swift to
+                            cultivate, and quick to manifest their remarkable properties for your needs.</p>
                     </div>
 
                     <div class="herbs__content">
@@ -148,6 +150,40 @@
                     </div>
                 </div>
             </div>
+
+            @if (session('success'))
+                <!-- Bootstrap Modal -->
+                <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="successModalLabel">Let's Shop</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center mb-4">
+                                    <img src="{{asset('img/icon/smile.svg')}}" alt="">
+                                    {{-- <span class="fa-stack fa-4x text-green-600">
+                                        
+                                        <i class="fas fa-circle fa-stack-2x text-success"></i>
+                                        <i class="fas fa-check fa-stack-1x fa-inverse"></i>
+                                    </span> --}}
+                                </div>
+                                <p class="py-4 text-xl text-center">{!! session('success') !!}</p>
+                                <p class="py-4 text-sm text-center">Press ESC key or click outside to close</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Open the modal using Bootstrap JavaScript -->
+                <script>
+                    var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                    successModal.show();
+                </script>
+            @endif
 
         </main>
 
