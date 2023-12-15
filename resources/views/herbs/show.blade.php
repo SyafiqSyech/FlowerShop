@@ -87,7 +87,7 @@
                 <div class="product__container-right">
                     <div>
                         <p class="product__title">{{ $herbsDetail->herbName }}</p>
-                        <p class="product__title">$ {{ number_format($herbsDetail->herbPrice) }}</p>
+                        <p class="product__title">€ {{ number_format($herbsDetail->herbPrice) }}</p>
                         <p class="product__desc">
                             {{ $herbsDetail->magicalProperty }}
                         </p>

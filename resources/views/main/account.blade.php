@@ -238,11 +238,25 @@
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div> -->
-                <div class="account__menu" id="detailsButton" onclick="toggleDiv('details')"
-                    style="transform: translateX(2rem);">Details</div>
-                <div class="account__menu" id="favoritesButton" onclick="toggleDiv('favorites')">Favorites</div>
+                <div class="account__menu" onclick="toggleDiv('details')">
+                    <div class="ri-arrow-right-up-line" id="detailsArrow"></div>
+                    <p class="account__menu-text" style="transform: translateX(2rem);" id="detailsButton">Details</p>
+                </div>
+                <div class="account__menu" onclick="toggleDiv('favorites')">
+                    <div class="ri-arrow-right-up-line" style="opacity: 0%;" id="favoritesArrow"></div>
+                    <p class="account__menu-text" id="favoritesButton">Favorites</p>
+                </div>
+                <div class="account__menu" onclick="toggleDiv('history')">
+                    <div class="ri-arrow-right-up-line" style="opacity: 0%;" id="historyArrow"></div>
+                    <p class="account__menu-text" id="historyButton">Order History</p>
+                </div>
+                <div class="account__menu" onclick="toggleDiv('settings')">
+                    <div class="ri-arrow-right-up-line" style="opacity: 0%;" id="settingsArrow"></div>
+                    <p class="account__menu-text" id="settingsButton">Account Settings</p>
+                </div>
+                <!-- <div class="account__menu" id="favoritesButton" onclick="toggleDiv('favorites')">Favorites</div>
                 <div class="account__menu" id="historyButton" onclick="toggleDiv('history')">Order History</div>
-                <div class="account__menu" id="settingsButton" onclick="toggleDiv('settings')">Account Settings</div>
+                <div class="account__menu" id="settingsButton" onclick="toggleDiv('settings')">Account Settings</div> -->
             </div>
 
             <div class="details__container" id="details">
@@ -342,28 +356,31 @@
                     </div>
                 </div>
             </div>
-            <div class="favorites_container" id="favorites" style="display:none">
+            <div class="favorites__container" id="favorites" style="display:none">
                 <div class="account__title">Favorites</div>
-                <div class="container__card" id="container__favorite">
+                <div id="favorite-card" class="container__card">
                     @forelse ($favorites as $favorite)
-                        @include('layouts.cardContainer')
-                        <div id="favoritesItem-{{ $favorite->herbsId }}">
-                            <img class="favoriteImg" onclick="removeFromFavorites({{ $favorite->herbsId }})"
-                                src="{{ asset($favorite->herbs->isFavorited(auth()->id()) ? 'img/icon/favoriteSelected.svg' : 'img/icon/favorite.svg') }}"
-                                alt="" id="favoriteImage">
+                        <div class="favorite__product">
+                            @include('layouts.cardContainer')
+                            <div id="favoritesItem-{{ $favorite->herbsId }}">
+                                <img class="favoriteImg" onclick="removeFromFavorites({{ $favorite->herbsId }})"
+                                    src="{{ asset($favorite->herbs->isFavorited(auth()->id()) ? 'img/icon/favoriteSelected.svg' : 'img/icon/favorite.svg') }}"
+                                    alt="" id="favoriteImage">
+                            </div>
                         </div>
                     @empty
                         <p>You don't have Favorite Herbs!</p>
                     @endforelse
                 </div>
             </div>
-            <div class="history_container" id="history" style="display:none">
+            <div class="history_container" id="history" style="display:none;">
                 <div class="account__title">Order History</div>
                 <div class="content_container">
                     @forelse ($transactions as $tr)
                         <div class="inner_content_container">
                             <div class="date_container">
-                                <div class="order_date">{{ \Carbon\Carbon::parse($tr->created_at)->format('Y-m-d') }}</div>
+                                <div class="order_date">{{ \Carbon\Carbon::parse($tr->created_at)->format('Y-m-d') }}
+                                </div>
                                 <div class="order_code">#{{ $tr->transId }}</div>
                             </div>
                             <div class="inner_line_content"></div>
@@ -416,19 +433,25 @@
                                     <div class="product">Product</div>
                                     <div class="price">Price</div>
                                 </div>
-
-
                                 @foreach ($groupedData[$tr->transId] ?? [] as $record)
                                     <div class="items_container">
                                         <div class="quantity_content">{{ $record->quantity }}</div>
                                         <div class="product_content">{{ $record->herbName }}</div>
-                                        <div class="price_content">$ {{ number_format($record->price) }}</div>
+                                        <div class="price_content">€ {{ number_format($record->price) }}</div>
                                     </div>
                                 @endforeach
-                                <div class="line_total"></div>
-                                <div class="total_price">$ {{ number_format($tr->totalPrice) }}</div>
-                            @empty
-                                <p>You haven't ordered yet!</p>
+                                <div class="items_container">
+                                    <div></div>
+                                    <div></div>
+                                    <div>
+                                        <div class="line_total"></div>
+                                        <div class="total_price">€ {{ number_format($tr->totalPrice) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="history__empty">You haven't ordered any herbs yet!</p>
                     @endforelse
                 </div>
             </div>
@@ -458,11 +481,10 @@
                     </div>
                 </div>
             </div>
-            <!-- </div> -->
         </div>
-
-        <img src="{{ asset('img/bottom-account.png') }}" alt="" class="img-account-bottom">
+        </div>
     </main>
+    <img src="{{ asset('img/bottom-account.png') }}" alt="" class="img-account-bottom">
 
     <!--==================== DELETE CONFIRMATION ====================-->
     <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
@@ -490,10 +512,6 @@
     <!--==================== FOOTER ====================-->
     @include('layouts.footerLayout')
 
-    <!--========== SCROLL UP ==========-->
-    <a href="#headerHome" class="scrollup" id="scroll-up">
-        <i class="ri-arrow-up-s-line"></i>
-    </a>
     <!--=============== SCROLLREVEAL ===============-->
     <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
 
@@ -513,13 +531,16 @@
             var divs = ['details', 'favorites', 'history', 'settings'];
             divs.forEach(function(div) {
                 var button = document.getElementById(div + "Button")
+                var arrow = document.getElementById(div + "Arrow")
                 var content = document.getElementById(div)
                 if (div == divId) {
                     button.style.transform = "translateX(2rem)";
                     content.style.display = 'block';
+                    arrow.style.opacity = '100%';
                 } else {
                     button.style.transform = "translateX(0)";
                     content.style.display = 'none';
+                    arrow.style.opacity = '0%';
                 }
             });
         }
@@ -547,6 +568,35 @@
     <script>
         function removeFromFavorites(herbsId) {
             @auth
+            var localStorageKey = 'removeFromFavorites';
+            var removeFromFavoritesAction = JSON.parse(localStorage.getItem(localStorageKey));
+
+            if (removeFromFavoritesAction && removeFromFavoritesAction.herbsId === herbsId) {
+                localStorage.removeItem(localStorageKey);
+                var imgElement = $('#favoritesItem-' + herbsId).find('.favoriteImg');
+                imgElement.attr('src', "{{ asset('img/icon/favoriteSelected.svg') }}");
+            } else {
+                console.log("Removing from favorites. HerbsId:", herbsId);
+                localStorage.setItem(localStorageKey, JSON.stringify({
+                    herbsId: herbsId
+                }));
+                var imgElement = $('#favoritesItem-' + herbsId).find('.favoriteImg');
+                imgElement.attr('src', "{{ asset('img/icon/favorite.svg') }}");
+            }
+        @else
+            window.location.href = "{{ route('login') }}";
+        @endauth
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var removeFromFavoritesAction = localStorage.getItem('removeFromFavorites');
+            removeFromFavoritesAction = JSON.parse(removeFromFavoritesAction);
+                    localStorage.removeItem('removeFromFavorites');
+                    performRemoveFromFavorites(removeFromFavoritesAction.herbsId);
+        });
+
+        function performRemoveFromFavorites(herbsId) {
+            console.log("performRemoveFromFavorites called with herbsId:", herbsId);
             let url = "{{ route('removeFromFavorites') }}";
 
             $.ajax({
@@ -555,37 +605,28 @@
                 data: {
                     _token: "{{ csrf_token() }}",
                     herbsId: herbsId,
-
                 },
                 success: function(data) {
                     console.log("Success:", data);
-                    console.log(herbsId)
-                    // Update your UI accordingly based on the response
+                    console.log(herbsId);
+
+                    // Update your UI based on the response
                     if (data.status === 'unfavorited') {
-                        var imgElement = $('#favoritesItem-' + herbsId).find('.favoriteImg');
-                        imgElement.attr('src', "{{ asset('img/icon/favorite.svg') }}");
+                        // var imgElement = $('#favoritesItem-' + herbsId).find('.favoriteImg');
+                        // imgElement.attr('src', "{{ asset('img/icon/favorite.svg') }}");
+                        $('#favorite-card').html('<p>You don\'t have Favorite Herbs!</p>');
                     }
                 },
                 error: function(xhr, status, error) {
                     console.error("Error:", xhr.responseText);
                 }
             });
-        @else
-            window.location.href = "{{ route('login') }}";
-        @endauth
         }
     </script>
 
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"> --}}
-    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script> --}}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"> --}}
 </body>
 
 </html>

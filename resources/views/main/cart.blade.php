@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/carts.css') }}">
-
+    
     <!--=============== COUNTER ===============-->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!--=============== CSS ===============-->
+    
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing-page.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/loginregister.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/carts.css') }}">
 
     <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
 
@@ -80,10 +79,10 @@
                                         alt="" id="favoriteImage">
                                 </div>
                                 <p class="item__price" data-id="{{ $cart->cartsId }}">
-                                    ${{ number_format($cart->herbPrice / $cart->quantity) }}</p>
+                                    € {{ number_format($cart->herbPrice / $cart->quantity) }}</p>
                                 <p id="herbPrice-{{ $cart->cartsId }}" class="item__price herbPrice"
                                     data-id="{{ $cart->cartsId }}">Total:
-                                    $ {{ number_format($cart->herbPrice) }}
+                                    € {{ number_format($cart->herbPrice) }}
                                 </p>
                                 <div>
                                     <img class="item__remove" src="{{ asset('img/icon/removeCart.svg') }}"
@@ -111,7 +110,7 @@
                     <div class="right__title">
                         Total
                     </div>
-                    <p class="grandtotal" id="totalPrice">$ {{ number_format($totalPrice) }}</p>
+                    <p class="grandtotal" id="totalPrice">€ {{ number_format($totalPrice) }}</p>
                 </div>
                 <div class="right__section">
                     <div class="right__title">
@@ -250,11 +249,6 @@
     <!--==================== FOOTER ====================-->
     @include('layouts.footerLayout')
 
-    <!--========== SCROLL UP ==========-->
-    <a href="#headerHome" class="scrollup" id="scroll-up">
-        <i class="ri-arrow-up-s-line"></i>
-    </a>
-
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
@@ -270,9 +264,6 @@
     <script>
         function updateQuantity(qty) {
             console.log("Updating quantity:", qty);
-            // $('#cartsId').val($(qty).data('cartsId'))
-            // $('#quantity').val($(qty).val())
-            // $('#updateCartQty').submit()
 
             $.ajax({
                 url: "{{ route('updateCart') }}",
@@ -351,7 +342,7 @@
                         if (data.isCartEmpty) {
                             $('#cart-container').html('<p>No Herbs in Cart!</p>');
                             var totalPriceElement = $('#totalPrice')
-                            totalPriceElement.text('$ 0');
+                            totalPriceElement.text('€ 0');
                         } else {
                             $('#cartItem-' + cartsId).remove();
                         }

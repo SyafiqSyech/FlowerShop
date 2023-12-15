@@ -36,13 +36,15 @@ class CartController extends Controller
             $totalPrice += $cart->herbPrice;
         }
 
+        $formattedTotalPrice = $totalPrice;
+
         if (count($existingCarts) <= 0) {
             return redirect()->route('herbs')->with('success', 'No herbs in your cart! How about start looking for one?');
         } else {
             return view('main.cart', [
                 'userId' => $userId,
                 'carts' => $existingCarts,
-                'totalPrice' => $totalPrice,
+                'totalPrice' => $formattedTotalPrice,
                 'favorites' => $favorites
             ]);
         }
@@ -59,7 +61,7 @@ class CartController extends Controller
 
         if ($existingCart) {
             $existingCart->quantity += 1;
-            $existingCart->herbPrice *= $existingCart->quantity;
+            $existingCart->herbPrice = $herbs->herbPrice * $existingCart->quantity;
             $existingCart->save();
         } else {
             Carts::create([
@@ -126,11 +128,11 @@ class CartController extends Controller
 
             $formattedHerbPrices = [];
             foreach ($existingCarts as $cartItem) {
-                $formattedHerbPrices[$cartItem->cartsId] = 'Total: $ ' . number_format($cartItem->herbPrice);
+                $formattedHerbPrices[$cartItem->cartsId] = 'Total: € ' . number_format($cartItem->herbPrice);
             }
 
             $totalPrice = $existingCarts->sum('herbPrice');
-            $formattedTotalPrice = '$ ' . number_format($totalPrice);
+            $formattedTotalPrice = '€ ' . number_format($totalPrice);
 
             return response()->json([
                 'success' => true,

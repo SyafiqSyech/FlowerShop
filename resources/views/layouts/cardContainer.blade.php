@@ -32,7 +32,7 @@
             {{ isset($featuredHerbs) ? $featuredHerbs->herbName : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbName : (isset($favorite) ? $favorite->herbName : $herb->herbName)) }}
         </p>
         <p>
-            ${{ number_format(isset($featuredHerbs) ? $featuredHerbs->herbPrice : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbPrice : (isset($favorite) ? $favorite->herbPrice : $herb->herbPrice))) }}
+            € {{ number_format(isset($featuredHerbs) ? $featuredHerbs->herbPrice : (isset($youMightAlsoLike) ? $youMightAlsoLike->herbPrice : (isset($favorite) ? $favorite->herbPrice : $herb->herbPrice))) }}
         </p>
     </div>
 
