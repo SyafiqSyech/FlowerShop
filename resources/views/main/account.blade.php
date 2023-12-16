@@ -360,7 +360,7 @@
                 <div class="account__title">Favorites</div>
                 <div id="favorite-card" class="container__card">
                     @forelse ($favorites as $favorite)
-                        <div class="favorite__product">
+                        <div class="favorite__product" id="favoriteProduct-{{ $favorite->herbsId }}">
                             @include('layouts.cardContainer')
                             <div id="favoritesItem-{{ $favorite->herbsId }}">
                                 <img class="favoriteImg" onclick="removeFromFavorites({{ $favorite->herbsId }})"
@@ -612,9 +612,12 @@
 
                     // Update your UI based on the response
                     if (data.status === 'unfavorited') {
-                        // var imgElement = $('#favoritesItem-' + herbsId).find('.favoriteImg');
-                        // imgElement.attr('src', "{{ asset('img/icon/favorite.svg') }}");
-                        $('#favorite-card').html('<p>You don\'t have Favorite Herbs!</p>');
+                        if(data.isFavoriteEmpty) {
+                            $('#favorite-card').html('<p>You don\'t have Favorite Herbs!</p>');
+                        }
+                        var imgElement = $('#favoriteProduct-' + herbsId)
+                        imgElement.css('display', 'none');
+                       
                     }
                 },
                 error: function(xhr, status, error) {

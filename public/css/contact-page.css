@@ -1,0 +1,83 @@
+.contact__page{
+    background-image: url("../img/contact-background-img.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 1473px;
+    height: 850px;
+    z-index: -5;
+}
+
+.contact__page-whitebg{
+    position: absolute;
+    background-color: white;
+    height: 70%;
+    width: 100%;
+    transform: translateY(215px);
+    z-index: 0;
+}
+
+.contact__page-content{
+    display: flex;
+    align-items: end;
+    padding: 8rem 16rem 0rem;
+    gap: 90px;
+}
+
+.contact__page-left,
+.contact__page-right{
+    z-index: 10;
+}
+
+.contact__page-img{
+    width: 370px;
+    height: 546px;
+}
+
+.contact__page-image{
+    border-top-right-radius: 10rem;
+    border-top-left-radius: 10rem;
+    overflow: hidden;
+    width: 370px;
+    height: 546px;
+}
+
+.contact__page-right{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact__page-right h1{
+    font-family: var(--title-font);
+}
+
+.contact__page-right p{
+    font-family: var(--body-font);
+    font-weight: var(--font-medium);
+    display: flex;
+    align-items: center;
+}
+
+.contact__page-right a{
+    color: rgb(170, 170, 170);
+    font-size: var(--normal-font-size);
+}
+
+.contact__page-right a:hover{
+   transform: scale(1.5);
+   transition: 0.4s;
+}
+
+
+.one{
+    gap: 60px;
+}
+
+.two{
+    gap: 30px;
+}
+
+.three{
+    gap: 90px;
+}

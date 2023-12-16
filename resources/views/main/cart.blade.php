@@ -11,9 +11,9 @@
 
     <!--=============== CSS ===============-->
     
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing-page.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">    
     <link rel="stylesheet" href="{{ asset('css/loginregister.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing-page.css')}}">
     <link rel="stylesheet" href="{{ asset('css/carts.css') }}">
 
     <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
@@ -90,11 +90,11 @@
                                 </div>
                             </div>
                             <div class="counter item__qty">
-                                <span class="plus">+</span>
+                                <span class="plus" tabindex="0">+</span>
                                 <input type="number" class="count" name="quantity"
                                     data-carts-id="{{ $cart->cartsId }}" value="{{ $cart->quantity }}"
                                     data-id="{{ $cart->cartsId }}">
-                                <span class="minus">-</span>
+                                <span class="minus" tabindex="0">-</span>
                             </div>
                         </div>
                     @empty
@@ -245,14 +245,25 @@
 
     </main>
 
-
     <!--==================== FOOTER ====================-->
     @include('layouts.footerLayout')
+
+    <!--========== SCROLL UP ==========-->
+    <a href="#headerHome" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-s-line"></i>
+    </a>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+
+     <!--=============== SCROLLREVEAL ===============-->
+     <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
+
+     <!--=============== MAIN JS ===============-->
+     <script src="{{ asset('js/landing-page.js') }}"></script>
+ 
 
     <script>
         function togglePopup() {

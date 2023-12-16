@@ -19,6 +19,7 @@
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contact-page.css') }}">
 
     <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
 
@@ -62,11 +63,52 @@
         </ul>
     </nav>
 
+    <!--==================== CONTENT ====================-->
+    <div class="contact__page">
+        <div class="contact__page-whitebg"></div>
+
+        <div class="contact__page-content">
+            <div class="contact__page-left">
+                <div class="contact__page-image">
+                    <img src="{{ asset('img/contact-img.png') }}" alt="" class="contact__page-img">
+                </div>
+            </div>
+
+            <div class="contact__page-right">
+                <h1>SEND US AN OWL</h1>
+                <p>
+                    Need help finding the perfect herb for your spell or potion? Have a question about our products or
+                    services? Don't hesitate to contact us! We're here to help you on your journey to herbal mastery.
+                </p>
+
+                <p class="one">
+                    1001 Moonflower Lane <br>
+                    Emerald City <br>
+                    Middle-earth
+
+                    <a href=""><i class="ri-arrow-right-up-line"></i></a>
+                </p>
+
+                <p class="two">
+                    theherbgroup@gmail.com
+
+                    <a href=""><i class="ri-arrow-right-up-line"></i></a>
+                </p>
+
+                <p class="three">
+                    +93 420 7484848
+
+                    <a href=""><i class="ri-arrow-right-up-line"></i></a>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!--==================== FOOTER ====================-->
     @include('layouts.footerLayout')
 
     <!--========== SCROLL UP ==========-->
-    <a href="#home" class="scrollup" id="scroll-up">
+    <a href="#headerHome" class="scrollup" id="scroll-up">
         <i class="ri-arrow-up-s-line"></i>
     </a>
 
