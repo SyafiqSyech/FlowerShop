@@ -126,48 +126,30 @@ class AccountController extends Controller
     {
         $userId = Auth::id();
 
-        $herbs = Herbs::findOrFail($id);
+        $herbs = $request->input('herbsId');
+        // dump($herbs);
 
         $cartsId = $request->input('cartsId');
 
         $favoritesId = $request->input('favoritesId');
 
-        if ($cartsId || $favoritesId) {
-            $cart = Carts::findOrFail($cartsId);
+        $favorite = Favorites::where('userId', $userId)
+            ->where('herbsId', $herbs)
+            ->first();
 
-            $favorite = Favorites::where('userId', $userId)
-                ->where('herbsId', $herbs->herbsId)
-                ->first();
 
-            if ($favorite) {
-                $favorite->delete();
-                // return redirect()->route('show', ['id' => $id])->with('status', 'unfavorited');
-                $isFavoriteEmpty = Favorites::where('userId', $userId)->count() == 0;
+        if ($favorite) {
+            $favorite->delete();
+            // return redirect()->route('show', ['id' => $id])->with('status', 'unfavorited');
+            $isFavoriteEmpty = Favorites::where('userId', $userId)->count() == 0;
 
-                return response()->json(['status' => 'unfavorited', 'isFavoriteEmpty' => $isFavoriteEmpty]);
-            } else {
-                Favorites::create([
-                    'userId' => $userId,
-                    'herbsId' => $herbs->herbsId,
-                ]);
-                return response()->json(['status' => 'favorited']);
-            }
+            return response()->json(['status' => 'unfavorited', 'isFavoriteEmpty' => $isFavoriteEmpty]);
         } else {
-            $favorite = Favorites::where('userId', $userId)
-                ->where('herbsId', $herbs->herbsId)
-                ->first();
-
-            if ($favorite) {
-                $favorite->delete();
-                // return redirect()->route('show', ['id' => $id])->with('status', 'unfavorited');
-                return response()->json(['status' => 'unfavorited']);
-            } else {
-                Favorites::create([
-                    'userId' => $userId,
-                    'herbsId' => $herbs->herbsId,
-                ]);
-                return response()->json(['status' => 'favorited']);
-            }
+            Favorites::create([
+                'userId' => $userId,
+                'herbsId' => $herbs,
+            ]);
+            return response()->json(['status' => 'favorited']);
         }
     }
 

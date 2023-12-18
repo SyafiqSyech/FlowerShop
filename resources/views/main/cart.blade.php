@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <!--=============== COUNTER ===============-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!--=============== CSS ===============-->
-    
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">    
+
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/loginregister.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing-page.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/carts.css') }}">
 
     <link rel="icon" type="image/x-icon" href="{{ asset('img/Logo1.svg') }}" />
@@ -105,57 +105,57 @@
 
             <form method="POST" action="{{ route('checkOut') }}">
                 @csrf
-            <div class="cart__right toprounded">
-                <div class="right__section">
-                    <div class="right__title">
-                        Total
+                <div class="cart__right toprounded">
+                    <div class="right__section">
+                        <div class="right__title">
+                            Total
+                        </div>
+                        <p class="grandtotal" id="totalPrice">€ {{ number_format($totalPrice) }}</p>
                     </div>
-                    <p class="grandtotal" id="totalPrice">€ {{ number_format($totalPrice) }}</p>
-                </div>
-                <div class="right__section">
-                    <div class="right__title">
-                        Courier
+                    <div class="right__section">
+                        <div class="right__title">
+                            Courier
+                        </div>
+                        <div class="input__form">
+                            {!! Form::select(
+                                'courier',
+                                ['Owl Post' => 'Owl Post', 'Porter' => 'Porter', 'Spacing Guild' => 'Spacing Guild'],
+                                null,
+                                ['class' => 'input__dropdown'],
+                            ) !!}
+                            @error('courier')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="input__form">
-                        {!! Form::select(
-                            'courier',
-                            ['Owl Post' => 'Owl Post', 'Porter' => 'Porter', 'Spacing Guild' => 'Spacing Guild'],
-                            null,
-                            ['class' => 'input__dropdown'],
-                        ) !!}
-                        @error('courier')
-                            <div class="invalid-feedback">
-                                {{ $message }}
+                    <div class="right__section">
+                        <div class="right__title">
+                            Payment Method
+                        </div>
+                        <div class="input__form">
+                            {!! Form::select(
+                                'paymentMethod',
+                                ['Paypal' => 'Paypal', 'Gopay' => 'Gopay', 'Blood Sacrifice' => 'Blood Sacrifice'],
+                                null,
+                                ['class' => 'input__dropdown'],
+                            ) !!}
+                            @error('paymentMethod')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="right__section">
+                        <div class="button" onclick="togglePopup()">
+                            <div class="button__content">
+                                <div>Check Out</div>
                             </div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="right__section">
-                    <div class="right__title">
-                        Payment Method
-                    </div>
-                    <div class="input__form">
-                        {!! Form::select(
-                            'paymentMethod',
-                            ['Paypal' => 'Paypal', 'Gopay' => 'Gopay', 'Blood Sacrifice' => 'Blood Sacrifice'],
-                            null,
-                            ['class' => 'input__dropdown'],
-                        ) !!}
-                        @error('paymentMethod')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="right__section">
-                    <div class="button" onclick="togglePopup()">
-                        <div class="button__content">
-                            <div>Check Out</div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
         <div id="popup" class="popup hidden">
@@ -163,75 +163,75 @@
             <div class="popup__content">
                 <span class="close" onclick="togglePopup()">&times;</span>
                 <p class="popup__title">Shipping Address</p>
-                
-                    <input name="userId" type="hidden" id="userId" required placeholder=" "
-                        value={{ $userId }}>
-                    {{-- <input type="hidden" name="method" value="{{ old('method') }}" />
+
+                <input name="userId" type="hidden" id="userId" required placeholder=" "
+                    value={{ $userId }}>
+                {{-- <input type="hidden" name="method" value="{{ old('method') }}" />
                     <input type="hidden" name="courier" value="{{ old('courier') }}" /> --}}
+                <div class="input__form">
+                    <input name="address" type="text" class="input @error('address') is-invalid @enderror"
+                        id="address" required placeholder=" " value="{{ old('address') }}">
+                    <label for="address" class="label">Address</label>
+                    @error('address')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="double__container">
                     <div class="input__form">
-                        <input name="address" type="text" class="input @error('address') is-invalid @enderror"
-                            id="address" required placeholder=" " value="{{ old('address') }}">
-                        <label for="address" class="label">Address</label>
-                        @error('address')
+                        <input name="city" type="text" class="input @error('city') is-invalid @enderror"
+                            id="city" required placeholder=" " value="{{ old('city') }}">
+                        <label for="city" class="label">City</label>
+                        @error('city')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
 
-                    <div class="double__container">
-                        <div class="input__form">
-                            <input name="city" type="text" class="input @error('city') is-invalid @enderror"
-                                id="city" required placeholder=" " value="{{ old('city') }}">
-                            <label for="city" class="label">City</label>
-                            @error('city')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="input__form">
-                            <input name="state" type="text" class="input @error('state') is-invalid @enderror"
-                                id="state" required placeholder=" " value="{{ old('state') }}">
-                            <label for="state" class="label">State</label>
-                            @error('state')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
+                    <div class="input__form">
+                        <input name="state" type="text" class="input @error('state') is-invalid @enderror"
+                            id="state" required placeholder=" " value="{{ old('state') }}">
+                        <label for="state" class="label">State</label>
+                        @error('state')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
+                </div>
 
-                    <div class="double__container">
-                        <div class="input__form">
-                            <input name="zipcode" type="text" class="input @error('zipcode') is-invalid @enderror"
-                                id="zipcode" required placeholder=" " value="{{ old('zipcode') }}">
-                            <label for="zipcode" class="label">Zip Code</label>
-                            @error('zipcode')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="input__form">
-                            <input name="country" type="text" class="input @error('country') is-invalid @enderror"
-                                id="country" required placeholder=" " value="{{ old('country') }}">
-                            <label for="country" class="label">Country</label>
-                            @error('country')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
+                <div class="double__container">
+                    <div class="input__form">
+                        <input name="zipcode" type="text" class="input @error('zipcode') is-invalid @enderror"
+                            id="zipcode" required placeholder=" " value="{{ old('zipcode') }}">
+                        <label for="zipcode" class="label">Zip Code</label>
+                        @error('zipcode')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                    <input name="totalPrice" type="hidden" id="totalPrice" required placeholder=" "
+                    <div class="input__form">
+                        <input name="country" type="text" class="input @error('country') is-invalid @enderror"
+                            id="country" required placeholder=" " value="{{ old('country') }}">
+                        <label for="country" class="label">Country</label>
+                        @error('country')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+                <input name="totalPrice" type="hidden" id="totalPrice" required placeholder=" "
                     value={{ $totalPrice }}>
-                    <button class="button" type="submit">
-                        <div class="button__content">
-                            <div>Check Out</div>
-                        </div>
-                    </button>
+                <button class="button" type="submit">
+                    <div class="button__content">
+                        <div>Check Out</div>
+                    </div>
+                </button>
                 </form>
             </div>
         </div>
@@ -258,12 +258,12 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 
-     <!--=============== SCROLLREVEAL ===============-->
-     <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
+    <!--=============== SCROLLREVEAL ===============-->
+    <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
 
-     <!--=============== MAIN JS ===============-->
-     <script src="{{ asset('js/landing-page.js') }}"></script>
- 
+    <!--=============== MAIN JS ===============-->
+    <script src="{{ asset('js/landing-page.js') }}"></script>
+
 
     <script>
         function togglePopup() {
@@ -369,6 +369,8 @@
     <script>
         function addToFavorites(herbsId, cartsId) {
             @auth
+            console.log(herbsId)
+            console.log(cartsId)
             $.ajax({
                 type: "POST",
                 url: "{{ route('storeToFavorites', ['id' => $cart->herbsId]) }}",
@@ -383,9 +385,11 @@
                     var imgElement = $('#cartItem-' + cartsId).find('.favoriteImg');
                     // var pElement = $('#cartItem-' + cartsId).find('.favoriteText');
                     if (data.status === 'favorited') {
+
                         imgElement.attr('src', "{{ asset('img/icon/favoriteSelected.svg') }}");
                         // pElement.css('color', 'black');
                     } else if (data.status === 'unfavorited') {
+
                         imgElement.attr('src', "{{ asset('img/icon/favorite.svg') }}");
                         // pElement.css('color', '#b7b7b7');
                     }
